@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="homepage.css">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link
+    href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,600,700"
+    rel="stylesheet"
+  />
+  <script
+    src="https://kit.fontawesome.com/37b0ae8922.js"
+    crossorigin="anonymous"
+  ></script>
+  </head>
+  
+
+    <div class="dash">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header__options">
+          <button class="header__pro">Log out</button>
+        </div>
+      </header>
+
+      <!-- BODY -->
+      <div class="body">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+
+            <div class="sidebar_icon">
+                <i class='fas fa-home' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Home</i>
+              </div>
+
+          <div class="sidebar_icon">
+            <i class='fas fa-th' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Rooms</i>
+          </div>
+
+          <div class="sidebar_icon">
+            <i class='fas fa-wifi' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Devices</i>
+          </div>
+
+
+          <div class="sidebar_icon">
+            <i class='fas fa-cog' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Settings</i>
+          </div>
+
+            <body onLoad="initClock()">
+
+                <div id="timedate">
+                  <a id="mon">January</a>
+                  <a id="d">1</a>,
+                  <a id="y">0</a><br />
+                  <a id="h">12</a> :
+                  <a id="m">00</a>:
+                  <a id="s">00</a>
+                </div>
+        
+            
+        
+
+
+        </div>
+
+        <!-- MAIN -->
+        <main class="main">
+
+            <div id="box">
+                <div class="container-fluid full-width-image margins">
+                </div>
+            
+                <div class="container">
+                    <ul class="nav nav-tabs" role="tablist">
+                          <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#today" role="tab">Today</a>
+                          </li>
+                          <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tomorrow" id="tab2" role="tab">Fri</a>
+                          </li>
+                          <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#third-day" id="tab3" role="tab">Sat</a>
+                          </li>
+                          <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#fourth-day" id="tab4" role="tab">Sun</a>
+                          </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="today" role="tabpanel">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p id="cur-status"><span id="cur-deg">27</span> &deg;<span class="deg-toggle">C</span><i class="ion-ios-rainy-outline" id="today-icon"></i></p> 
+                                    <p id="cur-status2"><i class="ion-leaf icons"></i><span id="cur-wind"> 37</span> <span class="speed-toggle">kph </span> <i class="ion-waterdrop icons"></i><span id="cur-humid"> 45</span> % </p> 
+                                </div>
+                                <div class="col">
+                                    <i id="hourly-icon-0" class="hourly-icons"></i>
+                                    <p class="hourly-degs"><span id="hourly-deg-0">25</span>&deg;</p>
+                                    <p class="hourly-times"><span id="hourly-time-0">17:00</span></p>
+                                </div>
+                                <div class="col">
+                                    <i id="hourly-icon-1" class="hourly-icons"></i>
+                                    <p class="hourly-degs"><span id="hourly-deg-1">25</span>&deg;</p>
+                                    <p class="hourly-times"><span id="hourly-time-1">21:00</span></p>
+                                    
+                                </div>
+                                <div class="col">
+                                    <i id="hourly-icon-2" class="hourly-icons"></i>
+                                    <p class="hourly-degs"><span id="hourly-deg-2">25</span>&deg;</p>
+                                    <p class="hourly-times"><span id="hourly-time-2">01:00</span></p>
+        
+                                </div>
+                                <div class="col">
+                                    <i id="hourly-icon-3" class="hourly-icons"></i>
+                                    <p class="hourly-degs"><span id="hourly-deg-3">25</span>&deg;</p>
+                                    <p class="hourly-times"><span id="hourly-time-3">05:00</span></p>
+        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tomorrow" role="tabpanel">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p id="tomorrow-status"><span id="tomorrow-deg-max">27</span> &deg;<span class="deg-toggle">C</span><span id="tomorrow-deg-min">23</span> &deg;<span class="deg-toggle">C</span><br><i class="ion-ios-rainy-outline" id="tomorrow-icon"></i></p> 
+                                    <p id="tomorrow-status2"><i class="ion-leaf icons"></i><span id="tomorrow-wind"> 37</span> <span class="speed-toggle">kph </span> <i class="ion-waterdrop icons"></i><span id="tomorrow-humid"> 45</span> % </p>
+                                </div>
+                                <div class="col">
+                                    <h3>Day summary:</h3>
+                                    <p id="tomorrow-summary">Info</p>
+                                </div>
+                                <div class="col">
+                                    <p class="more-info">Cloud cover: <span id="tomorrow-cloud">20</span>%</p>
+                                    <p class="more-info">Chance of rain: <span id="tomorrow-rain">10</span>%</p>
+                                    <p class="more-info">Real feel max: <span id="tomorrow-real-max">29</span>&deg;</p>
+                                    <p class="more-info">Real feel min: <span id="tomorrow-real-min">18</span>&deg;</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="third-day" role="tabpanel">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p id="third-status"><span id="third-deg-max">27</span> &deg;<span class="deg-toggle">C</span><span id="third-deg-min">23</span> &deg;<span class="deg-toggle">C</span><br><i class="ion-ios-rainy-outline" id="third-icon"></i></p> 
+                                    <p id="third-status2"><i class="ion-leaf icons"></i><span id="third-wind"> 37</span> <span class="speed-toggle">kph </span> <i class="ion-waterdrop icons"></i><span id="third-humid"> 45</span> % </p>
+                                </div>
+                                <div class="col">
+                                    <h3>Day summary:</h3>
+                                    <p id="third-summary">Info</p>
+                                </div>
+                                <div class="col">
+                                    <p class="more-info">Cloud cover: <span id="third-cloud">20</span>%</p>
+                                    <p class="more-info">Chance of rain: <span id="third-rain">10</span>%</p>
+                                    <p class="more-info">Real feel max: <span id="third-real-max">29</span>&deg;</p>
+                                    <p class="more-info">Real feel min: <span id="third-real-min">18</span>&deg;</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="fourth-day" role="tabpanel">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p id="fourth-status"><span id="fourth-deg-max">27</span> &deg;<span class="deg-toggle">C</span><span id="fourth-deg-min">23</span> &deg;<span class="deg-toggle">C</span><br><i class="ion-ios-rainy-outline" id="fourth-icon"></i></p> 
+                                    <p id="fourth-status2"><i class="ion-leaf icons"></i><span id="fourth-wind"> 37</span> <span class="speed-toggle">kph </span> <i class="ion-waterdrop icons"></i><span id="fourth-humid"> 45</span> % </p>
+                                </div>
+                                <div class="col">
+                                    <h3>Day summary:</h3>
+                                    <p id="fourth-summary">Info</p>
+                                </div>
+                                <div class="col">
+                                    <p class="more-info">Cloud cover: <span id="fourth-cloud">20</span>%</p>
+                                    <p class="more-info">Chance of rain: <span id="fourth-rain">10</span>%</p>
+                                    <p class="more-info">Real feel max: <span id="fourth-real-max">29</span>&deg;</p>
+                                    <p class="more-info">Real feel min: <span id="fourth-real-min">18</span>&deg;</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+
+
+         
+
+        </main>
+
+      </div>
+
+    </div>
+    <script src="clock.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+</html>
