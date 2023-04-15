@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="rooms.css">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link
+    href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,600,700"
+    rel="stylesheet"
+  />
+  <script
+    src="https://kit.fontawesome.com/37b0ae8922.js"
+    crossorigin="anonymous"
+  ></script>
+  </head>
+  
+
+    <div class="dash">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header__options">
+          <button class="header__pro">Log out</button>
+        </div>
+      </header>
+
+      <!-- BODY -->
+      <div class="body">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+
+            <div class="sidebar_icon">
+                <i class='fas fa-home' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Home</i>
+              </div>
+
+          <div class="sidebar_icon">
+            <i class='fas fa-th' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Rooms</i>
+          </div>
+
+          <div class="sidebar_icon">
+            <i class='fas fa-wifi' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Devices</i>
+          </div>
+
+
+          <div class="sidebar_icon">
+            <i class='fas fa-cog' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Settings</i>
+          </div>
+
+            <body onLoad="initClock()">
+
+                <div id="timedate">
+                  <a id="mon">January</a>
+                  <a id="d">1</a>,
+                  <a id="y">0</a><br />
+                  <a id="h">12</a> :
+                  <a id="m">00</a>:
+                  <a id="s">00</a>
+                </div>
+        
+            
+        
+
+
+        </div>
+
+        <!-- MAIN -->
+        <main class="main">
+
+            <p style="font-family:'Open Sans'; font-size: 34px;">ROOMS</p>
+
+            <div class="box_rooms">
+
+                <body>
+                    <div class="container_box">
+                      <div class="boxes boxes1"> 
+                        <p class="boxes-text" style="margin-top: -23px;">Living Room</p>
+                      </div>
+                      <div class="boxes boxes2"> 
+                        <p class="boxes-text">Kitchen</p>
+                      </div>
+                      <div class="boxes boxes3"> 
+                        <p class="boxes-text">Bedroom</p>
+                      </div>
+                      <div class="boxes boxes4"> 
+                        <p class="boxes-text">Bathroom</p>
+                      </div>
+                      <div class="boxes boxes5"> 
+                        <p class="boxes-text" style="margin-top: -23px;">Home Office</p>
+                      </div>
+                      <div class="boxes boxes6"> 
+                        <p class="boxes-text">Entryway</p>
+                      </div>
+            
+                </div>
+
+
+            </div>
+
+
+        </main>
+
+      </div>
+
+    </div>
+    <script src="clock.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+</html>

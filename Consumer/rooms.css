@@ -1,0 +1,443 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+
+  color: hsl(270, 10%, 80%);
+  font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+
+button {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button:hover,
+button:focus {
+  outline: none;
+}
+
+a,
+a:hover,
+a:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+.dash {
+  background: hsl(270, 50%, 10%);
+  flex-direction: column;
+  
+}
+
+
+.header {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  box-shadow: 0 4px 12px hsla(270, 30%, 3%, .2);
+}
+
+.header__heading {
+  width: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__heading>a {
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: whitesmoke;
+  background: whitesmoke;
+  padding: .2rem .7rem;
+  font-size: 1.5rem;
+  border-radius: 4px;
+}
+
+.header__heading>a:hover {
+  background: hsl(220, 80%, 64%);
+}
+
+.header__options {
+  padding-right: 1.8rem;
+  padding-left: 138rem;
+}
+
+.header__pro {
+  color: #111111;
+  background: linear-gradient(to top right, #f5f5f7, #66676d);
+  border: 0;
+  margin-right: 5rem;
+  font-size: 1.2rem;
+  padding: .7rem 1.8rem;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.header__link {
+  font-size: 1.4rem;
+  opacity: .8;
+  color: inherit;
+}
+
+.header__link:first-of-type:hover {
+  opacity: 1;
+}
+
+.header__link:not(:first-of-type) {
+  margin-left: 2rem;
+  opacity: 1;
+}
+
+.body {
+  flex-grow: 2;
+  display: flex;
+}
+
+.sidebar {
+  width: 24rem;
+  height:68rem;
+  box-shadow: 2px 0 12px hsla(270, 30%, 10%, .2);
+}
+
+.sidebar_icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 4rem;
+  cursor: pointer;
+}
+
+.sidebar_icon {
+  opacity: .3;
+}
+
+.sidebar_icon:hover {
+  opacity: 1;
+}
+
+.sidebar_icon>svg {
+  height: 2.2rem;
+}
+
+.ss-heading {
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  color: hsl(235, 5%, 70%);
+}
+
+.ss-show {
+  color: hsl(210, 60%, 60%);
+  font-size: 1.2rem;
+}
+
+.ss-show:hover {
+  color: hsl(210, 70%, 70%);
+}
+
+.ss-dots {
+  display: flex;
+}
+
+.ss-dots>span {
+  width: 6px;
+  height: 6px;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  margin-right: 2px;
+  opacity: .6;
+  cursor: pointer;
+}
+
+.ss-dots>span:hover {
+  opacity: 1;
+}
+
+.main {
+  flex-grow: 2;
+  background-size: auto 500px;
+  background-color: whitesmoke;
+  padding: 4rem 0 0 8rem;
+  display: flex;
+  border-bottom-right-radius: 8px;
+}
+
+#timedate {
+  font: small-caps lighter 28px/150% "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  text-align:left;
+  width: 70%;
+  margin: 20px auto;
+  color:whitesmoke;
+  padding-left: 4rem;
+  padding-top: 28rem;
+}
+
+/*weather*/
+
+#box{
+   
+  width: 800px;
+  height: 200px;
+  background-color: rgba(248, 242, 242, 0.85);
+  margin: auto;
+  border-radius:20px;
+  box-shadow: 5px 5px 6px rgb(18, 18, 18);
+  margin-top: 40px;
+  padding: 0px; 
+         
+} 
+.full-width-image {
+  height: 50px;
+  background-size: cover;
+}
+
+.btn-group {
+    float: right;
+    margin-top: 30px;
+}
+
+#cur-summary {
+    color: rgba(238, 236, 234, 0.8); /*summary*/
+    margin-top: 70px;
+    font-size: 200%;
+}
+
+
+/****** CONTENT ******/
+ul.nav.nav-tabs {
+    background-color: rgba(0, 0, 0, .3);
+    margin-top: -41px;
+}
+
+ul.nav.nav-tabs li a {
+    color: white;
+}
+
+ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
+    color: rgba(46, 44, 43, 0.8);
+}
+
+.col, .col-sm-4:nth-child(2), .col-sm-4:nth-child(3) {
+    border-left: 1px solid rgba(216, 216, 216, 0.3);
+}
+
+#cur-status, #cur-status2, #tomorrow-status, #tomorrow-status2, #third-status, #third-status2, #fourth-status, #fourth-status2 {
+    text-align: center;
+}
+
+#cur-status, #tomorrow-status, #third-status, #fourth-status {
+    margin-top: 10%;
+}
+
+#cur-status2, #tomorrow-status2, #third-status2, #fourth-status2 {
+    margin-bottom: 10%;
+}
+
+#tomorrow-status2, #third-status2, #fourth-status2 {
+    margin-top: -15px;
+}
+
+
+#today-icon {
+    font-size: 520%;
+    padding-left: 30px;
+    color: rgba(46, 44, 43, 0.9);
+} 
+
+#tomorrow-icon, #third-icon, #fourth-icon {
+    font-size: 450%;
+    color: rgba(74, 175, 70, 0.9);
+}
+
+#cur-deg {
+    font-size: 500%;
+    color: rgba(74, 175, 70, 0.9);
+}
+
+#tomorrow-deg-max, #tomorrow-deg-min, #third-deg-max, #third-deg-min, #fourth-deg-max, #fourth-deg-min {
+    font-size: 200%;
+}
+
+#tomorrow-deg-max, #third-deg-max, #fourth-deg-max {
+    color: crimson;
+}
+
+#tomorrow-deg-min, #third-deg-min, #fourth-deg-min {
+    color: skyblue;
+    padding-left: 20px;
+}
+
+.col h3 {
+    font-size: 120%;
+    text-align: center;
+    margin-top: 15%;
+    color: rgba(46, 44, 43, 0.8);
+}
+
+#tomorrow-summary, #third-summary, #fourth-summary {
+    text-align: center;
+    margin-top: 10%;
+    font-size: 130%;
+    color: rgba(36, 36, 36, 0.9);
+  font-style: italic;
+}
+
+.more-info:nth-child(1) {
+    margin-top: 15%;
+}
+
+.more-info {
+    text-align: center;
+    color: rgba(46, 44, 43, 0.8);
+    font-size: 120%;
+}
+
+.speed-toggle {
+    margin-right: 15px;
+}
+
+.icons {
+    font-size: 140%;
+    color: darkslategray;
+    padding-right: 5px;
+}
+
+.icons:nth-child(3) {
+    padding-left: 20px;
+}
+
+.hourly-icons {
+    font-size: 60px;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: rgba(74, 175, 70, 0.9);
+}
+
+.hourly-degs {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 120%;
+    font-weight: 500;
+}
+
+.hourly-times {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    color: rgba(46, 44, 43, 0.8);
+}
+
+@media only screen and (max-width: 768px) {
+  .more-info:nth-child(4), .hourly-times {
+    margin-bottom: 20px;
+  }
+  
+  #cur-status {
+    margin-top: 15px;
+  }
+  
+  .more-info {
+    font-size: 100%;
+  }
+}
+
+/*Rooms*/
+/* Container box */
+.container_box {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 45px;
+}
+
+/* Boxes styles */
+.boxes {
+  flex-basis: calc(33.33% - 20px); 
+  margin: 5px;
+  padding: 100px;
+  background-size: contain; 
+  background-position: center center; 
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  width: 240px;
+  height: 160px;
+  border-radius: 10px;
+}
+
+.boxes:hover {
+    opacity: 1;
+}
+.boxes-text {
+    color: rgb(0, 0, 0, 1); 
+    font-family:'Open Sans'; 
+    font-size: 24px; 
+    margin-top: -13px; 
+    font-weight: 600;
+  }
+
+.boxes1 {
+    background-image: url('https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGl2aW5nJTIwcm9vbSUyMGRlY29yfGVufDB8fDB8fA%3D%3D&w=1000&q=80'); 
+    opacity: 0.6;
+}  
+
+
+.boxes2 {
+  background-image: url('https://media.istockphoto.com/id/1276481211/photo/kitchen-interior-design-with-white-back-splash-stock-photo.jpg?s=612x612&w=0&k=20&c=Lqco0b0HsVvEI7r9ttmEhOLhUlDTX-JPrgdW0pZ3_Rk=');
+  opacity: 0.6;
+}
+
+.boxes3 {
+    background-image: url('https://www.thespruce.com/thmb/vf_MEDifLRzzmQNjMyUDR1FGA14=/3000x0/filters:no_upscale():max_bytes(150000):strip_icc()/tips-for-decorating-a-beautiful-bedroom-1976169-hero-e960fbb8311c4b9b875a1813962d34eb.jpg'); 
+    opacity: 0.6;
+}
+
+.boxes4 {
+  background-image: url('https://www.jkath.com/wp-content/uploads/2022/12/4603_Arden_Ave_024-copy.jpg');
+  opacity: 0.6;
+}
+
+.boxes5 {
+  background-image: url('https://cf.ltkcdn.net/interiordesign/images/orig/328771-1600x1066-small-home-office-ideas.jpg');
+  opacity: 0.6;
+}
+
+.boxes6 {
+  background-image: url('https://www.redfin.com/blog/wp-content/uploads/2021/03/1_Simple-but-Genius-Entryway-Ideas.jpg');
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 767px) {
+  .boxes {
+    flex-basis: calc(50% - 20px);
+  }
+}
+
+.box_rooms {
+    width: 1100px;
+    height: 520px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    margin-left: -120px;
+    margin-top: 70px;
+  }
+  
+
+
