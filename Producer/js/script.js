@@ -39,3 +39,6 @@ function toDevices() {
 function goBack() {
   window.history.back();
 }
+function logOut() {
+  window.location.href = "../Consumer/login.html";
+}
