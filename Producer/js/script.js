@@ -45,3 +45,6 @@ function logOut() {
 function toUser() {
   window.location.href = "user-example-producer.php";
 }
+function toDevice() {
+  window.location.href = "device-example-producer.php";
+}

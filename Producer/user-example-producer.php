@@ -45,49 +45,49 @@
             <button class="my-button" onclick="goBack()"><i class="fa-solid fa-arrow-left fa-2xl"></i></button>
             <h1>User Name</h1>
         </div>
-        <section class="devices-user">
+        <section>
             <div>
                 <h2>Devices</h2>
                 <hr class="line-device">
             </div>
             <div>
                 <div class="user-cards-container">
-                    <div class="user-device-card">
+                    <div onclick="toDevice()" class="user-device-card">
                         <img src="images/wifi-icon.png" alt="User Image">
                         <h2>Wi-fi</h2>
                         <hr>
                         <p>Status: <span>On</span></p>
                         <p>Brand: <span>Brand-name</span></p>
                     </div>
-                    <div class="user-device-card">
+                    <div onclick="toDevice()" class="user-device-card">
                         <img src="images/thermostat.png" alt="User Image">
                         <h2>Thermostat</h2>
                         <hr>
                         <p>Status: <span>On</span></p>
                         <p>Brand: <span>Brand-name</span></p>
                     </div>
-                    <div class="user-device-card">
+                    <div onclick="toDevice()" class="user-device-card">
                         <img src="images/light.png" alt="User Image">
                         <h2>Light</h2>
                         <hr>
                         <p>Status: <span>On</span></p>
                         <p>Brand: <span>Brand-name</span></p>
                     </div>
-                    <div class="user-device-card">
+                    <div onclick="toDevice()" class="user-device-card">
                         <img src="images/humidifier.png" alt="User Image">
                         <h2>Humidifier</h2>
                         <hr>
                         <p>Status: <span>Off</span></p>
                         <p>Brand: <span>Brand-name</span></p>
                     </div>
-                    <div class="user-device-card">
+                    <div onclick="toDevice()" class="user-device-card">
                         <img src="images/speaker.png" alt="User Image">
                         <h2>Speaker</h2>
                         <hr>
                         <p>Status: <span>Off</span></p>
                         <p>Brand: <span>Brand-name</span></p>
                     </div>
-                    <div class="user-device-card">
+                    <div onclick="toDevice()" class="user-device-card">
                         <img src="images/plug.png" alt="User Image">
                         <h2>Smart Plug</h2>
                         <hr>
@@ -101,12 +101,6 @@
                 <hr class="line-device">
                 <p><span>Pro:</span> <span>150,99 USD/month</span> after offer period</p>
             </div>
-            <div>
-                <h1>Payment Plan</h1>
-                <hr class="line-device">
-                <p><span>Pro:</span> <span>150,99 USD/month</span> after offer period</p>
-            </div>
-
         </section>
     </main>
     <script src="js/script.js"></script>

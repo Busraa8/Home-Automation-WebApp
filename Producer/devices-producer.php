@@ -52,27 +52,27 @@
             <h1>Devices</h1>
         </div>
         <div class="cards-container">
-            <div class="device-card">
+            <div onclick="toDevice()" class="device-card">
                 <img src="images/wifi-icon.png" alt="User Image">
                 <h2>Wi-fi</h2>
             </div>
-            <div class="device-card">
+            <div onclick="toDevice()" class="device-card">
                 <img src="images/thermostat.png" alt="User Image">
                 <h2>Thermostat</h2>
             </div>
-            <div class="device-card">
+            <div onclick="toDevice()" class="device-card">
                 <img src="images/light.png" alt="User Image">
                 <h2>Light</h2>
             </div>
-            <div class="device-card">
+            <div onclick="toDevice()" class="device-card">
                 <img src="images/humidifier.png" alt="User Image">
                 <h2>Humidifier</h2>
             </div>
-            <div class="device-card">
+            <div onclick="toDevice()" class="device-card">
                 <img src="images/speaker.png" alt="User Image">
                 <h2>Speaker</h2>
             </div>
-            <div class="device-card">
+            <div onclick="toDevice()" class="device-card">
                 <img src="images/plug.png" alt="User Image">
                 <h2>Smart Plug</h2>
             </div>
