@@ -13,10 +13,10 @@ if (isset($_POST['login'])) {
     $nameErr = $passwordErr = $emailErr = $passRptErr = $notSame = $numberErr = "";
 
     if ($_POST["email"] == $email && $_POST["password"] == $password) {
-        header("location: ../Producer/home-producer.php");
+        header("location: Producer/home-producer.php");
     }
     if ($_POST["email"] == $email2 && $_POST["password"] == $password2) {
-        header("location: homepage.html");
+        header("location: Consumer/homepage.html");
     }
 }
 ?>

@@ -40,7 +40,7 @@ function goBack() {
   window.history.back();
 }
 function logOut() {
-  window.location.href = "../Consumer/login.php";
+  window.location.href = "../index.php";
 }
 function toUser() {
   window.location.href = "user-example-producer.php";

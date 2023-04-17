@@ -1,5 +1,5 @@
-<?php include '../login.php';?>
-<link rel="stylesheet" href="login.css">
+<?php include 'login.php';?>
+<link rel="stylesheet" href="Consumer/login.css">
 <div id="container">
   <div id="left">
     <h1 id="welcome">Welcome</h1>
