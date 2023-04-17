@@ -40,11 +40,14 @@ function goBack() {
   window.history.back();
 }
 function logOut() {
-  window.location.href = "../Consumer/login.html";
+  window.location.href = "../Consumer/login.php";
 }
 function toUser() {
   window.location.href = "user-example-producer.php";
 }
 function toDevice() {
   window.location.href = "device-example-producer.php";
+}
+function toAddUser() {
+  window.location.href = "add-consumer-producer.php";
 }

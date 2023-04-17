@@ -8,7 +8,7 @@
     <title>Home Automation</title>
     <link rel="stylesheet" href="css/device-example.css">
     <script src="https://kit.fontawesome.com/299750f20b.js" crossorigin="anonymous"></script>
-    
+
 </head>
 
 <body>
@@ -29,6 +29,8 @@
                 <li onclick="toUsers()"><i class="fa-solid fa-user"></i>Users</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
                 <li onclick="toSettings()"><i class="fa-solid fa-gear"></i>Settings</li>
+                <li onclick="toAddUser()"><i class="fa-solid fa-plus" ></i>Add Consumer</li>
+
             </ul>
         </div>
         <div class="extra-content">
@@ -64,7 +66,7 @@
                 <ul>
                     <li>Status: <span> <i class="fa-solid fa-toggle-on fa-2xl"></i> </span></li>
                     <li>C°: <input type="text" name="" id=""></li>
-                    <li>Speed: 
+                    <li>Speed:
                         <Select>
                             <option value="">Choose an option</option>
                             <option value="fast">Fast</option>
@@ -73,18 +75,19 @@
                         </Select>
                     </li>
                 </ul>
-                
-                <button>Set</button>    
+
+                <button style="margin-top: 69%;" >Set</button>
             </div>
             <div class="users">
                 <h2> User </h2>
                 <div class="user-container">
                     <div class="user-card">
                         <h3>User Name</h3>
+                        <p>User id</p>
                         <img src="images/user.png" alt="user">
                     </div>
                 </div>
-                <button onclick="toUsers()" >
+                <button onclick="toUsers()">
                     Select
                 </button>
             </div>
