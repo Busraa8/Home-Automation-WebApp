@@ -52,47 +52,47 @@
         </div>
 
         <div class="cards-container">
-            <div class="card">
+            <div class="card" onclick="toUser()">
                 <img src="images/user.png" alt="User Image">
                 <h2>User ID 1</h2>
                 <p>User Name</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="toUser()">
                 <img src="images/user.png" alt="User Image">
                 <h2>User ID 2</h2>
                 <p>User Name</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="toUser()">
                 <img src="images/user.png" alt="User Image">
                 <h2>User ID 3</h2>
                 <p>User Name</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="toUser()">
                 <img src="images/user.png" alt="User Image">
                 <h2>User ID 3</h2>
                 <p>User Name</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="toUser()">
                 <img src="images/user.png" alt="User Image">
                 <h2>User ID 3</h2>
                 <p>User Name</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="toUser()">
                 <img src="images/user.png" alt="User Image">
                 <h2>User ID 3</h2>
                 <p>User Name</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="toUser()">
                 <img src="images/user.png" alt="User Image">
                 <h2>User ID 3</h2>
                 <p>User Name</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="toUser()">
                 <img src="images/user.png" alt="User Image">
                 <h2>User ID 3</h2>
                 <p>User Name</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="toUser()">
                 <img src="images/user.png" alt="User Image">
                 <h2>User ID 3</h2>
                 <p>User Name</p>

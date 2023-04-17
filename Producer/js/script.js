@@ -42,3 +42,6 @@ function goBack() {
 function logOut() {
   window.location.href = "../Consumer/login.html";
 }
+function toUser() {
+  window.location.href = "user-example-producer.php";
+}

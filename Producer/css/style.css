@@ -133,6 +133,49 @@ footer p {
     transition: 1s;
 }
 
+.user-cards-container {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    display: flex;
+    margin-left: 10%;
+    width: 80%;
+}
+.user-device-cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-device-cards-container i {
+    font-weight: bold;
+}
+
+.user-device-card img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+.user-device-card {
+    display: inline-block;
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.user-device-card p{
+    margin: 0;
+    float: left;
+}
+
+.user-device-card:hover {
+    cursor: pointer;
+    background-color: rgb(160, 165, 169);
+    transition: 1s;
+}
+
 .card {
     display: inline-block;
     width: 300px;
@@ -221,7 +264,7 @@ footer p {
 }
 
 .title-button h1 {
-    margin-left: 25%;
+    margin-left: 22%;
 }
 
 .logout {
@@ -233,4 +276,13 @@ footer p {
     color: gray;
     transition: 1s;
     cursor: pointer;
+}
+
+.devices-user {
+}
+
+.devices-user h2 {
+}
+.line-device {
+    width: 78%;
 }
