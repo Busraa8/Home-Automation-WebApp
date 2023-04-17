@@ -39,9 +39,7 @@
     </nav>
     <header>
         <div class="selections">
-            <span>Yazi</span>
-            <span>Yazi</span>
-            <span>Yazi</span>
+            
             <span class="logout" onclick="logOut()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</span>
         </div>
     </header>
