@@ -200,6 +200,7 @@ footer p {
     flex-wrap: wrap;
     display: flex;
     margin-left: 5%;
+    align-items: center;
 }
 
 .cards-container i {

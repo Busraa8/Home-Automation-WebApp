@@ -29,7 +29,7 @@
                 <li onclick="toUsers()"><i class="fa-solid fa-user"></i>Users</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
                 <li onclick="toSettings()"><i class="fa-solid fa-gear"></i>Settings</li>
-                <li onclick="toAddUser()"><i class="fa-solid fa-plus" ></i>Add Consumer</li>
+                <li onclick="toAddUser()"><i class="fa-solid fa-plus"></i>Add Consumer</li>
 
             </ul>
         </div>
@@ -41,7 +41,7 @@
         </footer>
     </nav>
     <header>
-        <span><i></i></span>
+        <span>Device ID: <i>123</i> </span> 
     </header>
     <main>
         <div class="title-button">
@@ -64,7 +64,8 @@
             <div class="set">
                 <h2>Settings</h2>
                 <ul>
-                    <li>Status: <span> <i class="fa-solid fa-toggle-on fa-2xl"></i> </span></li>
+                    <li>Status: <span> <i onclick="toggle()" id="toggle" class="fa-solid fa-toggle-on fa-2xl"></i>
+                        </span></li>
                     <li>C°: <input type="text" name="" id=""></li>
                     <li>Speed:
                         <Select>
@@ -76,7 +77,7 @@
                     </li>
                 </ul>
 
-                <button style="margin-top: 69%;" >Set</button>
+                <button style="margin-top: 69%;">Set</button>
             </div>
             <div class="users">
                 <h2> User </h2>

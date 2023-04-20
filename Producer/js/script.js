@@ -13,11 +13,12 @@ function showTime() {
 setInterval(showTime, 1000);
 
 function toggle() {
-  var btn = document.getElementById("toggle-btn");
-  if (btn.innerHTML === "On") {
-    btn.innerHTML = "Off";
+  console.log("asdasd");
+  var btn = document.getElementById("toggle");
+  if (btn.classList.contains("fa-toggle-on")) {
+    btn.classList.replace("fa-toggle-on","fa-toggle-off");
   } else {
-    btn.innerHTML = "On";
+    btn.classList.replace("fa-toggle-off","fa-toggle-on");
   }
 }
 

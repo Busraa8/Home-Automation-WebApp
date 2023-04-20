@@ -66,7 +66,7 @@
                 <label for="postcode">Post Code:</label>
                 <input type="text" id="postcode" name="postcode" required><br>
 
-                <label for="house_size">Size of House:</label>
+                <label for="house_size">Room Number:</label>
                 <input type="number" id="house_size" name="house_size" required><br>
 
                 <label for="photos">Photo:</label>

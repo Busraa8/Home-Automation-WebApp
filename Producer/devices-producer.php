@@ -28,7 +28,7 @@
                 <li onclick="toUsers()"><i class="fa-solid fa-user"></i>Users</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
                 <li onclick="toSettings()"><i class="fa-solid fa-gear"></i>Settings</li>
-                <li onclick="toAddUser()"><i class="fa-solid fa-plus" ></i>Add Consumer</li>
+                <li onclick="toAddUser()"><i class="fa-solid fa-plus"></i>Add Consumer</li>
 
             </ul>
         </div>
@@ -41,9 +41,9 @@
     </nav>
     <header>
         <div class="selections">
-            <span class="logout" onclick="logOut()" ><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</span>
+            <span class="logout" onclick="logOut()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</span>
         </div>
-        
+
     </header>
     <main>
         <div class="title-button">
