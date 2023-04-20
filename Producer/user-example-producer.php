@@ -29,7 +29,6 @@
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
                 <li onclick="toSettings()"><i class="fa-solid fa-gear"></i>Settings</li>
                 <li onclick="toAddUser()"><i class="fa-solid fa-plus" ></i>Add Consumer</li>
-
             </ul>
         </div>
         <div class="extra-content">
@@ -40,70 +39,38 @@
         </footer>
     </nav>
     <header>
-        <span>HomeID: <i>123123213</i></span>
+        <div class="selections">
+            <span class="logout" onclick="logOut()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</span>
+        </div>
     </header>
     <main>
         <div class="title-button">
             <button class="my-button" onclick="goBack()"><i class="fa-solid fa-arrow-left fa-2xl"></i></button>
-            <h1>User Name</h1>
+            <h1>Rooms</h1>
         </div>
-        <section>
-            <div>
-                <h2>Devices</h2>
-                <hr class="line-device">
+
+        <div class="cards-container">
+            <div class="card" onclick="toRoom()">
+                <img src="images/bedroom.png" alt="Room Image">
+                <h2>Room ID 1</h2>
+                <p>Room Name</p>
             </div>
-            <div>
-                <div class="user-cards-container">
-                    <div onclick="toDevice()" class="user-device-card">
-                        <img src="images/wifi-icon.png" alt="User Image">
-                        <h2>Wi-fi</h2>
-                        <hr>
-                        <p>Status: <span>On</span></p>
-                        <p>Brand: <span>Brand-name</span></p>
-                    </div>
-                    <div onclick="toDevice()" class="user-device-card">
-                        <img src="images/thermostat.png" alt="User Image">
-                        <h2>Thermostat</h2>
-                        <hr>
-                        <p>Status: <span>On</span></p>
-                        <p>Brand: <span>Brand-name</span></p>
-                    </div>
-                    <div onclick="toDevice()" class="user-device-card">
-                        <img src="images/light.png" alt="User Image">
-                        <h2>Light</h2>
-                        <hr>
-                        <p>Status: <span>On</span></p>
-                        <p>Brand: <span>Brand-name</span></p>
-                    </div>
-                    <div onclick="toDevice()" class="user-device-card">
-                        <img src="images/humidifier.png" alt="User Image">
-                        <h2>Humidifier</h2>
-                        <hr>
-                        <p>Status: <span>Off</span></p>
-                        <p>Brand: <span>Brand-name</span></p>
-                    </div>
-                    <div onclick="toDevice()" class="user-device-card">
-                        <img src="images/speaker.png" alt="User Image">
-                        <h2>Speaker</h2>
-                        <hr>
-                        <p>Status: <span>Off</span></p>
-                        <p>Brand: <span>Brand-name</span></p>
-                    </div>
-                    <div onclick="toDevice()" class="user-device-card">
-                        <img src="images/plug.png" alt="User Image">
-                        <h2>Smart Plug</h2>
-                        <hr>
-                        <p>Status: <span>On</span></p>
-                        <p>Brand: <span>Brand-name</span></p>
-                    </div>
-                </div>
+            <div class="card" onclick="toRoom()">
+                <img src="images/kitchen.png" alt="Room Image">
+                <h2>Room ID 2</h2>
+                <p>Room Name</p>
             </div>
-            <div>
-                <h1>Payment Plan</h1>
-                <hr class="line-device">
-                <p><span>Pro:</span> <span>150,99 USD/month</span> after offer period</p>
+            <div class="card" onclick="toRoom()">
+                <img src="images/livingroom.png" alt="Room Image">
+                <h2>Room ID 3</h2>
+                <p>Room Name</p>
             </div>
-        </section>
+            <div class="card" onclick="toRoom()">
+                <img src="images/entryway.png" alt="Room Image">
+                <h2>Room ID 3</h2>
+                <p>Room Name</p>
+            </div>
+        </div>
     </main>
     <script src="js/script.js"></script>
 </body>

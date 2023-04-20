@@ -72,7 +72,7 @@
                 <label for="photos">Photo:</label>
                 <input type="file" id="photos" name="photos[]" multiple><br>
 
-                <input type="submit" value="Kaydet">
+                <input type="submit" value="Submit">
             </form>
 
 

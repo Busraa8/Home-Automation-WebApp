@@ -193,15 +193,13 @@ footer p {
 .card img {
     width: 150px;
     height: 150px;
-    border-radius: 50%;
     margin-bottom: 10px;
 }
 
 .cards-container {
     flex-wrap: wrap;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left: 5%;
 }
 
 .cards-container i {

@@ -45,6 +45,9 @@ function logOut() {
 function toUser() {
   window.location.href = "user-example-producer.php";
 }
+function toRoom() {
+  window.location.href = "user-room-example-producer.php";
+}
 function toDevice() {
   window.location.href = "device-example-producer.php";
 }

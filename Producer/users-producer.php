@@ -29,7 +29,6 @@
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
                 <li onclick="toSettings()"><i class="fa-solid fa-gear"></i>Settings</li>
                 <li onclick="toAddUser()"><i class="fa-solid fa-plus" ></i>Add Consumer</li>
-
             </ul>
         </div>
         <div class="extra-content">
