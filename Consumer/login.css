@@ -146,7 +146,7 @@
     }
     #right {
       margin-top: 16px;
-      background-image: url("https://www.repsol.com/content/dam/repsol-corporate/es/energia-e-innovacion/domotica%20que%20es.jpg.transform/rp-rendition-md/image.jpg");
+      
       background-size: cover;
       background-position: center;
       box-shadow: var(--box-shadow);

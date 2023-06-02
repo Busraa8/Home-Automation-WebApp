@@ -1,0 +1,12 @@
+-- Veritabanı oluşturma
+CREATE DATABASE home_automation;
+
+-- Kullanılacak veritabanı seçme
+USE home_automation;
+
+CREATE TABLE user_table (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL
+);

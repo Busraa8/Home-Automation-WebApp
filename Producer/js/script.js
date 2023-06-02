@@ -41,7 +41,7 @@ function goBack() {
   window.history.back();
 }
 function logOut() {
-  window.location.href = "../index.php";
+  window.location.href = "../index_producer.php";
 }
 function toUser() {
   window.location.href = "user-example-producer.php";

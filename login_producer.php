@@ -31,8 +31,8 @@ if (isset($_POST['login'])) {
         $role = $row["role"];
 
         // Kullanıcının rolüne göre yönlendirme yapma
-        if ($role == "consumer") {
-            header("location: Consumer/homepage.html");
+        if ($role == "producer") {
+            header("location: Producer/home-producer.php");
         } else {
             echo "Undefined user role";
         }
