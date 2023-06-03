@@ -27,8 +27,7 @@
                 <li onclick="toHome()"><i class="fa-solid fa-house"></i>Home</li>
                 <li onclick="toUsers()"><i class="fa-solid fa-user"></i>Users</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
-                <li onclick="toSettings()"><i class="fa-solid fa-gear"></i>Settings</li>
-                <li onclick="toAddUser()"><i class="fa-solid fa-plus" ></i>Add Consumer</li>
+                <li onclick="toAddUser()"><i class="fa-solid fa-gear"></i>Settings</li>
             </ul>
         </div>
         <div class="extra-content">

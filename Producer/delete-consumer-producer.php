@@ -1,3 +1,32 @@
+<?php
+// Veritabanı bağlantısı
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "home_automation";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
+}
+
+// Silinecek ID numarasını al
+if (isset($_POST['id'])) {
+    $delete_id = $_POST['id'];
+
+    // Silme işlemini gerçekleştir
+    $sql = "DELETE FROM user_table WHERE id = '$id'";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Kayıt başarıyla silindi.";
+    } else {
+        echo "Hata: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// Veritabanı bağlantısını kapat
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +35,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Automation</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/add-consumer.css">
     <script src="https://kit.fontawesome.com/299750f20b.js" crossorigin="anonymous"></script>
 </head>
 
@@ -43,33 +72,18 @@
         </div>
     </header>
     <main>
-        <div class="title-button">
-            <button class="my-button" onclick="goBack()"><i class="fa-solid fa-arrow-left fa-2xl"></i></button>
-            <h1>Rooms</h1>
+
+        <div class="add-card">
+
+        <form action="delete-consumer-producer.php" method="POST">
+        <label for="id">Silinecek ID:</label>
+        <input type="text" name="id">
+        <input type="submit" value="Sil">
+        </form>
+
+
         </div>
 
-        <div class="cards-container">
-            <div class="card" onclick="toRoom()">
-                <img src="images/bedroom.png" alt="Room Image">
-                <h2>Room ID 1</h2>
-                <p>Room Name</p>
-            </div>
-            <div class="card" onclick="toRoom()">
-                <img src="images/kitchen.png" alt="Room Image">
-                <h2>Room ID 2</h2>
-                <p>Room Name</p>
-            </div>
-            <div class="card" onclick="toRoom()">
-                <img src="images/livingroom.png" alt="Room Image">
-                <h2>Room ID 3</h2>
-                <p>Room Name</p>
-            </div>
-            <div class="card" onclick="toRoom()">
-                <img src="images/entryway.png" alt="Room Image">
-                <h2>Room ID 3</h2>
-                <p>Room Name</p>
-            </div>
-        </div>
     </main>
     <script src="js/script.js"></script>
 </body>
