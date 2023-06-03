@@ -1,3 +1,49 @@
+<?php
+// Veritabanı bağlantısı
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "home_automation";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
+}
+
+// Form verilerini al
+if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['telephone']) && isset($_POST['surname']) && isset($_POST['address']) && isset($_POST['post_code']) && isset($_POST['room_number']) && ($_POST['role']) && ($_POST['password'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $telephone = $_POST['telephone'];
+    $surname = $_POST['surname'];
+    $address = $_POST['address'];
+    $post_code = $_POST['post_code'];
+    $room_number = $_POST['room_number'];
+    $role = $_POST['role'];
+    $password = $_POST['password'];
+
+    // Form alanlarının dolu olup olmadığını kontrol et
+    if (!empty($name) && !empty($email) && !empty($telephone) && !empty($surname) && !empty($address) && !empty($post_code) && !empty($room_number) && !empty($role) && !empty($password)) {
+        // Verileri veritabanına ekle
+        $sql = "INSERT INTO user_table (name, email, telephone, surname, address, post_code, room_number, role, password) VALUES ('$name', '$email', '$telephone', '$surname', '$address', '$post_code', '$room_number', '$role', '$password')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Kayıt başarıyla eklendi.";
+        } else {
+            echo "Hata: " . $sql . "<br>" . $conn->error;
+        }
+    } else {
+        echo "Kullanıcı adı ve e-posta boş bırakılamaz.";
+    }
+}
+
+// Veritabanı bağlantısını kapat
+$conn->close();
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,33 +93,40 @@
 
         <div class="add-card">
 
-            <form action="consumer_ekle.php" method="POST" enctype="multipart/form-data">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required><br>
+        <form action="add-consumer-producer.php" method="POST">
 
-                <label for="surname">Surname:</label>
-                <input type="text" id="surname" name="surname" required><br>
+           <label for="name" style= "font-size: 15px">Name</label>
+           <input type="text" name="name" id="username"><br><br>
 
-                <label for="email">E-Mail:</label>
-                <input type="email" id="email" name="email" required><br>
+           <label for="surname" style= "font-size: 15px">Surname</label>
+           <input type="text" name="surname" id="username"><br><br>
 
-                <label for="phone">Telephone:</label>
-                <input type="tel" id="phone" name="phone" required><br>
+           <label for="email" style= "font-size: 15px">Email</label>
+           <input type="email" name="email" id="email"><br><br>
 
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required><br>
+           <label for="telephone" style= "font-size: 15px">Telephone</label>
+           <input type="text" name="telephone" id="telephone"><br><br>
 
-                <label for="postcode">Post Code:</label>
-                <input type="text" id="postcode" name="postcode" required><br>
+           <label for="address" style= "font-size: 15px">Address</label>
+           <input type="text" name="address" id="address"><br><br>
 
-                <label for="house_size">Room Number:</label>
-                <input type="number" id="house_size" name="house_size" required><br>
+           <label for="post_code" style= "font-size: 15px">Post Code</label>
+           <input type="text" name="post_code" id="post_code"><br><br>
 
-                <label for="photos">Photo:</label>
-                <input type="file" id="photos" name="photos[]" multiple><br>
+           <label for="room_number" style= "font-size: 15px">Room Number</label>
+           <input type="text" name="room_number" id="room_number"><br><br>
 
-                <input type="submit" value="Submit">
-            </form>
+           <label for="password" style= "font-size: 15px">Password</label>
+           <input type="text" name="password" id="password"><br><br>
+
+           <label for="role">Role:</label>
+           <select name="role" id="role">
+           <option value="consumer">Consumer</option>
+           <option value="producer">Producer</option>
+           </select><br><br>
+    
+           <input type="submit" value="Submit">
+        </form>
 
 
         </div>
