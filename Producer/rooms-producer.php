@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +9,7 @@
     <title>Home Automation</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/299750f20b.js" crossorigin="anonymous"></script>
+    
 </head>
 
 <body>
@@ -30,7 +31,6 @@
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
                 <li onclick="toSettings()"><i class="fa-solid fa-gear"></i>Settings</li>
                 <li onclick="toAddUser()"><i class="fa-solid fa-plus"></i>Add Consumer</li>
-
             </ul>
         </div>
         <div class="extra-content">
@@ -44,14 +44,16 @@
         <div class="selections">
             <span class="logout" onclick="logOut()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</span>
         </div>
-
     </header>
     <main>
         <div class="title-button">
             <button class="my-button" onclick="goBack()"><i class="fa-solid fa-arrow-left fa-2xl"></i></button>
-            <h1>Devices</h1>
+            <h1>Rooms</h1>
         </div>
-        <?php include 'device-creator.php' ?>
+        <?php
+            include 'room-creator.php';
+        ?>
+        
     </main>
     <script src="js/script.js"></script>
 </body>
