@@ -61,8 +61,10 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && is
     } else {
         echo "Hata: " . $sql . "<br>" . $conn->error;
     }
-} else {
-    echo "Form verileri eksik.";
+    
+} 
+else {
+  
 }
 
 // Veritabanı bağlantısını kapat
@@ -98,7 +100,7 @@ $conn->close();
         <div class="elements">
             <ul>
                 <li onclick="toHome()"><i class="fa-solid fa-house"></i>Home</li>
-                <li onclick="toUsers()"><i class="fa-solid fa-user"></i>Users</li>
+                <li onclick="toRooms()"><i class="fa-solid fa-door-open"></i>Rooms</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
                 <li onclick="toAddUser()"><i class="fa-solid fa-gear"></i>Settings</li>
             </ul>
