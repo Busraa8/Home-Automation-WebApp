@@ -1,12 +1,3 @@
-<?php   session_start(); 
-        
-        if (isset($_GET['roomid'])) {
-            $roomId = $_GET['roomid'];
-            echo $roomId;
-            $_SESSION['roomid'] = $roomId;
-            // Diğer işlemler...
-          }
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,10 +25,9 @@
         <div class="elements">
             <ul>
                 <li onclick="toHome()"><i class="fa-solid fa-house"></i>Home</li>
-                <li onclick="toRooms()"><i class="fa-solid fa-door-open"></i>Rooms</li>
+                <li onclick="toUsers()"><i class="fa-solid fa-user"></i>Users</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
-                <li onclick="toSettings()"><i class="fa-solid fa-gear"></i>Settings</li>
-                <li onclick="toAddUser()"><i class="fa-solid fa-plus" ></i>Add Consumer</li>
+                <li onclick="toAddUser()"><i class="fa-solid fa-gear"></i>Settings</li>
 
             </ul>
         </div>
@@ -49,6 +39,7 @@
         </footer>
     </nav>
     <header>
+        <span>HomeID: <i>123123213</i></span>
         <span>Room: <i>Bedroom</i> </span>
     </header>
     <main>
@@ -60,15 +51,57 @@
             <div>
                 <h2>Devices</h2>
                 <hr class="line-device">
-                <?php
-                    
-                ?>
             </div>
             <div>
-                <?php include 'device-creator-for-room.php' ?>
+                <div class="user-cards-container">
+                    <div onclick="toDevice()" class="user-device-card">
+                        <img src="images/wifi-icon.png" alt="User Image">
+                        <h2>Wi-fi</h2>
+                        <hr>
+                        <p>Status: <span>On</span></p>
+                        <p>Brand: <span>Brand-name</span></p>
+                    </div>
+                    <div onclick="toDevice()" class="user-device-card">
+                        <img src="images/thermostat.png" alt="User Image">
+                        <h2>Thermostat</h2>
+                        <hr>
+                        <p>Status: <span>On</span></p>
+                        <p>Brand: <span>Brand-name</span></p>
+                    </div>
+                    <div onclick="toDevice()" class="user-device-card">
+                        <img src="images/light.png" alt="User Image">
+                        <h2>Light</h2>
+                        <hr>
+                        <p>Status: <span>On</span></p>
+                        <p>Brand: <span>Brand-name</span></p>
+                    </div>
+                    <div onclick="toDevice()" class="user-device-card">
+                        <img src="images/humidifier.png" alt="User Image">
+                        <h2>Humidifier</h2>
+                        <hr>
+                        <p>Status: <span>Off</span></p>
+                        <p>Brand: <span>Brand-name</span></p>
+                    </div>
+                    <div onclick="toDevice()" class="user-device-card">
+                        <img src="images/speaker.png" alt="User Image">
+                        <h2>Speaker</h2>
+                        <hr>
+                        <p>Status: <span>Off</span></p>
+                        <p>Brand: <span>Brand-name</span></p>
+                    </div>
+                    <div onclick="toDevice()" class="user-device-card">
+                        <img src="images/plug.png" alt="User Image">
+                        <h2>Smart Plug</h2>
+                        <hr>
+                        <p>Status: <span>On</span></p>
+                        <p>Brand: <span>Brand-name</span></p>
+                    </div>
+                </div>
             </div>
             <div>
+                <h1>Payment Plan</h1>
                 <hr class="line-device">
+                <p><span>Pro:</span> <span>150,99 USD/month</span> after offer period</p>
             </div>
         </section>
     </main>

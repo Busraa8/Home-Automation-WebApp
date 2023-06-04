@@ -120,7 +120,7 @@ footer p {
     padding: 10%;
 }
 
-.rooms:hover {
+.users:hover {
     cursor: pointer;
     background-color: rgb(160, 165, 169);
     transition: 1s;

@@ -1,6 +1,6 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,10 +25,9 @@
         <div class="elements">
             <ul>
                 <li onclick="toHome()"><i class="fa-solid fa-house"></i>Home</li>
-                <li onclick="toRooms()"><i class="fa-solid fa-door-open"></i>Rooms</li>
+                <li onclick="toUsers()"><i class="fa-solid fa-user"></i>Users</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
-                <li onclick="toSettings()"><i class="fa-solid fa-gear"></i>Settings</li>
-                <li onclick="toAddUser()"><i class="fa-solid fa-plus" ></i>Add Consumer</li>
+                <li onclick="toAddUser()"><i class="fa-solid fa-gear"></i>Settings</li>
             </ul>
         </div>
         <div class="extra-content">
@@ -45,16 +44,46 @@
         </div>
     </header>
     <main>
-        <div class="rooms" onclick="toRooms()">
-            <h1>Rooms</h1>
-            <?php include 'less-room-creator.php' ?>
+        <div class="users" onclick="toUsers()">
+            <h1>Users</h1>
+            <div class="cards-container">
+                <div class="card">
+                    <img src="images/user.png" alt="User Image">
+                    <h2>User ID 1</h2>
+                    <p>User Name</p>
+                </div>
+                <div class="card">
+                    <img src="images/user.png" alt="User Image">
+                    <h2>User ID 2</h2>
+                    <p>User Name</p>
+                </div>
+                <div class="card">
+                    <img src="images/user.png" alt="User Image">
+                    <h2>User ID 3</h2>
+                    <p>User Name</p>
+                </div>
+                <i class="fa-solid fa-plus fa-2xl"></i>
+            </div>
         </div>
 
         <hr class="line1">
 
         <div class="devices" onclick="toDevices()">
             <h1>Devices</h1>
-            <?php include 'less-device-creator.php' ?>
+            <div class="device-cards-container">
+                <div class="device-card">
+                    <img src="images/wifi-icon.png" alt="User Image">
+                    <h2>Wi-fi</h2>
+                </div>
+                <div class="device-card">
+                    <img src="images/thermostat.png" alt="User Image">
+                    <h2>Thermostat</h2>
+                </div>
+                <div class="device-card">
+                    <img src="images/light.png" alt="User Image">
+                    <h2>Light</h2>
+                </div>
+                <i class="fa-solid fa-plus fa-2xl"></i>
             </div>
         </div>
 

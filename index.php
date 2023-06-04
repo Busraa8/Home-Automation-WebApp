@@ -11,7 +11,7 @@
             <h1 id="welcome">Welcome</h1>
         </div>
         <div id="right">
-            <h1 id="login">Consumer LogIn</h1><br>
+            <h1 id="login">LogIn</h1><br>
             <form action="" method="post"> 
                 <input type="email" id="email" name="email" class="client-info" required>
                 <label for="email">Email</label>

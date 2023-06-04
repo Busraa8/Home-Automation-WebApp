@@ -43,11 +43,11 @@ function goBack() {
 function logOut() {
   window.location.href = "../index_producer.php";
 }
-function toRooms() {
-  window.location.href = "rooms-producer.php";
+function toUser() {
+  window.location.href = "user-example-producer.php";
 }
-function toRoom(roomId) {
-  window.location.href = 'user-room-example-producer.php?roomid=' + roomId;
+function toRoom() {
+  window.location.href = "user-room-example-producer.php";
 }
 function toDevice() {
   window.location.href = "device-example-producer.php";
