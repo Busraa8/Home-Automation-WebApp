@@ -61,9 +61,7 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && is
     } else {
         echo "Hata: " . $sql . "<br>" . $conn->error;
     }
-} else {
-    echo "Form verileri eksik.";
-}
+} 
 
 // Veritabanı bağlantısını kapat
 $conn->close();
@@ -119,13 +117,6 @@ $conn->close();
             <i  class='fas fa-th' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Rooms</i>
 
         </a>
-      </div>
-
-      <div class="sidebar_icon">
-        <a href="devices.html">
-            <i class='fas fa-wifi' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Devices</i>
-        </a>
-        
       </div>
 
 

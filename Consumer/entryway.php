@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="rooms.css">
+    <link rel="stylesheet" href="entryway.css">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -48,7 +48,6 @@
         </a>
       </div>
 
-      
 
 
       <div class="sidebar_icon">
@@ -69,54 +68,64 @@
                   <a id="m">00</a>:
                   <a id="s">00</a>
                 </div>
-        
-            
-        
 
 
         </div>
 
+        
+
         <!-- MAIN -->
         <main class="main">
-
-            <p style="font-family:'Open Sans'; font-size: 34px;">ROOMS</p>
-
-            <div class="box_rooms">
-
-                <body>
-                    <div class="container_box">
-                      <div class="boxes boxes1"> 
-                        <a href="livingroom.html">
-                          <p class="boxes-text" style="margin-top: -23px;">Living Room</p>
-                        </a>
-                        
-                      </div>
-
-                      <div class="boxes boxes2">
-                        <a class="boxes-text" href="kitchen.php">Kitchen</a>
-                      </div>
-                      
-                      <div class="boxes boxes3">
-                        <a class="boxes-text" href="bedroom.php">Bedroom</a>
-                      </div>
-
-                      <div class="boxes boxes6">
-                        <a class="boxes-text" href="entryway.php">Entryway</a>
-                      </div>
-
-                
             
-                </div>
 
-
+            <div class="containert containertl">
+                
             </div>
 
+            <div class="containert">
+                <p style="font-size: 15px; color: whitesmoke;">Temperature</p>
+                
+                <div class="status-panel">
+                  <div class="status-card">
+                    <label class="btn-onoff" >
+                        <input type="checkbox" name="name" data-onoff="toggle"><span></span>	
+                    </label>
+                    <span id="living-room-temp" >25&deg;C</span>
+                    <h3 style="text-align: center;color: whitesmoke;">Temperature</h3><br/><br/><br/><br/>
+                    <input type="range" id="living-room-temp-input" min="10" max="30" step="1" style="color:aliceblue">
+                
+                  </div>
+                  
+                </div>
+                
+            </div>
+            <div class="containert containertkWh">
+                
+            </div><br/>
+            <div style="height:240px;width:1140px;overflow:auto;border:8px solid rgb(56, 55, 55);padding:2%; margin-top: 380px;margin-left: -1105px;border-radius: 8px;position: relative;">
+                <div class="container_box">
+                
+                    <div class="boxes boxesl"><br>
+                        <label class="btn-onoffd" >
+                            <input type="checkbox" name="name" data-onoff="toggle"><span></span>	
+                        </label>
+                    </div>
+                    
+            
+            </div>
+            
+            </div>
+        </div>
+            
 
         </main>
+        
 
       </div>
 
     </div>
+    <script src="livingroom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="clock.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
