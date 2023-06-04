@@ -21,34 +21,26 @@ function toggle() {
   }
 }
 
-if(document.getElementById('change-button') != null)
-{
-  var changeButton = document.getElementById('change-button');
-
-  changeButton.addEventListener('click', function() {
-    // AJAX ile HTTP isteği gönderme
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'change-submit.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        // İstek tamamlandıktan sonra geri dönen yanıtı işleyebilirsiniz
-        alert(xhr.responseText);
-      }
-    };
-    xhr.send();
-
-    // Başarılı bir şekilde değişiklikler yapıldıktan sonra kullanıcıya geri bildirim verebilirsiniz.
-    alert("Değişiklikler başarıyla kaydedildi.");
-  });
-}
+var onOffValue = "";
+var connectionv = "";
+var brightness = "";
+var volume = "";
+var temperature = "";
+var temperatureInput = document.getElementById('temperature');
+if (temperatureInput != null)
+  var temperature = temperatureInput.value;
 
 // Switch değişikliğinde on_off değerini güncelle
 if (document.getElementById("on-off") != null) {
   var onOffCheckbox = document.getElementById('on-off');
   var currentStateElement = document.getElementById('current-state');
+  if (currentStateElement.textContent == 'On') {
+    onOffValue = true;
+  } else {
+    onOffValue = false;
+  }
   onOffCheckbox.addEventListener('change', function () {
-    var onOffValue = this.checked;
+    onOffValue = this.checked;
     // İsteğe bağlı olarak, bu değeri sunucuya göndermek için AJAX kullanabilirsiniz
     if (this.checked) {
       currentStateElement.textContent = 'On';
@@ -62,11 +54,21 @@ if (document.getElementById("on-off") != null) {
 if (document.getElementById("connection-status") != null && document.getElementById("toggle-connection") != null) {
   var connectionStatusElement = document.getElementById('connection-status');
   var toggleConnectionButton = document.getElementById('toggle-connection');
+  if (connectionStatusElement.textContent == 'disconnected') {
+    connectionv = false;
+  } else {
+    connectionv = true;
+  }
   toggleConnectionButton.addEventListener('click', function () {
-    if (connectionStatusElement.textContent == 'connected')
+    if (connectionStatusElement.textContent == 'connected') {
       connectionStatusElement.textContent = 'disconnected';
+      connection = "disconnected";
+      connectionv = false;
+    }
     else {
       connectionStatusElement.textContent = 'connected';
+      connection = "connected";
+      connectionv = true;
     }
   });
 }
@@ -76,23 +78,23 @@ if (document.querySelector(".brightness-value") != null && document.getElementBy
   var brightnessRange = document.getElementById('brightness');
   var brightnessValue = document.querySelector('.brightness-value');
 
+  brightness = brightnessValue.textContent;
   brightnessRange.addEventListener('input', function () {
-    brightnessRange.addEventListener('input', function () {
-      var brightness = this.value;
-      brightnessValue.textContent = brightness;
-      // İsteğe bağlı olarak, bu değeri sunucuya göndermek için AJAX kullanabilirsiniz
-      console.log('Brightness:', brightness);
-    });
+    brightness = this.value;
+    brightnessValue.textContent = brightness;
+    // İsteğe bağlı olarak, bu değeri sunucuya göndermek için AJAX kullanabilirsiniz
   });
+  ;
 }
 
 if (document.querySelector(".volume-value") != null && document.getElementById("volume") != null) {
   var volumeRange = document.getElementById('volume');
   var volumeValue = document.querySelector('.volume-value');
 
+  volume = volumeValue.textContent;
   volumeRange.addEventListener('input', function () {
     volumeRange.addEventListener('input', function () {
-      var volume = this.value;
+      volume = this.value;
       volumeValue.textContent = volume;
       // İsteğe bağlı olarak, bu değeri sunucuya göndermek için AJAX kullanabilirsiniz
       console.log('Volume:', volume);
@@ -106,6 +108,7 @@ function decreaseTemperature() {
     var currentTemperature = parseFloat(temperatureInput.value);
     var decreasedTemperature = currentTemperature - 1;
     temperatureInput.value = decreasedTemperature;
+    temperature = temperatureInput.value;
     // İsteğe bağlı olarak, bu değeri sunucuya göndermek için AJAX kullanabilirsiniz
     console.log('Temperature:', decreasedTemperature);
   }
@@ -114,13 +117,42 @@ function decreaseTemperature() {
 // Temperature değerini artır
 function increaseTemperature() {
   var temperatureInput = document.getElementById('temperature');
+  temperature = temperatureInput.value;
   if (temperatureInput) {
     var currentTemperature = parseFloat(temperatureInput.value);
     var increasedTemperature = currentTemperature + 1;
     temperatureInput.value = increasedTemperature;
+    temperature = temperatureInput.value;
     // İsteğe bağlı olarak, bu değeri sunucuya göndermek için AJAX kullanabilirsiniz
     console.log('Temperature:', increasedTemperature);
   }
+}
+
+if (document.getElementById('change-button') != null) {
+  var changeButton = document.getElementById('change-button');
+
+  changeButton.addEventListener('click', function () {
+    // AJAX ile HTTP isteği gönderme
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'change-submit.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // İstek tamamlandıktan sonra geri dönen yanıtı işleyebilirsiniz
+        alert(xhr.responseText);
+      }
+    };
+    var params =
+      "onof=" + encodeURIComponent(onOffValue) +
+      "&volume=" + encodeURIComponent(volume) +
+      "&temperature=" + encodeURIComponent(temperature) +
+      "&brightness=" + encodeURIComponent(brightness) +
+      "&connectionv=" + encodeURIComponent(connectionv);
+    xhr.send(params);
+
+    // Başarılı bir şekilde değişiklikler yapıldıktan sonra kullanıcıya geri bildirim verebilirsiniz.
+    alert("Değişiklikler başarıyla kaydedildi.");
+  });
 }
 
 

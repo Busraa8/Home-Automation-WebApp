@@ -21,7 +21,7 @@ $jsonData = $deviceprops;
 
 // JSON verisini diziye dönüştür
 $properties = json_decode($jsonData, true);
-
+$_SESSION["props"] = $properties ;
 ?>
 
 <!DOCTYPE html>
@@ -82,7 +82,7 @@ $properties = json_decode($jsonData, true);
                 <h2>Device Properties</h2>
                 <hr>
                 <div class="order-device">
-                <?php include 'device-properties.php' ?>
+                    <?php include 'device-properties.php'; ?>
                 </div>
                 <hr>
                 <button id="change-button">Change</button>
