@@ -11,7 +11,7 @@
 
         $props = $_SESSION["props"];
         $deviceId = $_SESSION["deviceid"];
-        if($_SESSION["on_off"] != null || $_SESSION["on_off"] == false){
+        if($_SESSION["on_off"] != null){
             $onof = $_POST["onof"];
             $props["on_off"] = $onof;
         }
@@ -39,7 +39,6 @@
     
         if ($result) {
             // Başarılı bir şekilde güncellendi
-            echo "Değişiklikler başarıyla kaydedildi.";
         } else {
             // Hata oluştu
             echo "Hata oluştu: " . mysqli_error($conn);

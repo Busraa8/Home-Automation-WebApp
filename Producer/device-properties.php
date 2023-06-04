@@ -8,8 +8,8 @@ $_SESSION["volume"] = null;
 // Özellikleri döngü ile kontrol et
 foreach ($properties as $key => $value) {
   if ($key === 'on_off') {
-    $currentState = $properties['on_off'] ? 'On' : 'Off';
-    $onOffChecked = $value ? 'checked' : '';
+    $currentState = $properties['on_off'] === "true" ? 'On' : 'Off';
+    $onOffChecked = $value === "true" ? 'checked' : '';
     echo '<div class="on-off-device">';
     echo '<label class="switch">';
     echo '<input type="checkbox" id="on-off" ' . $onOffChecked . '>';
@@ -33,7 +33,7 @@ foreach ($properties as $key => $value) {
     echo '</div>';
     $_SESSION["temperature"] = $value;
   } elseif ($key === 'connected') {
-    $currentConnection = $properties['connected'] ? 'connected' : 'disconnected';
+    $currentConnection = $properties['connected'] === "true" ? 'connected' : 'disconnected';
     echo '<div class="connection-control">';
     echo '<p id="connection-status">' . $currentConnection . '</p>';
     echo '<button id="toggle-connection">Connect/Disconnect</button>';
