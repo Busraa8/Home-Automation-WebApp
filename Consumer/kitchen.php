@@ -152,11 +152,11 @@ $conn->close();
                     </div>
                     
             
-            </div>
+            </div><br>
             
             
 
-            <button type="submit">Kaydet</button>
+            <button type="submit" class="header__pro" >Update</button>
 
             </form>
             

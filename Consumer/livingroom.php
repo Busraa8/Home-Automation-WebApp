@@ -158,7 +158,7 @@ $conn->close();
                    
             
             </div>
-            <button type="submit">Kaydet</button>
+            <button type="submit" class="header__pro" >Update</button>
             </form>
             </div><br/>
             
