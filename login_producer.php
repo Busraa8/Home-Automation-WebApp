@@ -29,7 +29,8 @@ if (isset($_POST['login'])) {
         // Kullanıcı bulundu
         $row = $result->fetch_assoc();
         $role = $row["role"];
-
+        $id = $row["id"];
+        $_SESSION["userid"] = $id;
         // Kullanıcının rolüne göre yönlendirme yapma
         if ($role == "producer") {
             header("location: Producer/home-producer.php");

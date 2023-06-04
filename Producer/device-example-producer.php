@@ -1,3 +1,29 @@
+<?php session_start();
+
+if (isset($_GET['deviceid'])) {
+    $deviceId = $_GET['deviceid'];
+    $_SESSION['deviceid'] = $deviceId;
+    // Diğer işlemler...
+}
+
+include 'connection.php';
+$sql = "SELECT device_name, properties FROM devices Where id = $deviceId";
+$result = mysqli_query($conn, $sql);
+$devicename = "";
+$deviceprops = "";
+while ($row = mysqli_fetch_assoc($result)) {
+    $devicename = $row["device_name"];
+    $deviceprops = $row["properties"];
+}
+
+// JSON verisini alın
+$jsonData = $deviceprops;
+
+// JSON verisini diziye dönüştür
+$properties = json_decode($jsonData, true);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,10 +52,10 @@
         <div class="elements">
             <ul>
                 <li onclick="toHome()"><i class="fa-solid fa-house"></i>Home</li>
-                <li onclick="toUsers()"><i class="fa-solid fa-user"></i>Users</li>
+                <li onclick="toRooms()"><i class="fa-solid fa-door-open"></i>Rooms</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
-                <li onclick="toAddUser()"><i class="fa-solid fa-gear"></i>Settings</li>
-                
+                <li onclick="toSettings()"><i class="fa-solid fa-gear"></i>Settings</li>
+                <li onclick="toAddUser()"><i class="fa-solid fa-plus"></i>Add Consumer</li>
 
             </ul>
         </div>
@@ -41,56 +67,26 @@
         </footer>
     </nav>
     <header>
-        <span>Device ID: <i>123</i> </span> 
+        <span>Device ID: <i>
+                <?php echo $deviceId ?>
+            </i> </span>
     </header>
     <main>
         <div class="title-button">
             <button class="my-button" onclick="goBack()"><i class="fa-solid fa-arrow-left fa-2xl"></i></button>
-            <h1>Device Name</h1>
+            <h1>
+                <?php echo $devicename; ?>
+            </h1>
         </div>
         <section>
-            <div class="features">
-                <h2>Features</h2>
-                <ul>
-                    <li>Energy Consumption: <span> info </span></li>
-                    <li>Status: <span> info </span></li>
-                    <li>Brand: <span> info </span></li>
-                </ul>
-                <h2>Informations</h2>
-                <ul>
-                    <li>Cost: <span> info </span></li>
-                </ul>
-            </div>
-            <div class="set">
-                <h2>Settings</h2>
-                <ul>
-                    <li>Status: <span> <i onclick="toggle()" id="toggle" class="fa-solid fa-toggle-on fa-2xl"></i>
-                        </span></li>
-                    <li>C°: <input type="text" name="" id=""></li>
-                    <li>Speed:
-                        <Select>
-                            <option value="">Choose an option</option>
-                            <option value="fast">Fast</option>
-                            <option value="medium">Medium speed</option>
-                            <option value="slow">Slow</option>
-                        </Select>
-                    </li>
-                </ul>
-
-                <button style="margin-top: 69%;">Set</button>
-            </div>
-            <div class="users">
-                <h2> User </h2>
-                <div class="user-container">
-                    <div class="user-card">
-                        <h3>User Name</h3>
-                        <p>User id</p>
-                        <img src="images/user.png" alt="user">
-                    </div>
+            <div class="device-attributes">
+                <h2>Device Properties</h2>
+                <hr>
+                <div class="order-device">
+                <?php include 'device-properties.php' ?>
                 </div>
-                <button onclick="toUsers()">
-                    Select
-                </button>
+                <hr>
+                <button id="change-button">Change</button>
             </div>
         </section>
     </main>

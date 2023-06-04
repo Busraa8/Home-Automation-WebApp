@@ -1,21 +1,4 @@
-<?php   session_start(); 
-        
-        if (isset($_GET['roomid'])) {
-            $roomId = $_GET['roomid'];
-            $_SESSION['roomid'] = $roomId;
-            // Diğer işlemler...
-          }
-        include 'connection.php';
-        $sql = "SELECT name FROM room Where id = $roomId";
-        $result = mysqli_query($conn, $sql);  
-        $roomname = "";
-        while ($row = mysqli_fetch_assoc($result)) {
-            $roomname = $row["name"];
-        }
-        
-        include 'username.php';
-        
-?>
+<?php session_start(); include 'username.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +9,7 @@
     <title>Home Automation</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/299750f20b.js" crossorigin="anonymous"></script>
+    
 </head>
 
 <body>
@@ -46,8 +30,7 @@
                 <li onclick="toRooms()"><i class="fa-solid fa-door-open"></i>Rooms</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
                 <li onclick="toSettings()"><i class="fa-solid fa-gear"></i>Settings</li>
-                <li onclick="toAddUser()"><i class="fa-solid fa-plus" ></i>Add Consumer</li>
-
+                <li onclick="toAddUser()"><i class="fa-solid fa-plus"></i>Add Consumer</li>
             </ul>
         </div>
         <div class="extra-content">
@@ -58,29 +41,20 @@
         </footer>
     </nav>
     <header>
-        <span>User: <i> <?php echo $username;?> </i> </span>
-        <span class="logout" onclick="logOut()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</span>
+        <div class="selections">
+            <span>User: <i> <?php echo $username;?> </i> </span>
+            <span class="logout" onclick="logOut()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</span>
+        </div>
     </header>
     <main>
         <div class="title-button">
             <button class="my-button" onclick="goBack()"><i class="fa-solid fa-arrow-left fa-2xl"></i></button>
-            <h1> <?php echo $roomname; ?> </h1>
+            <h1>Rooms</h1>
         </div>
-        <section>
-            <div>
-                <h2>Devices</h2>
-                <hr class="line-device">
-                <?php
-                    
-                ?>
-            </div>
-            <div>
-                <?php include 'device-creator-for-room.php' ?>
-            </div>
-            <div>
-                <hr class="line-device">
-            </div>
-        </section>
+        <?php
+            include 'room-creator.php';
+        ?>
+        
     </main>
     <script src="js/script.js"></script>
 </body>
