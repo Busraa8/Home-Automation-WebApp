@@ -57,7 +57,6 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && is
     $sql .= " WHERE id = $id";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Kayıt başarıyla güncellendi.";
     } else {
         echo "Hata: " . $sql . "<br>" . $conn->error;
     }
@@ -147,41 +146,53 @@ $conn->close();
 
         <!-- MAIN -->
         <main class="main">
-            <body style="font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                <div style= "height:540px;width:1100px;overflow:auto;border:8px solid rgb(56, 55, 55);padding:2%; margin-top: 40px;border-radius: 8px;position: relative;">
 
-                    <h1><br/>User Settings</h1><br/>
-                    <form action= "settings.php" class="settings-form" method="POST">
+        <body style="font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <div style= "height:540px;width:1100px;overflow:auto;border:8px solid rgb(56, 55, 55);padding:2%; margin-top: 40px;border-radius: 8px;position: relative;">
+           
+           <h1><br/> User Settings </h1><br/>
 
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name">
+           <form action="settings.php" method="POST">
 
-                    <label for="surname">Surname:</label>
-                    <input type="text" id="surname" name="surname" placeholder="Your Surname">
-                    
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Your Email">
+           <label for="name" style= "font-size: 15px">Name</label>
+           <input type="text" name="name" id="username"><br><br>
 
-                    <label for="email">Telephone:</label>
-                    <input type="email" id="telephone" name="email" placeholder="Your Telephone">
+           <label for="surname" style= "font-size: 15px">Surname</label>
+           <input type="text" name="surname" id="username"><br><br>
 
-                    
-                    
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" placeholder="Your Password">
-                    
-            
-                    <label for="id" style="font-size: 15px">Role</label>
-                         <select name="id" id="id">
-                              <option value="2">Consumer</option>
-                         </select><br><br>
+           <label for="email" style= "font-size: 15px">Email</label>
+           <input type="email" name="email" id="email"><br><br>
+
+           <label for="telephone" style= "font-size: 15px">Telephone</label>
+           <input type="text" name="telephone" id="telephone"><br><br>
+
+           <label for="address" style= "font-size: 15px">Address</label>
+           <input type="text" name="address" id="address"><br><br>
+
+           <label for="post_code" style= "font-size: 15px">Post Code</label>
+           <input type="text" name="post_code" id="post_code"><br><br>
+
+           <label for="room_number" style= "font-size: 15px">Room Number</label>
+           <input type="text" name="room_number" id="room_number"><br><br>
+
+           <label for="password" style= "font-size: 15px">Password</label>
+           <input type="text" name="password" id="password"><br><br>
+
+           <label for="id" style="font-size: 15px">Role</label>
+                <select name="id" id="id">
+                    <option value="2">Consumer</option>
+                </select><br><br>
     
-                    <input type="submit" value="Submit">
-                </form>
+           <input type="submit" class="header__pro" value="Submit">
+        </form>
+      
+      
+        </div>
+          
+        </body>
 
-                </div>
-                
-            </body>
+          
+        
 
            
 
