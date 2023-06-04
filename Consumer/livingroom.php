@@ -1,3 +1,38 @@
+<?php
+// Veritabanı bağlantısı
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "home_automation";
+
+// Veritabanı bağlantısı oluştur
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Bağlantıyı kontrol et
+if ($conn->connect_error) {
+    die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Checkbox durumlarını al
+  $thermostat = isset($_POST['thermostat']) ? 1 : 0;
+  $light = isset($_POST['light']) ? 1 : 0;
+  $air_conditioner = isset($_POST['air_conditioner']) ? 1 : 0;
+  $speaker = isset($_POST['speaker']) ? 1 : 0;
+  
+  // Güncelleme işlemi için SQL sorgusunu oluştur
+  $sql = "UPDATE checkbox_livingroom SET thermostat='$thermostat', light='$light', air_conditioner='$air_conditioner', speaker='$speaker' WHERE id=1";
+
+  if ($conn->query($sql) === TRUE) {
+  } else {
+      echo "Hata: " . $sql . "<br>" . $conn->error;
+  }
+}
+
+// Veritabanı bağlantısını kapat
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,9 +123,7 @@
                 
                 <div class="status-panel">
                   <div class="status-card">
-                    <label class="btn-onoff" >
-                        <input type="checkbox" name="name" data-onoff="toggle"><span></span>	
-                    </label>
+                    
                     <span id="living-room-temp" >25&deg;C</span>
                     <h3 style="text-align: center;color: whitesmoke;">Temperature</h3><br/><br/><br/><br/>
                     <input type="range" id="living-room-temp-input" min="10" max="30" step="1" style="color:aliceblue">
@@ -101,30 +134,34 @@
                 
             </div>
             <div class="containert containertkWh">
-                
-            </div><br/>
-            <div style="height:240px;width:1140px;overflow:auto;border:8px solid rgb(56, 55, 55);padding:2%; margin-top: 380px;margin-left: -1105px;border-radius: 8px;position: relative;">
+             
+            <form method="post" action="livingroom.php">
+            <div style="height:220px;width:1100px;overflow:auto;border:8px solid rgb(56, 55, 55);padding:2%; margin-top: 380px;margin-left: -785px;border-radius: 8px;position: relative;">
                 <div class="container_box">
                 
                     <div class="boxes boxesl"><br>
                         <label class="btn-onoffd" >
-                            <input type="checkbox" name="name" data-onoff="toggle"><span></span>	
+                            <input type="checkbox" name="light" data-onoff="toggle"><span></span>	
                         </label>
                     </div>
                     <div class="boxes boxesh"><br>
                         <label class="btn-onoffd" >
-                            <input type="checkbox" name="name" data-onoff="toggle"><span></span>	
+                            <input type="checkbox" name="air_conditioner" data-onoff="toggle"><span></span>	
                         </label>
                     </div>
                     
                     <div class="boxes boxess"><br>
                         <label class="btn-onoffd" >
-                            <input type="checkbox" name="name" data-onoff="toggle"><span></span>	
+                            <input type="checkbox" name="speaker" data-onoff="toggle"><span></span>	
                         </label>
                     </div>
                    
             
             </div>
+            <button type="submit">Kaydet</button>
+            </form>
+            </div><br/>
+            
             
             </div>
         </div>
