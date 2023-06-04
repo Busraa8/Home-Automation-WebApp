@@ -11,9 +11,7 @@ if ($conn->connect_error) {
 }
 
 // Form verilerini al
-if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['telephone']) && isset($_POST['surname']) && isset($_POST['address']) && isset($_POST['post_code']) && isset($_POST['room_number']) && isset($_POST['password'])) {
-    $id = $_POST['id']; // İd numarasını al
-
+if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['telephone']) && isset($_POST['surname']) && isset($_POST['address']) && isset($_POST['post_code']) && isset($_POST['room_number']) && ($_POST['role']) && ($_POST['password'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $telephone = $_POST['telephone'];
@@ -21,53 +19,28 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && is
     $address = $_POST['address'];
     $post_code = $_POST['post_code'];
     $room_number = $_POST['room_number'];
+    $role = $_POST['role'];
     $password = $_POST['password'];
 
-    // Verileri veritabanında güncelle
-    $sql = "UPDATE user_table SET ";
-    
-    if (!empty($name)) {
-        $sql .= "name = '$name', ";
-    }
-    if (!empty($email)) {
-        $sql .= "email = '$email', ";
-    }
-    if (!empty($telephone)) {
-        $sql .= "telephone = '$telephone', ";
-    }
-    if (!empty($surname)) {
-        $sql .= "surname = '$surname', ";
-    }
-    if (!empty($address)) {
-        $sql .= "address = '$address', ";
-    }
-    if (!empty($post_code)) {
-        $sql .= "post_code = '$post_code', ";
-    }
-    if (!empty($room_number)) {
-        $sql .= "room_number = '$room_number', ";
-    }
-    if (!empty($password)) {
-        $sql .= "password = '$password', ";
-    }
-    
-    // Son karakteri (virgülü) kaldır
-    $sql = rtrim($sql, ", ");
-    
-    $sql .= " WHERE id = $id";
+    // Form alanlarının dolu olup olmadığını kontrol et
+    if (!empty($name) && !empty($email) && !empty($telephone) && !empty($surname) && !empty($address) && !empty($post_code) && !empty($room_number) && !empty($role) && !empty($password)) {
+        // Verileri veritabanına ekle
+        $sql = "INSERT INTO user_table (name, email, telephone, surname, address, post_code, room_number, role, password) VALUES ('$name', '$email', '$telephone', '$surname', '$address', '$post_code', '$room_number', '$role', '$password')";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Kayıt başarıyla güncellendi.";
+        if ($conn->query($sql) === TRUE) {
+            echo "Kayıt başarıyla eklendi.";
+        } else {
+            echo "Hata: " . $sql . "<br>" . $conn->error;
+        }
     } else {
-        echo "Hata: " . $sql . "<br>" . $conn->error;
+        echo "Kullanıcı adı ve e-posta boş bırakılamaz.";
     }
-} else {
-    echo "Form verileri eksik.";
 }
 
 // Veritabanı bağlantısını kapat
 $conn->close();
 ?>
+
 
 
 
@@ -100,7 +73,8 @@ $conn->close();
                 <li onclick="toHome()"><i class="fa-solid fa-house"></i>Home</li>
                 <li onclick="toUsers()"><i class="fa-solid fa-user"></i>Users</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
-                <li onclick="toAddUser()"><i class="fa-solid fa-gear"></i>Settings</li>
+                <li onclick="toSettings()"><i class="fa-solid fa-gear"></i>Settings</li>
+                <li onclick="toAddUser()"><i class="fa-solid fa-plus"></i>Add Consumer</li>
             </ul>
         </div>
         <div class="extra-content">
@@ -145,11 +119,11 @@ $conn->close();
            <label for="password" style= "font-size: 15px">Password</label>
            <input type="text" name="password" id="password"><br><br>
 
-           <label for="id" style="font-size: 15px">Role</label>
-                <select name="id" id="id">
-                    <option value="2">Consumer</option>
-                    <option value="1">Producer</option>
-                </select><br><br>
+           <label for="role">Role:</label>
+           <select name="role" id="role">
+           <option value="consumer">Consumer</option>
+           <option value="producer">Producer</option>
+           </select><br><br>
     
            <input type="submit" value="Submit">
         </form>

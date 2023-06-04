@@ -1,16 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=DM+Sans&display=swap');
+
 body {
     margin: 0;
     font-family: 'DM Sans', sans-serif;
 }
+
 main {
     margin-left: 20%;
     text-align: center;
 }
+
 nav {
     display: inline-block;
     vertical-align: top;
 }
+
 header {
     margin-left: 20%;
     width: 80%;
@@ -18,10 +22,12 @@ header {
     vertical-align: top;
     background-color: rgb(208, 206, 206);
 }
+
 header span {
     display: inline-block;
     padding: 3%;
 }
+
 .left-panel {
     position: fixed;
     background-color: black;
@@ -32,6 +38,7 @@ header span {
     display: inline-block;
     margin: 0;
 }
+
 .clock {
     border-radius: 5px;
     text-align: center;
@@ -40,24 +47,30 @@ header span {
     padding: 10%;
     align-items: center;
 }
+
 .time {
     border-radius: 5px;
     vertical-align: middle;
 }
+
 .am-pm {
     color: gray;
     vertical-align: middle;
 }
+
 .icon {
     vertical-align: middle;
     float: right;
 }
+
 .line {
     padding: 0% 10% 10% 10%;
 }
+
 .line1 {
     width: 80%;
 }
+
 .elements {
     color: gray;
     display: flex;
@@ -65,37 +78,44 @@ header span {
     margin-left: 10%;
 
 }
+
 .elements ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     width: 100%;
 }
+
 .elements li {
     padding: 10%;
     padding-left: 0;
     border-radius: 10px;
     margin-bottom: 5%;
 }
+
 .elements li:hover {
     cursor: pointer;
     background-color: grey;
     color: black;
 }
+
 .elements i {
     margin-right: 10%;
     padding-left: 10%;
 }
+
 footer {
     color: white;
     margin-bottom: 0;
     align-items: center;
 }
+
 footer p {
     text-align: center;
     max-width: 100%;
     padding: 10%;
 }
+
 .my-button {
     background-color: white;
     color: rgba(0, 0, 0, 0.682);
@@ -108,26 +128,32 @@ footer p {
     margin-left: 8%;
     margin-right: 5%;
 }
+
 .my-button:hover {
     background-color: black;
     color: gray;
     transition: 1s;
 }
+
 .title-button {
     display: flex;
 }
+
 .title-button h1 {
     margin-left: 22%;
 }
+
 .logout {
     float: right;
 }
+
 .logout:hover {
     background-color: black;
     color: gray;
     transition: 1s;
     cursor: pointer;
 }
+
 section {
     margin: 2%;
     display: flex;
@@ -201,3 +227,125 @@ input {
     border-radius: 5px;
 }
 
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Kaydırma çubuğu stilleri */
+.slider input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background-color: #ccc;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background-color: #4CAF50;
+    cursor: pointer;
+}
+
+.slider input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background-color: #4CAF50;
+    cursor: pointer;
+}
+
+.order-device {
+    display: flex;
+    flex-direction: column;
+}
+
+.on-off-device {
+    display: flex;
+    justify-content: space-between;
+}
+.brightness-device {
+    display: flex;
+    justify-content: space-between;
+}
+.device-attributes {
+    width: 40%;
+}
+
+.temperature-control {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: space-between;
+  }
+
+  .control-button {
+    width: 15%;
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #eee;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  .connection-control {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: space-between;
+  }
+  .volume-device {
+    display: flex;
+    justify-content: space-between;
+  }

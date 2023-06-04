@@ -17,3 +17,42 @@ CREATE TABLE user_table (
     room_number INT NOT NULL
 );
 
+-- Room tablosu oluşturma
+CREATE TABLE room (
+  id INT PRIMARY KEY,
+  name VARCHAR(50)
+);
+
+-- Room tablosuna odaları girme
+INSERT INTO room (id, name)
+VALUES (1, 'Bedroom'),
+       (2, 'Kitchen'),
+       (3, 'Entryway'),
+       (4, 'Livingroom');
+
+-- Room tablosu güncelleme 
+ALTER TABLE room ADD COLUMN user_id INT;
+
+-- Room tablosu foreign key ekleme 
+ALTER TABLE room ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_table(id);
+
+-- Device tablosu oluşturma
+CREATE TABLE devices (
+  id INT PRIMARY KEY,
+  room_id INT,
+  device_name VARCHAR(50),
+  FOREIGN KEY (room_id) REFERENCES room(id)
+);
+
+-- Devices tablosuna device girme
+INSERT INTO devices (id, room_id, device_name, properties)
+VALUES (1, 1, 'Light', '{"on_off": true, "brightness": 50}'),
+       (2, 1, 'Thermostat', '{"temperature": 25}'),
+       (3, 2, 'Light', '{"on_off": true, "brightness": 75}'),
+       (4, 1, 'Air Conditioner', '{"on_off": false, "temperature": 23}'),
+       (5, 1, 'Wi-Fi', '{"connected": true}'),
+       (6, 3, 'Light', '{"on_off": false}'),
+       (7, 4, 'Light', '{"on_off": true, "brightness": 100}'),
+       (8, 4, 'Air Conditioner', '{"on_off": true, "temperature": 22}'),
+       (9, 4, 'Speaker', '{"volume": 70}'),
+       (10, 2, 'Smart Plug', '{"on_off": true, "usage": "monitoring"}'),
