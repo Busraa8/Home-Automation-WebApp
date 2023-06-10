@@ -18,14 +18,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $light = isset($_POST['light']) ? 1 : 0;
   
   // Güncelleme işlemi için SQL sorgusunu oluştur
-  $sql = "UPDATE checkbox_entryway SET light='$light' WHERE id=1";
+  $stmt = $conn->prepare("UPDATE checkbox_entryway SET light=? WHERE id=1");
+  $stmt->bind_param("i", $light);
 
-  if ($conn->query($sql) === TRUE) {
-
+  if ($stmt->execute()) {
   } else {
-      echo "Hata: " . $sql . "<br>" . $conn->error;
+      echo "Hata: " . $stmt->error;
   }
+  $stmt->close();
 }
+// Durumu veritabanından çek
+$sql = "SELECT light FROM checkbox_entryway WHERE id=1";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $lightStatus = $row["light"];
+} else {
+    echo "Veri bulunamadı";
+}
+
 
 // Veritabanı bağlantısını kapat
 $conn->close();
@@ -140,7 +152,7 @@ $conn->close();
                 
                     <div class="boxes boxesl"><br>
                         <label class="btn-onoffd" >
-                            <input type="checkbox" name="light" data-onoff="toggle"><span></span>	
+                            <input type="checkbox" name="light" data-onoff="toggle"<?php if ($lightStatus == 1) echo 'checked'; ?>><span></span>	
                         </label>
                     </div>
                     

@@ -13,23 +13,39 @@ if ($conn->connect_error) {
     die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
 }
 
+// Güncelleme işlemi için POST isteğini kontrol et
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Checkbox durumlarını al
-  $light = isset($_POST['light']) ? 1 : 0;
-  $smart_plug = isset($_POST['smart_plug']) ? 1 : 0;
-  
-  // Güncelleme işlemi için SQL sorgusunu oluştur
-  $sql = "UPDATE checkbox_kitchen SET light='$light', smart_plug='$smart_plug' WHERE id=1";
+    // Checkbox durumlarını al
+    $light = isset($_POST['light']) ? 1 : 0;
+    $smart_plug = isset($_POST['smart_plug']) ? 1 : 0;
 
-  if ($conn->query($sql) === TRUE) {
+    // Güncelleme işlemi için parametreli bir sorgu kullan
+    $stmt = $conn->prepare("UPDATE checkbox_kitchen SET light=?, smart_plug=? WHERE id=1");
+    $stmt->bind_param("ii", $light, $smart_plug);
 
-  } else {
-      echo "Hata: " . $sql . "<br>" . $conn->error;
-  }
+    if ($stmt->execute()) {
+        // Güncelleme başarılı oldu
+    } else {
+        echo "Hata: " . $stmt->error;
+    }
+    $stmt->close();
+}
+
+// Durumu veritabanından çek
+$sql = "SELECT light, smart_plug FROM checkbox_kitchen WHERE id=1";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $lightStatus = $row["light"];
+    $smartPlugStatus = $row["smart_plug"];
+} else {
+    echo "Veri bulunamadı";
 }
 
 // Veritabanı bağlantısını kapat
 $conn->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -138,18 +154,19 @@ $conn->close();
 
             <div style="height:240px;width:1140px;overflow:auto;border:8px solid rgb(56, 55, 55);padding:2%; margin-top: 380px;margin-left: -1105px;border-radius: 8px;position: relative;">
                 <div class="container_box">
-                
-                    <div class="boxes boxesl"><br>
-                        <label class="btn-onoffd" >
-                            <input type="checkbox" name="light" data-onoff="toggle"><span></span>	
-                        </label>
-                    </div>
+                  <div class="boxes boxesl">
+                    <br>
+                    <label class="btn-onoffd">
+                      <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus == 1) echo 'checked'; ?>><span></span>	
+                    </label>
+                  </div>
+                  <div class="boxes boxesp">
+                    <br>
+                    <label class="btn-onoffd">
+                      <input type="checkbox" name="smart_plug" data-onoff="toggle" <?php if ($smartPlugStatus == 1) echo 'checked'; ?>><span></span>	
+                    </label>
+                  </div>
 
-                    <div class="boxes boxesp"><br>
-                        <label class="btn-onoffd" >
-                            <input type="checkbox" name="smart_plug" data-onoff="toggle"><span></span>	
-                        </label>
-                    </div>
                     
             
             </div><br>

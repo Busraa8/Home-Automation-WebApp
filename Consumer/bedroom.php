@@ -21,18 +21,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $wifi = isset($_POST['wifi']) ? 1 : 0;
   
   // Güncelleme işlemi için SQL sorgusunu oluştur
-  $sql = "UPDATE checkbox_bedroom SET thermostat='$thermostat', light='$light', air_conditioner='$air_conditioner', wifi='$wifi' WHERE id=1";
+  $stmt = $conn->prepare("UPDATE checkbox_bedroom SET thermostat=?, light=?, air_conditioner=?, wifi=? WHERE id=1");
+  $stmt->bind_param("iiii", $thermostat, $light, $air_conditioner, $wifi);
 
-  if ($conn->query($sql) === TRUE) {
-
+  if ($stmt->execute()) {
   } else {
-      echo "Hata: " . $sql . "<br>" . $conn->error;
+      echo "Hata: " . $stmt->error;
   }
+  $stmt->close();
+}
+
+// Durumu veritabanından çek
+$sql = "SELECT thermostat, light, air_conditioner, wifi FROM checkbox_bedroom WHERE id=1";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $thermostatStatus = $row["thermostat"];
+    $air_conditionerStatus = $row["air_conditioner"];
+    $lightStatus = $row["light"];
+    $wifiStatus = $row["wifi"];
+} else {
+    echo "Veri bulunamadı";
 }
 
 // Veritabanı bağlantısını kapat
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -145,18 +161,18 @@ $conn->close();
                 
                     <div class="boxes boxesl"><br>
                         <label class="btn-onoffd" >
-                            <input type="checkbox" name="light" data-onoff="toggle"><span></span>	
+                            <input type="checkbox" name="light" data-onoff="toggle"<?php if ($lightStatus == 1) echo 'checked'; ?>><span></span>	
                         </label>
                     </div>
                     <div class="boxes boxesh"><br>
                         <label class="btn-onoffd" >
-                            <input type="checkbox" name="air_conditioner" data-onoff="toggle"><span></span>	
+                            <input type="checkbox" name="air_conditioner" data-onoff="toggle"<?php if ($air_conditionerStatus == 1) echo 'checked'; ?>><span></span>	
                         </label>
                     </div>
 
                     <div class="boxes boxesw"><br>
                         <label class="btn-onoffd" >
-                            <input type="checkbox" name="wifi" data-onoff="toggle"><span></span>	
+                            <input type="checkbox" name="wifi" data-onoff="toggle"<?php if ($wifiStatus == 1) echo 'checked'; ?>><span></span>	
                         </label>
                     </div>
                     
