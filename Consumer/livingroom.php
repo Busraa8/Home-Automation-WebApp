@@ -1,9 +1,5 @@
 <?php
-// Veritabanı bağlantısı
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "home_automation";
+include 'config.php';
 
 // Veritabanı bağlantısı oluştur
 $conn = new mysqli($servername, $username, $password, $dbname);

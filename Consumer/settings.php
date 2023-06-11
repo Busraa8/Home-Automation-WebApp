@@ -1,9 +1,5 @@
 <?php
-// Veritabanı bağlantısı
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "home_automation";
+include 'config.php';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -14,14 +10,20 @@ if ($conn->connect_error) {
 if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['telephone']) && isset($_POST['surname']) && isset($_POST['address']) && isset($_POST['post_code']) && isset($_POST['room_number']) && isset($_POST['password'])) {
     $id = $_POST['id']; // İd numarasını al
 
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $telephone = $_POST['telephone'];
-    $surname = $_POST['surname'];
-    $address = $_POST['address'];
-    $post_code = $_POST['post_code'];
-    $room_number = $_POST['room_number'];
-    $password = $_POST['password'];
+    // Verileri filtreleyin
+    $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $telephone = filter_var($_POST['telephone'], FILTER_SANITIZE_STRING);
+    $surname = filter_var($_POST['surname'], FILTER_SANITIZE_STRING);
+    $address = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
+    $post_code = filter_var($_POST['post_code'], FILTER_SANITIZE_STRING);
+    $room_number = filter_var($_POST['room_number'], FILTER_SANITIZE_STRING);
+    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+    $id = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+
+
+    // Şifreyi karma işlemine tabi tut
+    $hashedPassword = sha1($password);
 
     // Verileri veritabanında güncelle
     $sql = "UPDATE user_table SET ";
@@ -47,8 +49,8 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && is
     if (!empty($room_number)) {
         $sql .= "room_number = '$room_number', ";
     }
-    if (!empty($password)) {
-        $sql .= "password = '$password', ";
+    if (!empty($hashedPassword)) {
+        $sql .= "password = '$hashedPassword', ";
     }
     
     // Son karakteri (virgülü) kaldır
@@ -57,6 +59,7 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && is
     $sql .= " WHERE id = $id";
 
     if ($conn->query($sql) === TRUE) {
+       
     } else {
         echo "Hata: " . $sql . "<br>" . $conn->error;
     }
