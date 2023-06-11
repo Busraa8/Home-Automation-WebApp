@@ -52,6 +52,7 @@ $_SESSION["props"] = $properties ;
         <div class="elements">
             <ul>
                 <li onclick="toHome()"><i class="fa-solid fa-house"></i>Home</li>
+                <li onclick="toRequests()"><i class="fa-solid fa-message"></i>Requests</li>
                 <li onclick="toRooms()"><i class="fa-solid fa-door-open"></i>Rooms</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
                 <li onclick="toAddUser()"><i class="fa-solid fa-gear"></i>Settings</li>
@@ -69,6 +70,7 @@ $_SESSION["props"] = $properties ;
         <span>Device ID: <i>
                 <?php echo $deviceId ?>
             </i> </span>
+            <span class="logout" onclick="logOut()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</span>
     </header>
     <main>
         <div class="title-button">

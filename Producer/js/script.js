@@ -162,6 +162,9 @@ function toUsers() {
 function toHome() {
   window.location.href = "home-producer.php";
 }
+function toRequests() {
+  window.location.href = "requests-producer.php";
+}
 function toDevices() {
   window.location.href = "devices-producer.php";
 }

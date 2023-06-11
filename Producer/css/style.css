@@ -279,3 +279,44 @@ footer p {
 .line-device {
     width: 78%;
 }
+
+.request-tables {
+    display: flex;
+    justify-content:space-around ;
+    padding: 20px;
+}
+.admin-container {
+    margin: 20px;
+  }
+  
+  .admin-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f8f8f8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  th,
+  td {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  thead {
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+  
+  tbody tr:hover {
+    background-color: #eaf2fe;
+  }
