@@ -525,7 +525,6 @@ ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
     .containert {
         width: 360px;
         height: 340px;
-        margin-left: 20px;
         padding: 20px;
         background-color: rgb(53, 53, 53);
         border-radius: 15px;
@@ -537,11 +536,7 @@ ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
         width: 340px;
         background-size: 300px 350px;
     }
-    .containertkWh{
-        background-image: url('kWh.PNG');
-        width: 340px;
-        background-size: 350px 350px;
-    }
+    
 
     .container_d{
         max-width: 1000px;

@@ -11,39 +11,79 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Checkbox durumlarını al
-  $thermostat = isset($_POST['thermostat']) ? 1 : 0;
-  $light = isset($_POST['light']) ? 1 : 0;
-  $air_conditioner = isset($_POST['air_conditioner']) ? 1 : 0;
-  $speaker = isset($_POST['speaker']) ? 1 : 0;
-  
-  // Güncelleme işlemi için SQL sorgusunu oluştur
-  $stmt = $conn->prepare("UPDATE checkbox_livingroom SET thermostat=?, light=?, air_conditioner=?, speaker=? WHERE id=1");
-  $stmt->bind_param("iiii", $thermostat, $light, $air_conditioner, $speaker);
+  $lightOnOff = isset($_POST['light']) ? 'true' : 'false';
+  $acOnOff = isset($_POST['air_conditioner']) ? 'true' : 'false';
+  $speakerOnOff = isset($_POST['speaker']) ? 'true' : 'false';
 
-  if ($stmt->execute()) {
-  } else {
-      echo "Hata: " . $stmt->error;
+  // Güncelleme işlemi için SQL sorgularını oluştur ve çalıştır
+  $stmtLight = $conn->prepare("UPDATE devices SET properties_customer = JSON_SET(properties_customer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Light'");
+  $stmtLight->bind_param("s", $lightOnOff);
+  
+  $stmtAC = $conn->prepare("UPDATE devices SET properties_customer = JSON_SET(properties_customer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Air Conditioner'");
+  $stmtAC->bind_param("s", $acOnOff);
+
+  $stmtSpeaker = $conn->prepare("UPDATE devices SET properties_customer = JSON_SET(properties_customer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Speaker'");
+  $stmtSpeaker->bind_param("s", $speakerOnOff);
+  
+  $success = true;
+  
+  if (!$stmtLight->execute()) {
+      echo "Hata (Light): " . $stmtLight->error;
+      $success = false;
   }
-  $stmt->close();
+  
+  if (!$stmtAC->execute()) {
+      echo "Hata (Air Conditioner): " . $stmtAC->error;
+      $success = false;
+  }
+
+  if (!$stmtSpeaker->execute()) {
+    echo "Hata (Speaker): " . $stmtSpeaker->error;
+    $success = false;
+  }
+  
+  $stmtLight->close();
+  $stmtAC->close();
+  $stmtSpeaker->close();
+  
+  if ($success) {
+  } else {
+      echo "Güncelleme sırasında hata oluştu";
+  }
 }
 
 // Durumu veritabanından çek
-$sql = "SELECT thermostat, light, air_conditioner, speaker FROM checkbox_livingroom WHERE id=1";
+$sql = "SELECT JSON_EXTRACT(properties, '$.on_off') AS light_status FROM devices WHERE room_id = 4 AND device_name = 'Light'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $thermostatStatus = $row["thermostat"];
-    $air_conditionerStatus = $row["air_conditioner"];
-    $lightStatus = $row["light"];
-    $speakerStatus = $row["speaker"];
+    $lightStatus = $row["light_status"];
 } else {
-    echo "Veri bulunamadı";
+}
+
+$sqlAC = "SELECT JSON_EXTRACT(properties, '$.on_off') AS ac_status FROM devices WHERE room_id = 4 AND device_name = 'Air Conditioner'";
+$resultAC = $conn->query($sqlAC);
+
+if ($resultAC->num_rows > 0) {
+    $rowAC = $resultAC->fetch_assoc();
+    $acStatus = $rowAC["ac_status"];
+} else {
+}
+
+$sqlSpeaker = "SELECT JSON_EXTRACT(properties, '$.on_off') AS speaker_status FROM devices WHERE room_id = 4 AND device_name = 'Speaker'";
+$resultSpeaker = $conn->query($sqlSpeaker);
+
+if ($resultSpeaker->num_rows > 0) {
+    $rowSpeaker = $resultSpeaker->fetch_assoc();
+    $speakerStatus = $rowSpeaker["speaker_status"];
+} else {
 }
 
 // Veritabanı bağlantısını kapat
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -138,34 +178,65 @@ $conn->close();
                     
                     <span id="living-room-temp" >25&deg;C</span>
                     <h3 style="text-align: center;color: whitesmoke;">Temperature</h3><br/><br/><br/><br/>
-                    <input type="range" id="living-room-temp-input" min="10" max="30" step="1" style="color:aliceblue">
+                    <input type="range" id="living-room-temp-input" min="10" max="35" step="1" style="color:aliceblue">
                 
                   </div>
                   
                 </div>
                 
             </div>
-            <div class="containert containertkWh">
+
+            <div class="containert">
+                <p style="font-size: 15px; color: whitesmoke;">Light</p>
+                
+                <div class="status-panel">
+                  <div class="status-card">
+                    
+                    <span id="living-room-light-value" >20&deg;C</span>
+                    <h3 style="text-align: center;color: whitesmoke;">Light</h3><br/><br/><br/><br/>
+                    <input type="range" id="living-room-light-input" min="10" max="30" step="1" style="color:aliceblue">
+                
+                  </div>
+                  
+                </div>
+                
+            </div>
+
+            <div class="containert">
+                <p style="font-size: 15px; color: whitesmoke;">Speaker</p>
+                
+                <div class="status-panel">
+                  <div class="status-card">
+                    
+                    <span id="living-room-speaker-value" >25&deg;C</span>
+                    <h3 style="text-align: center;color: whitesmoke;">Speaker</h3><br/><br/><br/><br/>
+                    <input type="range" id="living-room-speaker-input" min="10" max="30" step="1" style="color:aliceblue">
+                
+                  </div>
+                  
+                </div>
+                
+            </div>
              
             <form method="post" action="livingroom.php">
-            <div style="height:220px;width:1100px;overflow:auto;border:8px solid rgb(56, 55, 55);padding:2%; margin-top: 380px;margin-left: -785px;border-radius: 8px;position: relative;">
+            <div style="height:220px;width:1190px;overflow:auto;border:8px solid rgb(56, 55, 55);padding:2%; margin-top: 380px;margin-right:20px; margin-left: -1180px;border-radius: 8px;position: relative;">
                 <div class="container_box">
                 
                     <div class="boxes boxesl"><br>
                         <label class="btn-onoffd" >
-                            <input type="checkbox" name="light" data-onoff="toggle"<?php if ($lightStatus == 1) echo 'checked'; ?>><span></span>	
-                            <p>asdasdsa</p>
+                        <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === 'true') echo 'checked'; ?>><span></span>	
+                            
                         </label>
                     </div>
                     <div class="boxes boxesh"><br>
                         <label class="btn-onoffd" >
-                            <input type="checkbox" name="air_conditioner" data-onoff="toggle"<?php if ($air_conditionerStatus == 1) echo 'checked'; ?>><span></span>	
+                        <input type="checkbox" name="air_conditioner" data-onoff="toggle" <?php if ($acStatus === 'true') echo 'checked'; ?>><span></span>	
                         </label>
                     </div>
                     
                     <div class="boxes boxess"><br>
                         <label class="btn-onoffd" >
-                            <input type="checkbox" name="speaker" data-onoff="toggle"<?php if ($speakerStatus == 1) echo 'checked'; ?>><span></span>	
+                            <input type="checkbox" name="speaker" data-onoff="toggle"<?php if ($speakerStatus === 'true') echo 'checked'; ?>><span></span>	
                         </label>
                     </div>
                    
