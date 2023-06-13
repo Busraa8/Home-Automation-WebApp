@@ -320,3 +320,6 @@ footer p {
   tbody tr:hover {
     background-color: #eaf2fe;
   }
+  .request-active {
+    background-color: yellow;
+}

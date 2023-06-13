@@ -47,7 +47,6 @@ if (document.getElementById("on-off") != null) {
     } else {
       currentStateElement.textContent = 'Off';
     }
-    console.log('On/Off:', onOffValue);
   });
 }
 

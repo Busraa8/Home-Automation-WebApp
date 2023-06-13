@@ -52,7 +52,7 @@ $_SESSION["props"] = $properties ;
         <div class="elements">
             <ul>
                 <li onclick="toHome()"><i class="fa-solid fa-house"></i>Home</li>
-                <li onclick="toRequests()"><i class="fa-solid fa-message"></i>Requests</li>
+                <li onclick="toRequests()" id="request-button"><i class="fa-solid fa-message"></i>Requests</li>
                 <li onclick="toRooms()"><i class="fa-solid fa-door-open"></i>Rooms</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
                 <li onclick="toAddUser()"><i class="fa-solid fa-gear"></i>Settings</li>
@@ -93,5 +93,8 @@ $_SESSION["props"] = $properties ;
     </main>
     <script src="js/script.js"></script>
 </body>
+<?php
+include 'request-check.php';
+?>
 
 </html>

@@ -1,7 +1,34 @@
 <?php 
     include 'connection.php';
-    session_start();
+    session_start();    
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $deviceId = $_SESSION["deviceid"];
+
+        $roomName = "";
+        $deviceName = "";
+        $sql = "SELECT r.name, d.device_name 
+        from room r JOIN devices d ON d.room_id = r.id  
+        WHERE d.id = $deviceId";
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $roomName = $row["name"];
+            $deviceName = $row["device_name"];
+        }
+        $roomName = strtolower($roomName);
+        $deviceName = strtolower(str_replace(' ', '_', $deviceName));
+        
+        if($deviceName == "wi-fi")
+            $deviceName = "wifi";
+        $sql = "UPDATE checkbox_".$roomName." SET $deviceName = 0";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            // Başarılı bir şekilde güncellendi
+        } else {
+            // Hata oluştu
+            echo "Hata oluştu: " . mysqli_error($conn);
+        }
+
+        
 
         $onof = "";
         $brightness = "";
@@ -10,7 +37,6 @@
         $volume = "";
 
         $props = $_SESSION["props"];
-        $deviceId = $_SESSION["deviceid"];
         if($_SESSION["on_off"] != null){
             $onof = $_POST["onof"];
             $props["on_off"] = $onof;
@@ -31,12 +57,10 @@
             $volume = $_POST["volume"];
             $props["volume"] = $volume;
         }
-        // SQL sorgusunu hazırla ve çalıştır
         $propsJson = json_encode($props);
         $propsJsonEscaped = mysqli_real_escape_string($conn, $propsJson);
         $sql = "UPDATE devices SET properties = '$propsJsonEscaped' WHERE id = $deviceId";
         $result = mysqli_query($conn, $sql);
-    
         if ($result) {
             // Başarılı bir şekilde güncellendi
         } else {

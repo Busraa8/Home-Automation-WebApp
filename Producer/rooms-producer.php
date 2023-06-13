@@ -27,7 +27,7 @@
         <div class="elements">
             <ul>
                 <li onclick="toHome()"><i class="fa-solid fa-house"></i>Home</li>
-                <li onclick="toRequests()"><i class="fa-solid fa-message"></i>Requests</li>
+                <li onclick="toRequests()" id="request-button" ><i class="fa-solid fa-message"></i>Requests</li>
                 <li onclick="toRooms()"><i class="fa-solid fa-door-open"></i>Rooms</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
                 <li onclick="toAddUser()"><i class="fa-solid fa-gear"></i>Settings</li>
@@ -42,7 +42,7 @@
     </nav>
     <header>
         <div class="selections">
-            <span>User: <i> <?php echo $username;?> </i> </span>
+            <span>Consumer: <i> <?php echo $username;?> </i> </span>
             <span class="logout" onclick="logOut()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</span>
         </div>
     </header>
@@ -58,5 +58,8 @@
     </main>
     <script src="js/script.js"></script>
 </body>
+<?php
+include 'request-check.php';
+?>
 
 </html>

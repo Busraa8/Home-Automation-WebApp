@@ -154,6 +154,7 @@ $conn->close();
                     <div class="boxes boxesl"><br>
                         <label class="btn-onoffd" >
                             <input type="checkbox" name="light" data-onoff="toggle"<?php if ($lightStatus == 1) echo 'checked'; ?>><span></span>	
+                            <p>asdasdsa</p>
                         </label>
                     </div>
                     <div class="boxes boxesh"><br>
