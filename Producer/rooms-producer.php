@@ -58,8 +58,5 @@
     </main>
     <script src="js/script.js"></script>
 </body>
-<?php
-include 'request-check.php';
-?>
 
 </html>

@@ -315,10 +315,12 @@ input:checked+.slider:before {
     display: flex;
     justify-content: space-between;
 }
+
 .brightness-device {
     display: flex;
     justify-content: space-between;
 }
+
 .device-attributes {
     width: 40%;
 }
@@ -328,9 +330,9 @@ input:checked+.slider:before {
     align-items: center;
     margin-bottom: 10px;
     justify-content: space-between;
-  }
+}
 
-  .control-button {
+.control-button {
     width: 15%;
     padding: 5px 10px;
     font-size: 14px;
@@ -338,17 +340,22 @@ input:checked+.slider:before {
     border: none;
     cursor: pointer;
     margin: 0 5px;
-  }
-  .connection-control {
+}
+
+.connection-control {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
     justify-content: space-between;
-  }
-  .volume-device {
+}
+
+.volume-device {
     display: flex;
     justify-content: space-between;
-  }
-  .request-active {
-    background-color: yellow;
 }
+
+.request-active {
+    background-color: rgb(163, 57, 57);
+    color: #eaf2fe;
+}
+

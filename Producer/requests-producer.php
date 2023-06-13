@@ -8,7 +8,7 @@ include 'username.php'; ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Automation</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/requests.css">
     <script src="https://kit.fontawesome.com/299750f20b.js" crossorigin="anonymous"></script>
 </head>
 
@@ -27,7 +27,7 @@ include 'username.php'; ?>
         <div class="elements">
             <ul>
                 <li onclick="toHome()"><i class="fa-solid fa-house"></i>Home</li>
-                <li onclick="toRequests()" id="request-button" ><i class="fa-solid fa-message"></i>Requests</li>
+                <li onclick="toRequests()" id="request-button"><i class="fa-solid fa-message"></i>Requests</li>
                 <li onclick="toRooms()"><i class="fa-solid fa-door-open"></i>Rooms</li>
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
                 <li onclick="toAddUser()"><i class="fa-solid fa-gear"></i>Settings</li>
@@ -49,75 +49,150 @@ include 'username.php'; ?>
         </div>
     </header>
     <main>
-        <div class="rooms">
-            <h1>Requests in Rooms</h1>
-        </div>
-        <hr class="line1">
-        <div class="request-tables">
-            <div class="admin-container">
-                <h1 class="admin-title">Bedroom</h1>
-                <table class="user-table">
-                    <thead>
-                        <tr>
-                            <?php include 'request-bedroom.php' ?>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <?php include 'request-bedroom-data.php' ?>
-                        </tr>
-                    </tbody>
-                </table>
-                <h1 class="admin-title">Livingroom</h1>
-                <table class="user-table">
-                    <thead>
-                        <tr>
-                            <?php include 'request-livingroom.php' ?>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <?php include 'request-livingroom-data.php' ?>
-                        </tr>
-                    </tbody>
-                </table>
-                <h1 class="admin-title">Kitchen</h1>
-                <table class="user-table">
-                    <thead>
-                        <tr>
-                            <?php include 'request-kitchen.php' ?>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <?php include 'request-kitchen-data.php' ?>
-                        </tr>
-                    </tbody>
-                </table>
-                <h1 class="admin-title">Entryway</h1>
-                <table class="user-table">
-                    <thead>
-                        <tr>
-                            <?php include 'request-entryway.php' ?>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <?php include 'request-entryway-data.php' ?>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="current-state-container">
+            <div class="rooms">
+                <h1>Current states in Rooms</h1>
             </div>
-            
+            <hr class="line1">
+                <?php
+                $sql = "SELECT name, id FROM room";
+                $result = $conn->query($sql);
+                $roomNames = array();
+                $roomids = array();
 
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $roomNames[] = $row["name"];
+                        $roomids[] = $row["id"];
+                    }
+                }
+
+                $sql = "SELECT room_id, device_name, properties, id FROM devices";
+                $result = $conn->query($sql);
+
+                // Verileri diziye atama
+                $propertiesArray = array();
+                $namesArray = array();
+                $idArray = array();
+                $idDeviceArray = array();
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $properties = json_decode($row['properties'], true);
+                        $propertiesArray[] = $properties;
+                        $namesArray[] = $row["device_name"];
+                        $idArray[] = $row["room_id"];
+                        $idDeviceArray[] = $row["id"];
+                    }
+                }
+                function findDeviceNumber($room_id, $array)
+                {
+                    $number_of_room = 0;
+                    for ($i = 0; $i < count($array); $i++) {
+                        if ($array[$i] == $room_id) {
+                            $number_of_room = $number_of_room + 1;
+                        }
+                    }
+                    return $number_of_room;
+                }
+
+                $roomNumber = count($roomids);
+                for ($i = 0; $i < $roomNumber; $i++) {
+                    echo "<div class='room-block'>
+                    <h2>" . $roomNames[$i] . "</h2>"
+                    ;
+                    for ($j = 0; $j < count($idArray); $j++) {
+                        if ($roomids[$i] == $idArray[$j]) {
+                            $properties = $propertiesArray[$j];
+                            $name = $namesArray[$j];
+                            $idofdevice = $idDeviceArray[$j];
+                            echo "
+                            <div id='$idofdevice-device' class='block-info' onclick='toDevice($idofdevice)'>
+                            <h4>" . $name . "</h4>
+                            <ul>
+                            ";
+                            foreach ($properties as $key => $value) {
+                                echo "<li>" . $key . ": " . $value . "</li>";
+                            }
+                            echo "</ul>
+                            </div>
+                            <hr class='line1'>
+                            ";
+                        }
+                    }
+                    echo "</div>";
+                }
+                ?>
         </div>
+        <div class="requests-container">
+            <div class="rooms">
+                <h1>Requests in Rooms</h1>
+            </div>
+            <hr class="line1">
+            <?php
+                $sql = "SELECT name, id FROM room";
+                $result = $conn->query($sql);
+                $roomNames = array();
+                $roomids = array();
 
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $roomNames[] = $row["name"];
+                        $roomids[] = $row["id"];
+                    }
+                }
 
+                $sql = "SELECT room_id, device_name, properties_consumer, id FROM devices";
+                $result = $conn->query($sql);
+
+                // Verileri diziye atama
+                $propertiesArray = array();
+                $namesArray = array();
+                $idArray = array();
+                $idDeviceArray = array();
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $properties = json_decode($row['properties_consumer'], true);
+                        $propertiesArray[] = $properties;
+                        $namesArray[] = $row["device_name"];
+                        $idArray[] = $row["room_id"];
+                        $idDeviceArray[] = $row["id"];
+                    }
+                }
+                $roomNumber = count($roomids);
+                for ($i = 0; $i < $roomNumber; $i++) {
+                    echo "<div class='room-block'>
+                    <h2>" . $roomNames[$i] . "</h2>"
+                    ;
+                    for ($j = 0; $j < count($idArray); $j++) {
+                        if ($roomids[$i] == $idArray[$j]) {
+                            $properties = $propertiesArray[$j];
+                            $name = $namesArray[$j];
+                            $idofdevice = $idDeviceArray[$j];
+                            echo "
+                            <div class='block-info' onclick='toDevice($idofdevice)'>
+                            <h4>" . $name . "</h4>
+                            <ul>
+                            ";
+                            foreach ($properties as $key => $value) {
+                                echo "<li>" . $key . ": " . $value . "</li>";
+                            }
+                            echo "</ul>
+                            </div>
+                            <hr class='line1'>
+                            ";
+                        }
+                    }
+                    echo "</div>";
+                }
+                ?>
+        </div>
     </main>
     <script src="js/script.js"></script>
 </body>
 <?php
-include 'request-check.php';
+    include 'all-requests.php';
 ?>
 
 </html>
