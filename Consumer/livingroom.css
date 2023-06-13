@@ -626,7 +626,25 @@ ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
   width: 10px;
   height: 10px;
   border-radius: 10px;
+  position: relative;
 }
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.boxes h3{
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(163, 57, 57);
+  color: #f5f5f7;
+  text-align: center;
+}
+
+
   
   .boxes1 {
       background-image: url('https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGl2aW5nJTIwcm9vbSUyMGRlY29yfGVufDB8fDB8fA%3D%3D&w=1000&q=80'); 
