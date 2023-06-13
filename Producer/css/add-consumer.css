@@ -176,6 +176,6 @@ input[type="submit"]:hover {
 }
 
 .request-active {
-    background-color: yellow;
+    background-color: rgb(163, 57, 57);
+    color: #eaf2fe;
 }
-

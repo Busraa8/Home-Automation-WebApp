@@ -1,77 +1,65 @@
 <?php
 include 'connection.php';
 
-$response = 0;
+$response = false;
 
-$sql = "SELECT * FROM checkbox_bedroom";
+$sql = "SELECT properties, properties_consumer, id FROM devices";
 $result = $conn->query($sql);
-
-$bedroomColumns = array();
+$realProps = array();
+$consumerProps = array();
+$deviceIds = array();
+$differents = array();
 
 if ($result->num_rows > 0) {
-    $row = $result->fetch_array();
-}
-for ($i = 1; $i < sizeof($row) / 2; $i++) {
-    $bedroomColumns[] = $row[$i];
-}
+    while ($row = $result->fetch_assoc()) {
+        $properties = json_decode($row['properties'], true);
+        $propertiesConsumer = json_decode($row['properties_consumer'], true);
+        $ids = $row["id"];
 
-$sql = "SELECT * FROM checkbox_entryway";
-$result = $conn->query($sql);
+        // properties dizisine ekleme
+        if ($properties) {
+            $realProps[] = $properties;
+        }
 
-$entrywayColumns = array();
+        // properties_customer dizisine ekleme
+        if ($propertiesConsumer) {
+            $consumerProps[] = $propertiesConsumer;
+        }
 
-if ($result->num_rows > 0) {
-    $row = $result->fetch_array();
-}
-for ($i = 1; $i < sizeof($row) / 2; $i++) {
-    $entrywayColumns[] = $row[$i];
-}
-
-$sql = "SELECT * FROM checkbox_kitchen";
-$result = $conn->query($sql);
-
-$kitchenColumns = array();
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_array();
-}
-for ($i = 1; $i < sizeof($row) / 2; $i++) {
-    $kitchenColumns[] = $row[$i];
-}
-
-$sql = "SELECT * FROM checkbox_livingroom";
-$result = $conn->query($sql);
-
-$livingroomColumns = array();
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_array();
-}
-for ($i = 1; $i < sizeof($row) / 2; $i++) {
-    $livingroomColumns[] = $row[$i];
-}
-
-for ($i = 0; $i < sizeof($livingroomColumns); $i++) {
-    if ($livingroomColumns[$i] == 1) {
-        $response = 1;
+        if ($ids) {
+            $deviceIds[] = $ids;
+        }
     }
 }
 
-for ($i = 0; $i < sizeof($entrywayColumns); $i++) {
-    if ($entrywayColumns[$i] == 1) {
-        $response = 1;
-    }
-}
-for ($i = 0; $i < sizeof($kitchenColumns); $i++) {
-    if ($kitchenColumns[$i] == 1) {
-        $response = 1;
-    }
-}
-for ($i = 0; $i < sizeof($bedroomColumns); $i++) {
-    if ($bedroomColumns[$i] == 1) {
-        $response = 1;
+if ($realProps == $consumerProps)
+    $response = true;
+
+if (!$response) {
+    for ($i = 0; $i < count($realProps); $i++) {
+        if ($realProps[$i] != $consumerProps[$i])
+            $differents[] = $deviceIds[$i];
     }
 }
 
+for ($i = 0; $i < count($differents); $i++) {
+    $script = "
+    <script>
+        var element = document.getElementById('$differents[$i]-device');
+        element.style.backgroundColor = 'rgb(163, 57, 57)';
+        element.style.color = '#eaf2fe';
+        element.addEventListener('mouseover', function() {
+            
+            element.style.backgroundColor = 'black';
+        });
+        
+        element.addEventListener('mouseout', function() {
+         
+            element.style.backgroundColor = 'rgb(163, 57, 57)';
+        });
+    </script>";
+    echo $script;
+}
 echo $response;
+
 ?>

@@ -41,7 +41,6 @@ if (document.getElementById("on-off") != null) {
   }
   onOffCheckbox.addEventListener('change', function () {
     onOffValue = this.checked;
-    // İsteğe bağlı olarak, bu değeri sunucuya göndermek için AJAX kullanabilirsiniz
     if (this.checked) {
       currentStateElement.textContent = 'On';
     } else {
@@ -81,11 +80,11 @@ if (document.querySelector(".brightness-value") != null && document.getElementBy
   brightnessRange.addEventListener('input', function () {
     brightness = this.value;
     brightnessValue.textContent = brightness;
-    // İsteğe bağlı olarak, bu değeri sunucuya göndermek için AJAX kullanabilirsiniz
   });
   ;
 }
 
+// Volume value 
 if (document.querySelector(".volume-value") != null && document.getElementById("volume") != null) {
   var volumeRange = document.getElementById('volume');
   var volumeValue = document.querySelector('.volume-value');
@@ -95,7 +94,6 @@ if (document.querySelector(".volume-value") != null && document.getElementById("
     volumeRange.addEventListener('input', function () {
       volume = this.value;
       volumeValue.textContent = volume;
-      // İsteğe bağlı olarak, bu değeri sunucuya göndermek için AJAX kullanabilirsiniz
       console.log('Volume:', volume);
     });
   });
@@ -153,6 +151,29 @@ if (document.getElementById('change-button') != null) {
     alert("Değişiklikler başarıyla kaydedildi.");
   });
 }
+
+const requestButton = document.getElementById('request-button');
+setInterval(checkDeviceStatus, 1000);
+
+function checkDeviceStatus() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'all-requests.php', true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      var response = xhr.responseText;
+      if (response != true) {
+        requestButton.classList.add('request-active');
+        
+      }
+      else {
+        requestButton.classList.remove('request-active');
+      }
+    }
+  };
+  xhr.send();
+}
+
+
 
 
 function toUsers() {

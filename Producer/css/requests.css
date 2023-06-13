@@ -6,6 +6,8 @@ body {
 }
 
 main {
+    justify-content: space-evenly;
+    display: flex;
     margin-left: 20%;
     text-align: center;
 }
@@ -139,6 +141,7 @@ footer p {
     margin-left: 10%;
     width: 80%;
 }
+
 .user-device-cards-container {
     display: flex;
     justify-content: center;
@@ -164,7 +167,7 @@ footer p {
     text-align: center;
 }
 
-.user-device-card p{
+.user-device-card p {
     margin: 0;
     float: left;
 }
@@ -282,45 +285,72 @@ footer p {
 
 .request-tables {
     display: flex;
-    justify-content:space-around ;
+    justify-content: space-around;
     padding: 20px;
 }
+
 .admin-container {
     margin: 20px;
-  }
-  
-  .admin-title {
+}
+
+.admin-title {
     font-size: 24px;
     color: #333;
     margin-bottom: 20px;
-  }
-  
-  .user-table {
+}
+
+.user-table {
     width: 100%;
     border-collapse: collapse;
     background-color: #f8f8f8;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  th,
-  td {
+}
+
+th,
+td {
     padding: 12px;
     text-align: left;
-  }
-  
-  thead {
+}
+
+thead {
     background-color: #f2f2f2;
     border-bottom: 1px solid #ccc;
-  }
-  
-  tbody tr:nth-child(even) {
+}
+
+tbody tr:nth-child(even) {
     background-color: #fafafa;
-  }
-  
-  tbody tr:hover {
+}
+
+tbody tr:hover {
     background-color: #eaf2fe;
-  }
-  .request-active {
+}
+
+.request-active {
     background-color: rgb(163, 57, 57);
     color: #eaf2fe;
+}
+
+.room-block {
+    border-radius: 10px;
+    background-color: rgb(208, 206, 206);
+    padding: 10px;  
+    margin-bottom: 10px;
+    
+}
+
+.block-info {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 2px;
+}
+
+.block-info:hover {
+    background-color: black;
+    color: #eaf2fe;
+    transition: 1s;
+    cursor: pointer;
+}
+.block-info ul {
+    list-style: none;
+    padding: 0;
 }
