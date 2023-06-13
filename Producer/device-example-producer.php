@@ -3,7 +3,6 @@
 if (isset($_GET['deviceid'])) {
     $deviceId = $_GET['deviceid'];
     $_SESSION['deviceid'] = $deviceId;
-    // Diğer işlemler...
 }
 
 include 'connection.php';
@@ -16,7 +15,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     $deviceprops = $row["properties"];
 }
 
-// JSON verisini alın
 $jsonData = $deviceprops;
 
 // JSON verisini diziye dönüştür

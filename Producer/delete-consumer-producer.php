@@ -7,7 +7,7 @@ $dbname = "home_automation";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
-    die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
+    die("Error: " . $conn->connect_error);
 }
 
 // Silinecek ID numarasını al
@@ -15,12 +15,12 @@ if (isset($_POST['id'])) {
     $delete_id = $_POST['id'];
 
     // Silme işlemini gerçekleştir
-    $sql = "DELETE FROM user_table WHERE id = '$id'";
+    $sql = "DELETE FROM user_table WHERE id = '$delete_id'";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Kayıt başarıyla silindi.";
+        echo "User deleted";
     } else {
-        echo "Hata: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 

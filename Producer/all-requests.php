@@ -16,12 +16,12 @@ if ($result->num_rows > 0) {
         $propertiesConsumer = json_decode($row['properties_consumer'], true);
         $ids = $row["id"];
 
-        // properties dizisine ekleme
+        // properties dizisini ekleme
         if ($properties) {
             $realProps[] = $properties;
         }
 
-        // properties_customer dizisine ekleme
+        // properties_customer dizisini ekleme
         if ($propertiesConsumer) {
             $consumerProps[] = $propertiesConsumer;
         }

@@ -22,10 +22,8 @@
         $sql = "UPDATE checkbox_".$roomName." SET $deviceName = 0";
         $result = mysqli_query($conn, $sql);
         if ($result) {
-            // Başarılı bir şekilde güncellendi
         } else {
-            // Hata oluştu
-            echo "Hata oluştu: " . mysqli_error($conn);
+            echo "Error: " . mysqli_error($conn);
         }
 
         
@@ -65,7 +63,7 @@
             // Başarılı bir şekilde güncellendi
         } else {
             // Hata oluştu
-            echo "Hata oluştu: " . mysqli_error($conn);
+            echo "Error: " . mysqli_error($conn);
         }
     }
 ?>

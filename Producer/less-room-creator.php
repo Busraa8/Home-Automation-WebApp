@@ -1,5 +1,4 @@
 <?php
-            // Veritabanı bağlantısı ve sorgu işlemleri burada gerçekleştirilir
             include 'connection.php';
             $id = $_SESSION['userid'];
             $sql = "SELECT id, name FROM room WHERE user_id ='$id' ;";

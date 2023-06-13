@@ -15,7 +15,7 @@ foreach ($properties as $key => $value) {
     echo '<input type="checkbox" id="on-off" ' . $onOffChecked . '>';
     echo '<span class="slider"></span>';
     echo '</label>';
-    echo '<label for="on-off">Current state: <label id="current-state" for="on-off">' . $currentState . '</label></label>  <label for="on-off">On/Off</label>';
+    echo '<label for="on-off">On/Off</label> <label for="on-off">Current state: <label id="current-state" for="on-off">' . $currentState . '</label></label>';
     echo '</div>';
     $_SESSION["on_off"] = $value;
 
@@ -46,6 +46,5 @@ foreach ($properties as $key => $value) {
     echo '</div>';
     $_SESSION["volume"] = $value;
   }
-  // Diğer özelliklere göre gerekli kontrolleri ekleyebilirsiniz
 }
 ?>

@@ -1,9 +1,9 @@
 <?php
 
-$servername = "localhost"; // Sunucu adı
-    $username = "root"; // Veritabanı kullanıcı adı
-    $password = ""; // Veritabanı şifresi    
-    $dbname = "home_automation"; // Kullanılan veritabanı adı
+$servername = "localhost"; 
+    $username = "root"; 
+    $password = "";    
+    $dbname = "home_automation"; 
 
     // Veritabanı bağlantısı oluşturma
     $conn = new mysqli($servername, $username, $password, $dbname);

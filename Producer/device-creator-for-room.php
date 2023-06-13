@@ -1,5 +1,4 @@
 <?php
-            // Veritabanı bağlantısı ve sorgu işlemleri burada gerçekleştirilir
             include 'connection.php';
             $id = $_SESSION['roomid'];
             $sql = "SELECT device_name, id
@@ -27,7 +26,6 @@
                 echo '<img src="' . getRoomImage($deviceName) . '" alt="Room Image">';
                 echo '<h2>'. $deviceName . '</h2>';
                 echo '<hr>';
-                echo '<p>Status: On</p>';
                 echo 'Device id: '. $id;
                 echo '</div>';
             }
