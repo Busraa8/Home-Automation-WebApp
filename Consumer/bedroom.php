@@ -41,8 +41,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Hata (Wi-Fi): " . $stmtWifi->error;
     $success = false;
   }
+<<<<<<< Updated upstream
 
 
+=======
+  
+>>>>>>> Stashed changes
   $stmtLight->close();
   $stmtAC->close();
   $stmtWifi->close();
@@ -54,12 +58,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Durumu veritabanından çek
-$sql = "SELECT JSON_EXTRACT(properties, '$.on_off') AS light_status FROM devices WHERE room_id = 1 AND device_name = 'Light'";
-$result = $conn->query($sql);
+$sqlLight = "SELECT JSON_EXTRACT(properties, '$.on_off') AS light_status FROM devices WHERE room_id = 1 AND device_name = 'Light'";
+$resultLight = $conn->query($sqlLight);
 
+<<<<<<< Updated upstream
 if ($result->num_rows > 0) {
   $row = $result->fetch_assoc();
   $lightStatus = $row["light_status"];
+=======
+if ($resultLight->num_rows > 0) {
+    $rowLight = $resultLight->fetch_assoc();
+    $lightStatus = $rowLight["light_status"];
+>>>>>>> Stashed changes
 } else {
 }
 
@@ -72,18 +82,79 @@ if ($resultAC->num_rows > 0) {
 } else {
 }
 
-$sql = "SELECT JSON_EXTRACT(properties, '$.on_off') AS wifi_status FROM devices WHERE room_id = 1 AND device_name = 'Wi-Fi'";
-$result = $conn->query($sql);
+$sqlWifi = "SELECT JSON_EXTRACT(properties, '$.on_off') AS wifi_status FROM devices WHERE room_id = 1 AND device_name = 'Wi-Fi'";
+$resultWifi = $conn->query($sqlWifi);
 
+<<<<<<< Updated upstream
 if ($result->num_rows > 0) {
   $row = $result->fetch_assoc();
   $wifiStatus = $row["wifi_status"];
+=======
+if ($resultWifi->num_rows > 0) {
+    $rowWifi = $resultWifi->fetch_assoc();
+    $wifiStatus = $rowWifi["wifi_status"];
+>>>>>>> Stashed changes
 } else {
 }
+
+// Light
+// Veritabanından değeri çek
+$sqlBrightness = "SELECT JSON_EXTRACT(properties, '$.brightness') AS brightness FROM devices WHERE room_id = 1 AND device_name = 'Light'";
+$resultBrightness = $conn->query($sqlBrightness);
+
+if ($resultBrightness->num_rows > 0) {
+    $rowBrightness = $resultBrightness->fetch_assoc();
+    $brightness = $rowBrightness["brightness"];
+} else {
+    $brightness = 0; 
+}
+
+$newBrightness = 50; 
+
+$stmtBrightness = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.brightness', ?) WHERE room_id = 1 AND device_name = 'Light'");
+$stmtBrightness->bind_param("i", $newBrightness);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $newBrightness = $_POST['brightness'];
+
+    if (!$stmtBrightness->execute()) {
+        echo "Hata (Brightness): " . $stmtBrightness->error;
+    }
+}
+
+$stmtBrightness->close();
+
+// Temperature
+// Veritabanından değeri çek
+$sqlTemperature = "SELECT JSON_UNQUOTE(JSON_EXTRACT(properties, '$.temperature')) AS temperature FROM devices WHERE room_id = 1 AND device_name = 'Thermostat' AND JSON_UNQUOTE(JSON_EXTRACT(properties, '$.temperature')) = 25";
+$resultTemperature = $conn->query($sqlTemperature);
+
+if ($resultTemperature->num_rows > 0) {
+    $rowTemperature = $resultTemperature->fetch_assoc();
+    $temperature = $rowTemperature["temperature"];
+} else {
+    $temperature = 0; 
+}
+
+$newTemperature = 30;
+
+$stmtTemperature = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.temperature', ?) WHERE room_id = 1 AND device_name = 'Thermostat' AND JSON_UNQUOTE(JSON_EXTRACT(properties, '$.temperature')) = 25");
+$stmtTemperature->bind_param("i", $newTemperature);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $newTemperature = $_POST['temperature'];
+
+    if (!$stmtTemperature->execute()) {
+        echo "Hata (Temperature): " . $stmtTemperature->error;
+    }
+}
+
+$stmtTemperature->close();
 
 // Veritabanı bağlantısını kapat
 $conn->close();
 ?>
+
 
 
 <!DOCTYPE html>
@@ -156,7 +227,62 @@ $conn->close();
 
     </div>
 
+<<<<<<< Updated upstream
 
+=======
+        <div class="containert containertl">
+                
+                </div>          
+                
+                <div class="containert">
+                  <p style="font-size: 15px; color: whitesmoke;">Thermostat</p>
+                  <div class="status-panel">
+                    <div class="status-card">
+                      <span id="living-room-temp-value-degree"><?php echo $temperature; ?></span>
+                      <h3 style="text-align: center; color: whitesmoke;">Thermostat</h3><br/><br/>
+                      <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                      <input type="range" id="living-room-temp-input" name="temperature" min="10" max="38" step="1" style="color: aliceblue" value="<?php echo $temperature; ?>" oninput="document.getElementById('living-room-temp-value').innerHTML = this.value;">
+                      <span id="living-room-temp-value"><?php echo $temperature; ?></span> 
+                      <button type="submit" class="header_pro_devices">Update</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+    
+                <div class="containert">
+                  <p style="font-size: 15px; color: whitesmoke;">Light</p>
+                  <div class="status-panel">
+                    <div class="status-card">
+                      <span id="living-room-light-value-degree"><?php echo $brightness; ?></span>
+                      <h3 style="text-align: center; color: whitesmoke;">Light</h3><br/><br/>
+                      
+                      <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                      <input type="range" id="living-room-light-input" name="brightness" min="0" max="100" step="1" style="color: aliceblue" value="<?php echo $brightness; ?>" oninput="document.getElementById('living-room-light-value').innerHTML = this.value;">
+                      <span id="living-room-light-value"><?php echo $brightness; ?></span> 
+                      <button type="submit" class="header_pro_devices">Update</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+    
+                 
+                <form method="post" action="bedroom.php">
+                <div style="height:220px;width:1100px;overflow:auto;border:8px solid rgb(56, 55, 55);padding:2%; margin-top: 380px;margin-left:2000px; margin-left: -1100px;border-radius: 8px;position: relative;">
+                    <div class="container_box">
+                    
+                        <div class="boxes boxesl"><br>
+                            <label class="btn-onoffd" >
+                            <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === 'true') echo 'checked'; ?>><span></span>	
+                                
+                            </label>
+                        </div>
+                        <div class="boxes boxesh"><br>
+                            <label class="btn-onoffd" >
+                            <input type="checkbox" name="air_conditioner" data-onoff="toggle" <?php if ($acStatus === 'true') echo 'checked'; ?>><span></span>	
+                            </label>
+                        </div>
+>>>>>>> Stashed changes
 
     <!-- MAIN -->
     <main class="main">

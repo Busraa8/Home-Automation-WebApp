@@ -87,6 +87,18 @@ a:focus {
   cursor: pointer;
 }
 
+.header_pro_devices {
+  color: #111111;
+  background: linear-gradient(to top right, #f5f5f7, #66676d);
+  border: 0;
+  margin: 0 auto; /* Ortaya hizalama için */
+  display: block; /* Blok element olarak ayarlama */
+  font-size: 0.7rem;
+  padding: .7rem 1.8rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
 .header__link {
   font-size: 1.4rem;
   opacity: .8;
@@ -411,6 +423,7 @@ ul.nav.nav-tabs li a:active {
   opacity: 0
 }
 
+<<<<<<< Updated upstream
 .btn-onoff span {
   position: relative;
   display: block;
@@ -665,6 +678,58 @@ input[type="range"] {
 }
 
 /* Boxes styles */
+=======
+    }
+      
+    h1 {
+        text-align: center;
+    }
+      
+    .status-panel,
+    .control-panel {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      background-color: rgb(53, 53, 53);
+    }
+      
+      .status-card,
+      .control-card {
+        flex: 1;
+        padding: 20px;
+        background-color: rgb(53, 53, 53);
+        border-radius: 4px;
+        margin-right: 10px;
+        font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        
+      }
+      
+      .status-card h3,
+      .control-card h3 {
+        margin-top: 0;
+        
+      }
+      
+      .toggle-btn,
+      #living-room-set-btn,
+      #kitchen-set-btn {
+        display: block;
+        margin-top: 10px;
+        
+        
+      }
+      
+      .toggle-btn {
+        width: 100%;
+      }
+      
+      input[type="range"] {
+        width: 100%;
+        margin-top: 5px;
+      }
+     
+    /* Boxes styles */
+>>>>>>> Stashed changes
 .container_box {
 
   display: flex;
@@ -689,6 +754,7 @@ input[type="range"] {
   position: relative;
 }
 
+<<<<<<< Updated upstream
 .content {
   position: absolute;
   top: 50%;
@@ -803,3 +869,31 @@ input[type="range"] {
   color: rgb(51, 96, 188);
   font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+=======
+  #living-room-light-value-degree {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-size: 50px;
+    color: rgb(51, 96, 188);
+    font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  #living-room-temp-value {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-size: 20px;
+    color: rgb(51, 96, 188);
+    font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  #living-room-temp-value-degree {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-size: 50px;
+    color: rgb(51, 96, 188);
+    font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+>>>>>>> Stashed changes
