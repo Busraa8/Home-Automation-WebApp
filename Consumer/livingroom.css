@@ -706,3 +706,19 @@ ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
     }
   }  
   
+  #living-room-light-value {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-size: 40px;
+    color: rgb(51, 96, 188);
+    font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  #living-room-speaker-value {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-size: 40px;
+    color: rgb(51, 96, 188);
+    font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }

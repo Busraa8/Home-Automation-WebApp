@@ -2,7 +2,7 @@ var livingRoomLightInput = document.getElementById("living-room-light-input");
 var livingRoomLightValue = document.getElementById("living-room-light-value");
 
 livingRoomLightInput.addEventListener("input", function() {
-  var light = this.value + "&deg;C";
+  var light = this.value + "";
   livingRoomLightValue.innerHTML = light;
 });
 
@@ -11,7 +11,7 @@ var livingRoomSpeakerInput = document.getElementById("living-room-speaker-input"
 var livingRoomSpeakerValue = document.getElementById("living-room-speaker-value");
 
 livingRoomSpeakerInput.addEventListener("input", function() {
-  var speaker = this.value + "&deg;C";
+  var speaker = this.value + "";
   livingRoomSpeakerValue.innerHTML = speaker;
 });
 

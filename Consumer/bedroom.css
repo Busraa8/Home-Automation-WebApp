@@ -709,4 +709,22 @@ ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
     .boxes {
       flex-basis: calc(10% - 50px);
     }
-  }  
+  } 
+  
+  #living-room-light-value {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-size: 20px;
+    color: rgb(51, 96, 188);
+    font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  #living-room-light-value-degree {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-size: 50px;
+    color: rgb(51, 96, 188);
+    font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }

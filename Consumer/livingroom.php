@@ -16,13 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $speakerOnOff = isset($_POST['speaker']) ? 'true' : 'false';
 
   // Güncelleme işlemi için SQL sorgularını oluştur ve çalıştır
-  $stmtLight = $conn->prepare("UPDATE devices SET properties_customer = JSON_SET(properties_customer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Light'");
+  $stmtLight = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Light'");
   $stmtLight->bind_param("s", $lightOnOff);
   
-  $stmtAC = $conn->prepare("UPDATE devices SET properties_customer = JSON_SET(properties_customer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Air Conditioner'");
+  $stmtAC = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Air Conditioner'");
   $stmtAC->bind_param("s", $acOnOff);
 
-  $stmtSpeaker = $conn->prepare("UPDATE devices SET properties_customer = JSON_SET(properties_customer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Speaker'");
+  $stmtSpeaker = $conn->prepare("UPDATE devices SET properties_consumerr = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Speaker'");
   $stmtSpeaker->bind_param("s", $speakerOnOff);
   
   $success = true;
