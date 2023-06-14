@@ -113,7 +113,7 @@ $stmtBrightness->close();
 
 // Temperature
 // Veritabanından değeri çek
-$sqlTemperature = "SELECT JSON_UNQUOTE(JSON_EXTRACT(properties, '$.temperature')) AS temperature FROM devices WHERE room_id = 1 AND device_name = 'Thermostat' AND JSON_UNQUOTE(JSON_EXTRACT(properties, '$.temperature')) = 25";
+$sqlTemperature = "SELECT JSON_UNQUOTE(JSON_EXTRACT(properties, '$.temperature')) AS temperature FROM devices WHERE room_id = 1 AND device_name = 'Thermostat'";
 $resultTemperature = $conn->query($sqlTemperature);
 
 if ($resultTemperature->num_rows > 0) {
@@ -125,7 +125,7 @@ if ($resultTemperature->num_rows > 0) {
 
 $newTemperature = 30;
 
-$stmtTemperature = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.temperature', ?) WHERE room_id = 1 AND device_name = 'Thermostat' AND JSON_UNQUOTE(JSON_EXTRACT(properties, '$.temperature')) = 25");
+$stmtTemperature = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.temperature', ?) WHERE room_id = 1 AND device_name = 'Thermostat'");
 $stmtTemperature->bind_param("i", $newTemperature);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -278,7 +278,7 @@ $conn->close();
 
             <div class="boxes boxesl"><br>
               <label class="btn-onoffd">
-                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === 'true')
+                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === "true")
                   echo 'checked'; ?>><span></span>
                 <div class="content">
                   <h3 id="17-device" style="display: none">Waiting...</h3>
