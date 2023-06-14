@@ -8,6 +8,9 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" defer></script>
+    <script src="script.js" defer></script>
 <link
     href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,600,700"
     rel="stylesheet"
@@ -80,37 +83,17 @@
 
             <body>
                 <div class="container_box">
-                  <div class="boxes boxes1"> &nbsp&nbspThermostat<br>
-                      <label class="btn-onoff">
-                          <input type="checkbox" name="name" data-onoff="toggle"><span></span>	
-                      </label>
-                  </div>
-                  <div class="boxes boxes2"> &nbsp&nbspLight<br>
-                      <label class="btn-onoff">
-                          <input type="checkbox" name="name" data-onoff="toggle"><span></span>	
-                      </label>
-                  </div>
-                  <div class="boxes boxes3"> 
-                      &nbsp;&nbsp;<span style="color: whitesmoke;">Humidifier</span><br>
-                      <label class="btn-onoff">
-                          <input type="checkbox" name="name" data-onoff="toggle"><span></span>	
-                      </label>
-                  </div>
-                  <div class="boxes boxes4"> &nbsp&nbspSmart Plug<br>
-                      <label class="btn-onoff">
-                          <input type="checkbox" name="name" data-onoff="toggle"><span></span>	
-                      </label>
-                  </div>
-                  <div class="boxes boxes5"> &nbsp&nbspWifi<br>
-                      <label class="btn-onoff">
-                          <input type="checkbox" name="name" data-onoff="toggle"><span></span>	
-                      </label>
-                  </div>
-                  <div class="boxes boxes6"> &nbsp&nbspSpeaker<br>
-                      <label class="btn-onoff">
-                          <input type="checkbox" name="name" data-onoff="toggle"><span></span>	
-                      </label>
-                  </div>
+                        <div class="container_chart">
+                          <div class="chart-container">
+                            <h2>Room Utilization Rate</h2><br><br>
+                            <canvas id="donut-chart"></canvas>
+                          </div>
+                          <div class="chart-container">
+                            <h2>Daily Energy Use</h2>
+                            <canvas id="bar-chart"></canvas>
+                          </div>
+                        </div>
+                  
                   
             
             <div id="box">
