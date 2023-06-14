@@ -8,48 +8,54 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
 }
-
+$stmtLight;
+  $stmtLAC;
+  $stmtWifi;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Checkbox durumlarını al
   $lightOnOff = isset($_POST['light']) ? 'true' : 'false';
   $acOnOff = isset($_POST['air_conditioner']) ? 'true' : 'false';
   $wifiOnOff = isset($_POST['wifi']) ? 'true' : 'false';
-
+  
+  
+  
   // Güncelleme işlemi için SQL sorgularını oluştur ve çalıştır
-  $stmtLight = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 1 AND device_name = 'Light'");
-  $stmtLight->bind_param("s", $lightOnOff);
-
-  $stmtAC = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 1 AND device_name = 'Air Conditioner'");
-  $stmtAC->bind_param("s", $acOnOff);
-
-  $stmtWifi = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 1 AND device_name = 'Wi-Fi'");
-  $stmtWifi->bind_param("s", $wifiOnOff);
-
-  $success = true;
-
-  if (!$stmtLight->execute()) {
-    echo "Hata (Light): " . $stmtLight->error;
-    $success = false;
-  }
-
-  if (!$stmtAC->execute()) {
-    echo "Hata (Air Conditioner): " . $stmtAC->error;
-    $success = false;
-  }
-
-  if (!$stmtWifi->execute()) {
-    echo "Hata (Wi-Fi): " . $stmtWifi->error;
-    $success = false;
-  }
-
-
-  $stmtLight->close();
-  $stmtAC->close();
-  $stmtWifi->close();
-
-  if ($success) {
-  } else {
-    echo "Güncelleme sırasında hata oluştu";
+  if (isset($_POST['light']) | isset($_POST['air_conditioner']) | isset($_POST['wifi'])) {
+    $stmtLight = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 1 AND device_name = 'Light'");
+    $stmtLight->bind_param("s", $lightOnOff);
+    
+    $stmtAC = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 1 AND device_name = 'Air Conditioner'");
+    $stmtAC->bind_param("s", $acOnOff);
+    
+    $stmtWifi = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 1 AND device_name = 'Wi-Fi'");
+    $stmtWifi->bind_param("s", $wifiOnOff);
+    
+    $success = true;
+    
+    if (!$stmtLight->execute()) {
+      echo "Hata (Light): " . $stmtLight->error;
+      $success = false;
+    }
+    
+    if (!$stmtAC->execute()) {
+      echo "Hata (Air Conditioner): " . $stmtAC->error;
+      $success = false;
+    }
+    
+    if (!$stmtWifi->execute()) {
+      echo "Hata (Wi-Fi): " . $stmtWifi->error;
+      $success = false;
+    }
+    
+    
+    $stmtLight->close();
+    $stmtAC->close();
+    $stmtWifi->close();
+    
+    if ($success) {
+    } else {
+      echo "Güncelleme sırasında hata oluştu";
+    }
   }
 }
 
@@ -278,7 +284,7 @@ $conn->close();
 
             <div class="boxes boxesl"><br>
               <label class="btn-onoffd">
-                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === "true")
+                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === '"true"')
                   echo 'checked'; ?>><span></span>
                 <div class="content">
                   <h3 id="17-device" style="display: none">Waiting...</h3>
@@ -287,7 +293,7 @@ $conn->close();
             </div>
             <div class="boxes boxesh"><br>
               <label class="btn-onoffd">
-                <input type="checkbox" name="air_conditioner" data-onoff="toggle" <?php if ($acStatus === 'true')
+                <input type="checkbox" name="air_conditioner" data-onoff="toggle" <?php if ($acStatus === '"true"')
                   echo 'checked'; ?>><span></span>
                 <div class="content">
                   <h3 id="4-device" style="display: none">Waiting...</h3>
@@ -297,7 +303,7 @@ $conn->close();
 
             <div class="boxes boxesw"><br>
               <label class="btn-onoffd">
-                <input type="checkbox" name="wifi" data-onoff="toggle" <?php if ($wifiStatus === 'true')
+                <input type="checkbox" name="wifi" data-onoff="toggle" <?php if ($wifiStatus === '"true"')
                   echo 'checked'; ?>><span></span>
                 <div class="content">
                   <h3 id="5-device" style="display: none">Waiting...</h3>
