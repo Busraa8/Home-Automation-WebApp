@@ -34,3 +34,5 @@ var date = new Date(data.time * 1000);
 var dayName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 return dayName[date.getDay()];
 };
+
+

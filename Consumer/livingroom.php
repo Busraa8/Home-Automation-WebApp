@@ -80,6 +80,93 @@ if ($resultSpeaker->num_rows > 0) {
 } else {
 }
 
+// Light
+// Veritabanından değeri çek
+$sqlBrightness = "SELECT JSON_EXTRACT(properties, '$.brightness') AS brightness FROM devices WHERE room_id = 4 AND device_name = 'Light'";
+$resultBrightness = $conn->query($sqlBrightness);
+
+if ($resultBrightness->num_rows > 0) {
+  $rowBrightness = $resultBrightness->fetch_assoc();
+  $brightness = $rowBrightness["brightness"];
+} else {
+  $brightness = 0;
+}
+
+$newBrightness = 50;
+
+$stmtBrightness = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.brightness', ?) WHERE room_id = 4 AND device_name = 'Light'");
+$stmtBrightness->bind_param("i", $newBrightness);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (isset($_POST['brightness'])) {
+
+    $newBrightness = $_POST['brightness'];
+
+    if (!$stmtBrightness->execute()) {
+      echo "Hata (Brightness): " . $stmtBrightness->error;
+    }
+  }
+}
+
+$stmtBrightness->close();
+
+// Temperature
+// Veritabanından değeri çek
+$sqlTemperature = "SELECT JSON_UNQUOTE(JSON_EXTRACT(properties, '$.temperature')) AS temperature FROM devices WHERE room_id = 1 AND device_name = 'Thermostat'";
+$resultTemperature = $conn->query($sqlTemperature);
+
+if ($resultTemperature->num_rows > 0) {
+  $rowTemperature = $resultTemperature->fetch_assoc();
+  $temperature = $rowTemperature["temperature"];
+} else {
+  $temperature = 0;
+}
+
+$newTemperature = 30;
+
+$stmtTemperature = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.temperature', ?) WHERE room_id = 1 AND device_name = 'Thermostat'");
+$stmtTemperature->bind_param("i", $newTemperature);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (isset($_POST['temperature'])) {
+    $newTemperature = $_POST['temperature'];
+
+    if (!$stmtTemperature->execute()) {
+      echo "Hata (Temperature): " . $stmtTemperature->error;
+    }
+  }
+}
+
+$stmtTemperature->close();
+
+//Speaker 
+// Veritabanından değeri çek
+$sqlSpeaker = "SELECT JSON_UNQUOTE(JSON_EXTRACT(properties, '$.volume')) AS volume FROM devices WHERE room_id = 4 AND device_name = 'Speaker'";
+$resultSpeaker = $conn->query($sqlSpeaker);
+
+if ($resultSpeaker->num_rows > 0) {
+  $rowSpeaker = $resultSpeaker->fetch_assoc();
+  $volume = $rowSpeaker["volume"];
+} else {
+  $volume = 0;
+}
+
+$newSpeaker = 30;
+
+$stmtSpeaker = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.volume', ?) WHERE room_id = 4 AND device_name = 'Speaker'");
+$stmtSpeaker->bind_param("i", $newSpeaker);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (isset($_POST['volume'])) {
+    $newSpeaker = $_POST['volume'];
+
+    if (!$stmtSpeaker->execute()) {
+      echo "Hata (Speaker): " . $stmtSpeaker->error;
+    }
+  }
+}
+
+$stmtSpeaker->close();
 // Veritabanı bağlantısını kapat
 $conn->close();
 ?>
@@ -167,51 +254,69 @@ $conn->close();
       </div>
 
       <div class="containert">
-        <p style="font-size: 15px; color: whitesmoke;">Temperature</p>
-
+        <p style="font-size: 15px; color: whitesmoke;">Thermostat</p>
         <div class="status-panel">
           <div class="status-card">
-
-            <span id="living-room-temp">25&deg;C</span>
-            <h3 style="text-align: center;color: whitesmoke;">Temperature</h3><br /><br /><br /><br />
-            <input type="range" id="living-room-temp-input" min="10" max="35" step="1" style="color:aliceblue">
-
+            <span id="living-room-temp-value-degree">
+              <?php echo $temperature; ?>
+            </span>
+            <h3 style="text-align: center; color: whitesmoke;">Thermostat</h3><br /><br />
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+              <input type="range" id="living-room-temp-input" name="temperature" min="10" max="38" step="1"
+                style="color: aliceblue" value="<?php echo $temperature; ?>"
+                oninput="document.getElementById('living-room-temp-value').innerHTML = this.value;">
+              <span id="living-room-temp-value">
+                <?php echo $temperature; ?>
+              </span>
+              <button type="submit" class="header_pro_devices">Update</button>
+            </form>
           </div>
-
         </div>
-
       </div>
+
 
       <div class="containert">
         <p style="font-size: 15px; color: whitesmoke;">Light</p>
-
         <div class="status-panel">
           <div class="status-card">
+            <span id="living-room-light-value-degree">
+              <?php echo $brightness; ?>
+            </span>
+            <h3 style="text-align: center; color: whitesmoke;">Light</h3><br /><br />
 
-            <span id="living-room-light-value">20&deg;C</span>
-            <h3 style="text-align: center;color: whitesmoke;">Light</h3><br /><br /><br /><br />
-            <input type="range" id="living-room-light-input" min="10" max="30" step="1" style="color:aliceblue">
-
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+              <input type="range" id="living-room-light-input" name="brightness" min="0" max="100" step="1"
+                style="color: aliceblue" value="<?php echo $brightness; ?>"
+                oninput="document.getElementById('living-room-light-value').innerHTML = this.value;">
+              <span id="living-room-light-value">
+                <?php echo $brightness; ?>
+              </span>
+              <button type="submit" class="header_pro_devices">Update</button>
+            </form>
           </div>
-
         </div>
-
       </div>
 
       <div class="containert">
         <p style="font-size: 15px; color: whitesmoke;">Speaker</p>
-
         <div class="status-panel">
           <div class="status-card">
+            <span id="living-room-speaker-value-degree">
+              <?php echo $volume; ?>
+            </span>
+            <h3 style="text-align: center; color: whitesmoke;">Speaker</h3><br /><br />
 
-            <span id="living-room-speaker-value">25&deg;C</span>
-            <h3 style="text-align: center;color: whitesmoke;">Speaker</h3><br /><br /><br /><br />
-            <input type="range" id="living-room-speaker-input" min="10" max="30" step="1" style="color:aliceblue">
-
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+              <input type="range" id="living-room-speaker-input" name="volume" min="0" max="100" step="1"
+                style="color: aliceblue" value="<?php echo $volume; ?>"
+                oninput="document.getElementById('living-room-speaker-value').innerHTML = this.value;">
+              <span id="living-room-speaker-value">
+                <?php echo $volume; ?>
+              </span>
+              <button type="submit" class="header_pro_devices">Update</button>
+            </form>
           </div>
-
         </div>
-
       </div>
 
       <form method="post" action="livingroom.php">

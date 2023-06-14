@@ -600,14 +600,7 @@ ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
         width: 100%;
         margin-top: 5px;
       }
-      #living-room-temp {
-        text-align: center;
-        display: block;
-        margin: 0 auto;
-        font-size: 40px;
-        color: rgb(51, 96, 188);
-        font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      }
+      
     /* Boxes styles */
 .container_box {
  
@@ -730,7 +723,47 @@ ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
     text-align: center;
     display: block;
     margin: 0 auto;
-    font-size: 40px;
+    font-size: 20px;
     color: rgb(51, 96, 188);
     font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  #living-room-light-value-degree {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-size: 50px;
+    color: rgb(51, 96, 188);
+    font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  #living-room-temp-value {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-size: 20px;
+    color: rgb(51, 96, 188);
+    font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  #living-room-temp-value-degree {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-size: 50px;
+    color: rgb(51, 96, 188);
+    font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .header_pro_devices {
+    color: #111111;
+    background: linear-gradient(to top right, #f5f5f7, #66676d);
+    border: 0;
+    margin: 0 auto; /* Ortaya hizalama için */
+    display: block; /* Blok element olarak ayarlama */
+    font-size: 0.7rem;
+    padding: .7rem 1.8rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
   }

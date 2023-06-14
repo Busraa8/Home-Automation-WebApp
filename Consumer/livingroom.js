@@ -1,4 +1,4 @@
-var livingRoomLightInput = document.getElementById("living-room-light-input");
+var livingRoomLightInput = document.getElementById("living-room-light-value-degree");
 var livingRoomLightValue = document.getElementById("living-room-light-value");
 
 livingRoomLightInput.addEventListener("input", function() {
@@ -7,7 +7,7 @@ livingRoomLightInput.addEventListener("input", function() {
 });
 
 
-var livingRoomSpeakerInput = document.getElementById("living-room-speaker-input");
+var livingRoomSpeakerInput = document.getElementById("living-room-speaker-value-degree");
 var livingRoomSpeakerValue = document.getElementById("living-room-speaker-value");
 
 livingRoomSpeakerInput.addEventListener("input", function() {
@@ -15,9 +15,9 @@ livingRoomSpeakerInput.addEventListener("input", function() {
   livingRoomSpeakerValue.innerHTML = speaker;
 });
 
-var livingRoomTempInput = document.getElementById("living-room-temp-input");
+var livingRoomTempInput = document.getElementById("living-room-temp-value-degree");
 // Sıcaklık değerlerini gösteren span elementlerini seç
-var livingRoomTempSpan = document.getElementById("living-room-temp");
+var livingRoomTempSpan = document.getElementById("living-room-temp-value");
 
 // Sıcaklık kaydırıcılarından değer değiştiğinde fonksiyonları çalıştır
 livingRoomTempInput.addEventListener("input", function() {

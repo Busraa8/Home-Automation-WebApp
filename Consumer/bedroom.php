@@ -284,7 +284,7 @@ $conn->close();
 
             <div class="boxes boxesl"><br>
               <label class="btn-onoffd">
-                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === '"true"')
+                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === 'true')
                   echo 'checked'; ?>><span></span>
                 <div class="content">
                   <h3 id="17-device" style="display: none">Waiting...</h3>
