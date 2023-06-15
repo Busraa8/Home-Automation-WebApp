@@ -4,11 +4,9 @@ session_start();
 if (isset($_POST['login'])) {
     $userEmail = $_POST["email"];
     $userPassword = $_POST["password"];
-
-    $servername = "localhost"; // Sunucu adı
-    $username = "root"; // Veritabanı kullanıcı adı
-    $password = ""; // Veritabanı şifresi    
-    $dbname = "home_automation"; // Kullanılan veritabanı adı
+    $encryptedPass = md5($userPassword);
+    
+    include 'Consumer/config.php';
 
     // Veritabanı bağlantısı oluşturma
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -18,18 +16,13 @@ if (isset($_POST['login'])) {
         die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
     }
 
-    // SQL sorgusu oluşturma
-    $sql = "SELECT * FROM user_table WHERE email = '$userEmail' AND password = '$userPassword'";
-
-    // Sorguyu çalıştırma
+    $sql = "SELECT * FROM user_table WHERE email = '$userEmail' AND password = '$encryptedPass'";
     $result = $conn->query($sql);
 
     // Sonuçları kontrol etme
     if ($result->num_rows > 0) {
-        // Kullanıcı bulundu
         $row = $result->fetch_assoc();
-        $role = $row["role"];
-
+        $role = $row["role"];        
         // Kullanıcının rolüne göre yönlendirme yapma
         if ($role == "consumer") {
             header("location: Consumer/homepage.html");
