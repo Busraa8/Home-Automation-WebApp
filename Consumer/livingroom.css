@@ -525,6 +525,7 @@ ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
     .containert {
         width: 360px;
         height: 340px;
+        margin-left: 20px;
         padding: 20px;
         background-color: rgb(53, 53, 53);
         border-radius: 15px;

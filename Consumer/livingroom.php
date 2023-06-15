@@ -11,44 +11,48 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Checkbox durumlarını al
-  $lightOnOff = isset($_POST['light']) ? 'true' : 'false';
-  $acOnOff = isset($_POST['air_conditioner']) ? 'true' : 'false';
-  $speakerOnOff = isset($_POST['speaker']) ? 'true' : 'false';
+  if (isset($_POST['on_off_button'])) {
+    # code...
 
-  // Güncelleme işlemi için SQL sorgularını oluştur ve çalıştır
-  $stmtLight = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Light'");
-  $stmtLight->bind_param("s", $lightOnOff);
+    $lightOnOff = isset($_POST['light']) ? 'true' : 'false';
+    $acOnOff = isset($_POST['air_conditioner']) ? 'true' : 'false';
+    $speakerOnOff = isset($_POST['speaker']) ? 'true' : 'false';
 
-  $stmtAC = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Air Conditioner'");
-  $stmtAC->bind_param("s", $acOnOff);
+    // Güncelleme işlemi için SQL sorgularını oluştur ve çalıştır
+    $stmtLight = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Light'");
+    $stmtLight->bind_param("s", $lightOnOff);
 
-  $stmtSpeaker = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Speaker'");
-  $stmtSpeaker->bind_param("s", $speakerOnOff);
+    $stmtAC = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Air Conditioner'");
+    $stmtAC->bind_param("s", $acOnOff);
 
-  $success = true;
+    $stmtSpeaker = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 4 AND device_name = 'Speaker'");
+    $stmtSpeaker->bind_param("s", $speakerOnOff);
 
-  if (!$stmtLight->execute()) {
-    echo "Hata (Light): " . $stmtLight->error;
-    $success = false;
-  }
+    $success = true;
 
-  if (!$stmtAC->execute()) {
-    echo "Hata (Air Conditioner): " . $stmtAC->error;
-    $success = false;
-  }
+    if (!$stmtLight->execute()) {
+      echo "Hata (Light): " . $stmtLight->error;
+      $success = false;
+    }
 
-  if (!$stmtSpeaker->execute()) {
-    echo "Hata (Speaker): " . $stmtSpeaker->error;
-    $success = false;
-  }
+    if (!$stmtAC->execute()) {
+      echo "Hata (Air Conditioner): " . $stmtAC->error;
+      $success = false;
+    }
 
-  $stmtLight->close();
-  $stmtAC->close();
-  $stmtSpeaker->close();
+    if (!$stmtSpeaker->execute()) {
+      echo "Hata (Speaker): " . $stmtSpeaker->error;
+      $success = false;
+    }
 
-  if ($success) {
-  } else {
-    echo "Güncelleme sırasında hata oluştu";
+    $stmtLight->close();
+    $stmtAC->close();
+    $stmtSpeaker->close();
+
+    if ($success) {
+    } else {
+      echo "Güncelleme sırasında hata oluştu";
+    }
   }
 }
 
@@ -117,7 +121,7 @@ $resultTemperature = $conn->query($sqlTemperature);
 
 if ($resultTemperature->num_rows > 0) {
   $rowTemperature = $resultTemperature->fetch_assoc();
-  $temperature = $rowTemperature["temperature"];
+  $temperature = $rowTemperature["temperature"] - rand(-3, 3);
 } else {
   $temperature = 0;
 }
@@ -326,7 +330,7 @@ $conn->close();
 
             <div class="boxes boxesl"><br>
               <label class="btn-onoffd">
-                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === 'true')
+                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === '"true"')
                   echo 'checked'; ?>><span></span>
                 <div class="content">
                   <h3 id="7-device" style="display: none">Waiting...</h3>
@@ -335,7 +339,7 @@ $conn->close();
             </div>
             <div class="boxes boxesh"><br>
               <label class="btn-onoffd">
-                <input type="checkbox" name="air_conditioner" data-onoff="toggle" <?php if ($acStatus === 'true')
+                <input type="checkbox" name="air_conditioner" data-onoff="toggle" <?php if ($acStatus === '"true"')
                   echo 'checked'; ?>><span></span>
                 <div class="content">
                   <h3 id="8-device" style="display: none">Waiting...</h3>
@@ -345,7 +349,7 @@ $conn->close();
 
             <div class="boxes boxess"><br>
               <label class="btn-onoffd">
-                <input type="checkbox" name="speaker" data-onoff="toggle" <?php if ($speakerStatus === 'true')
+                <input type="checkbox" name="speaker" data-onoff="toggle" <?php if ($speakerStatus === '"true"')
                   echo 'checked'; ?>><span></span>
                 <div class="content">
                   <h3 id="9-device" style="display: none">Waiting...</h3>
@@ -355,7 +359,7 @@ $conn->close();
 
 
           </div>
-          <button type="submit" class="header__pro">Update</button>
+          <button type="submit" name="on_off_button" class="header__pro">Update</button>
       </form>
   </div><br />
 

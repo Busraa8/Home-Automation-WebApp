@@ -10,38 +10,42 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Checkbox durumlarını al
-  $lightOnOff = isset($_POST['light']) ? 'true' : 'false';
-  $spOnOff = isset($_POST['air_conditioner']) ? 'true' : 'false';
-
-  // Güncelleme işlemi için SQL sorgularını oluştur ve çalıştır
-  $stmtLight = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 2 AND device_name = 'Light'");
-  $stmtLight->bind_param("s", $lightOnOff);
-
-  $stmtSP = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 2 AND device_name = 'Smart Plug'");
-  $stmtSP->bind_param("s", $spOnOff);
-
-  $success = true;
-
-  if (!$stmtLight->execute()) {
-    echo "Hata (Light): " . $stmtLight->error;
-    $success = false;
-  }
-
-  if (!$stmtSP->execute()) {
-    echo "Hata (Smart Plug): " . $stmtSP->error;
-    $success = false;
-  }
 
 
-  $stmtLight->close();
-  $stmtSP->close();
+  if (isset($_POST['on_off_button'])) {
+    // Checkbox durumlarını al
+    $lightOnOff = isset($_POST['light']) ? 'true' : 'false';
+    $spOnOff = isset($_POST['smart_plug']) ? 'true' : 'false';
 
-  if ($success) {
-  } else {
-    echo "Güncelleme sırasında hata oluştu";
+    // Güncelleme işlemi için SQL sorgularını oluştur ve çalıştır
+    $stmtLight = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 2 AND device_name = 'Light'");
+    $stmtLight->bind_param("s", $lightOnOff);
+
+    $stmtSP = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 2 AND device_name = 'Smart Plug'");
+    $stmtSP->bind_param("s", $spOnOff);
+
+    $success = true;
+
+    if (!$stmtLight->execute()) {
+      echo "Hata (Light): " . $stmtLight->error;
+      $success = false;
+    }
+
+    if (!$stmtSP->execute()) {
+      echo "Hata (Smart Plug): " . $stmtSP->error;
+      $success = false;
+    }
+
+    $stmtLight->close();
+    $stmtSP->close();
+
+    if ($success) {
+    } else {
+      echo "Güncelleme sırasında hata oluştu";
+    }
   }
 }
+
 
 // Durumu veritabanından çek
 $sql = "SELECT JSON_EXTRACT(properties, '$.on_off') AS light_status FROM devices WHERE room_id = 2 AND device_name = 'Light'";
@@ -99,7 +103,7 @@ $resultTemperature = $conn->query($sqlTemperature);
 
 if ($resultTemperature->num_rows > 0) {
   $rowTemperature = $resultTemperature->fetch_assoc();
-  $temperature = $rowTemperature["temperature"];
+  $temperature = $rowTemperature["temperature"] - rand(-3, 3);
 } else {
   $temperature = 0;
 }
@@ -259,7 +263,7 @@ $conn->close();
 
             <div class="boxes boxesl"><br>
               <label class="btn-onoffd">
-                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === 'true')
+                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === '"true"')
                   echo 'checked'; ?>><span></span>
                 <div class="content">
                   <h3 id="3-device" style="display: none">Waiting...</h3>
@@ -268,19 +272,15 @@ $conn->close();
             </div>
             <div class="boxes boxesp"><br>
               <label class="btn-onoffd">
-                <input type="checkbox" name="smart_plug" data-onoff="toggle" <?php if ($spStatus === 'true')
+                <input type="checkbox" name="smart_plug" data-onoff="toggle" <?php if ($spStatus === '"true"')
                   echo 'checked'; ?>><span></span>
                 <div class="content">
                   <h3 id="10-device" style="display: none">Waiting...</h3>
                 </div>
               </label>
             </div>
-
-
-
-
           </div>
-          <button type="submit" class="header__pro">Update</button>
+          <button type="submit" name="on_off_button" class="header__pro">Update</button>
       </form>
   </div><br />
 

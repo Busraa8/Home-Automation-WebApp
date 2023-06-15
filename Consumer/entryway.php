@@ -10,26 +10,28 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Checkbox durumlarını al
-  $lightOnOff = isset($_POST['light']) ? 'true' : 'false';
+  if (isset($_POST['on_off_button'])) {
+    // Checkbox durumlarını al
+    $lightOnOff = isset($_POST['light']) ? 'true' : 'false';
 
-  // Güncelleme işlemi için SQL sorgularını oluştur ve çalıştır
-  $stmtLight = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 3 AND device_name = 'Light'");
-  $stmtLight->bind_param("s", $lightOnOff);
+    // Güncelleme işlemi için SQL sorgularını oluştur ve çalıştır
+    $stmtLight = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 3 AND device_name = 'Light'");
+    $stmtLight->bind_param("s", $lightOnOff);
 
-  $success = true;
+    $success = true;
 
-  if (!$stmtLight->execute()) {
-    echo "Hata (Light): " . $stmtLight->error;
-    $success = false;
-  }
+    if (!$stmtLight->execute()) {
+      echo "Hata (Light): " . $stmtLight->error;
+      $success = false;
+    }
 
 
-  $stmtLight->close();
+    $stmtLight->close();
 
-  if ($success) {
-  } else {
-    echo "Güncelleme sırasında hata oluştu";
+    if ($success) {
+    } else {
+      echo "Güncelleme sırasında hata oluştu";
+    }
   }
 }
 
@@ -80,7 +82,7 @@ $resultTemperature = $conn->query($sqlTemperature);
 
 if ($resultTemperature->num_rows > 0) {
   $rowTemperature = $resultTemperature->fetch_assoc();
-  $temperature = $rowTemperature["temperature"];
+  $temperature = $rowTemperature["temperature"] - rand(-3, 3);
 } else {
   $temperature = 0;
 }
@@ -231,25 +233,22 @@ $conn->close();
 
 
 
-      <form method="post" action="kitchen.php">
+      <form method="post" action="entryway.php">
         <div
           style="height:220px;width:1100px;overflow:auto;border:8px solid rgb(56, 55, 55);padding:2%; margin-top: 380px;margin-left:2000px; margin-left: -1100px;border-radius: 8px;position: relative;">
           <div class="container_box">
 
             <div class="boxes boxesl"><br>
               <label class="btn-onoffd">
-                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === 'true')
+                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === '"true"')
                   echo 'checked'; ?>><span></span>
                 <div class="content">
                   <h3 id="6-device" style="display: none">Waiting...</h3>
                 </div>
               </label>
             </div>
-
-
-
           </div>
-          <button type="submit" class="header__pro">Update</button>
+          <button name="on_off_button" type="submit" class="header__pro">Update</button>
       </form>
   </div><br />
 

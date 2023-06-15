@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
   
   // Güncelleme işlemi için SQL sorgularını oluştur ve çalıştır
-  if (isset($_POST['light']) | isset($_POST['air_conditioner']) | isset($_POST['wifi'])) {
+  if (isset($_POST['on_off_button'])) {
     $stmtLight = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE room_id = 1 AND device_name = 'Light'");
     $stmtLight->bind_param("s", $lightOnOff);
     
@@ -124,7 +124,7 @@ $resultTemperature = $conn->query($sqlTemperature);
 
 if ($resultTemperature->num_rows > 0) {
   $rowTemperature = $resultTemperature->fetch_assoc();
-  $temperature = $rowTemperature["temperature"];
+  $temperature = $rowTemperature["temperature"] - rand(-3, 3);
 } else {
   $temperature = 0;
 }
@@ -284,7 +284,7 @@ $conn->close();
 
             <div class="boxes boxesl"><br>
               <label class="btn-onoffd">
-                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === 'true')
+                <input type="checkbox" name="light" data-onoff="toggle" <?php if ($lightStatus === '"true"')
                   echo 'checked'; ?>><span></span>
                 <div class="content">
                   <h3 id="17-device" style="display: none">Waiting...</h3>
@@ -310,12 +310,8 @@ $conn->close();
                 </div>
               </label>
             </div>
-
-
-
-
           </div>
-          <button type="submit" class="header__pro">Update</button>
+          <button name="on_off_button" type="submit" class="header__pro">Update</button>
       </form>
   </div><br />
 
