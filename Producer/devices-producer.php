@@ -49,7 +49,7 @@
     <main>
         <div class="title-button">
             <button class="my-button" onclick="goBack()"><i class="fa-solid fa-arrow-left fa-2xl"></i></button>
-            <h1>Devices</h1>
+            <div class="centered" ><h1>Devices</h1></div>
         </div>
         <?php include 'device-creator.php' ?>
     </main>

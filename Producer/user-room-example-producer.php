@@ -64,7 +64,7 @@
     <main>
         <div class="title-button">
             <button class="my-button" onclick="goBack()"><i class="fa-solid fa-arrow-left fa-2xl"></i></button>
-            <h1> <?php echo $roomname; ?> </h1>
+            <div class="centered" ><h1> <?php echo $roomname; ?> </h1></div>
         </div>
         <section>
             <div>

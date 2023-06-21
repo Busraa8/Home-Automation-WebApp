@@ -152,6 +152,20 @@ if (document.getElementById('change-button') != null) {
   });
 }
 
+function addRoom() {
+  var roomType = document.getElementById('room-create').value;
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'create-new-room.php', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+      }
+  };
+  var params =
+      "room_type=" + encodeURIComponent(roomType);
+  xhr.send(params);
+}
+
 const requestButton = document.getElementById('request-button');
 setInterval(checkDeviceStatus, 1000);
 
