@@ -136,7 +136,8 @@ if (document.getElementById('change-button') != null) {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
         // İstek tamamlandıktan sonra geri dönen yanıtı işleyebilirsiniz
-        xhr.responseText;
+      }
+      else{
       }
     };
     var params =
@@ -163,6 +164,24 @@ function addRoom() {
   };
   var params =
       "room_type=" + encodeURIComponent(roomType);
+  xhr.send(params);
+}
+
+function addDevice(room_id) {
+  var deviceType = document.getElementById('device-create').value;
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'create-new-device.php', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+  console.log(xhr.response);
+
+      }
+  };
+  var params =
+      "device_type=" + encodeURIComponent(deviceType) +
+      "&room_id=" + encodeURIComponent(room_id);
+  console.log(room_id);
   xhr.send(params);
 }
 
@@ -212,7 +231,17 @@ function toRooms() {
   window.location.href = "rooms-producer.php";
 }
 function toRoom(roomId) {
-  window.location.href = 'user-room-example-producer.php?roomid=' + roomId;
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'room-id-assign.php', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+      }
+  };
+  var params =
+      "room_id=" + encodeURIComponent(roomId);
+  xhr.send(params);
+  window.location.href = "user-room-example-producer.php";
 }
 function toDevice(deviceId) {
   window.location.href = "device-example-producer.php?deviceid=" + deviceId;

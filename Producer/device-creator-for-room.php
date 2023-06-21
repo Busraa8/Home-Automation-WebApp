@@ -1,6 +1,6 @@
 <?php
             include 'connection.php';
-            $id = $_SESSION['roomid'];
+            $id = $_SESSION['room_id'];
             $sql = "SELECT device_name, id
             FROM devices
             WHERE room_id = '$id' ";
