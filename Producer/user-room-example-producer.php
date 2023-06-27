@@ -85,14 +85,13 @@ include 'username.php';
             <div>
                 <hr class="line-device">
             </div>
-            <div>
-
+            <div class="card-operations" >
                 <div class="room-form">
                     <h2>Add New Device</h2>
                     <div>
                         <hr>
                     </div>
-                    <form action="user-room-example-producer.php">
+                    <form action="#">
                         <select id="device-create">
                             <option value="Light">Light</option>
                             <option value="Air Conditioner">Air Conditioner</option>
@@ -102,6 +101,18 @@ include 'username.php';
                             <option value="Thermostat">Thermostat</option>
                         </select>
                         <button onclick="addDevice(<?php echo $roomId?>)">New Device</button>
+                    </form>
+                </div>
+                <div class="room-form">
+                    <h2>Remove Device</h2>
+                    <div>
+                        <hr>
+                    </div>
+                    <form action="#">
+                        <select id="device-remove">
+                            <?php include 'deviceids.php' ?>
+                        </select>
+                        <button onclick="removeDevice()">Remove</button>
                     </form>
                 </div>
             </div>

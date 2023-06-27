@@ -137,7 +137,7 @@ if (document.getElementById('change-button') != null) {
       if (xhr.readyState === 4 && xhr.status === 200) {
         // İstek tamamlandıktan sonra geri dönen yanıtı işleyebilirsiniz
       }
-      else{
+      else {
       }
     };
     var params =
@@ -154,35 +154,83 @@ if (document.getElementById('change-button') != null) {
 }
 
 function addRoom() {
+  event.preventDefault();
   var roomType = document.getElementById('room-create').value;
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'create-new-room.php', true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-      }
+    if (xhr.readyState === 4 && xhr.status === 200) {
+    }
   };
   var params =
-      "room_type=" + encodeURIComponent(roomType);
+    "room_type=" + encodeURIComponent(roomType);
   xhr.send(params);
+  setTimeout(function () {
+    window.location.href = "rooms-producer.php";
+  }, 1000);
+}
+
+function removeRoom() {
+  event.preventDefault();
+  var roomids = document.getElementById('room-delete').value;
+  var result = confirm('Are you sure to remove room: ' + roomids);
+  if (result) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'delete-room.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+      console.log(xhr.response);
+      if (xhr.readyState === 4 && xhr.status === 200) {
+      }
+    };
+    var params =
+      "room_id=" + encodeURIComponent(roomids);
+    xhr.send(params);
+    setTimeout(function () {
+      window.location.href = "rooms-producer.php";
+    }, 1000);
+  }
 }
 
 function addDevice(room_id) {
+  event.preventDefault();
   var deviceType = document.getElementById('device-create').value;
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'create-new-device.php', true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-  console.log(xhr.response);
-
-      }
+    if (xhr.readyState === 4 && xhr.status === 200) {
+    }
   };
   var params =
-      "device_type=" + encodeURIComponent(deviceType) +
-      "&room_id=" + encodeURIComponent(room_id);
+    "device_type=" + encodeURIComponent(deviceType) +
+    "&room_id=" + encodeURIComponent(room_id);
   console.log(room_id);
   xhr.send(params);
+  setTimeout(function () {
+    window.location.href = "user-room-example-producer.php";
+  }, 1000);
+}
+function removeDevice() {
+  event.preventDefault();
+  var deviceids = document.getElementById('device-remove').value;
+  var result = confirm('Are you sure to remove room: ' + deviceids);
+  if (result) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'delete-device.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+      }
+    };
+    var params =
+      "device_ids=" + encodeURIComponent(deviceids);
+    xhr.send(params);
+    setTimeout(function () {
+      window.location.href = "user-room-example-producer.php";
+    }, 1000);
+  }
 }
 
 const requestButton = document.getElementById('request-button');
@@ -196,7 +244,7 @@ function checkDeviceStatus() {
       var response = xhr.responseText;
       if (response != true) {
         requestButton.classList.add('request-active');
-        
+
       }
       else {
         requestButton.classList.remove('request-active');
@@ -235,11 +283,11 @@ function toRoom(roomId) {
   xhr.open('POST', 'room-id-assign.php', true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-      }
+    if (xhr.readyState === 4 && xhr.status === 200) {
+    }
   };
   var params =
-      "room_id=" + encodeURIComponent(roomId);
+    "room_id=" + encodeURIComponent(roomId);
   xhr.send(params);
   window.location.href = "user-room-example-producer.php";
 }

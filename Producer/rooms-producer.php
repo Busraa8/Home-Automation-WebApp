@@ -52,25 +52,41 @@ include 'username.php'; ?>
     <main>
         <div class="title-button">
             <button class="my-button" onclick="goBack()"><i class="fa-solid fa-arrow-left fa-2xl"></i></button>
-            <div class="centered" ><h1>Rooms</h1></div>
+            <div class="centered">
+                <h1>Rooms</h1>
+            </div>
         </div>
         <?php
         include 'room-creator.php';
         ?>
-        <div class="room-form">
-            <h2>Add Nem Room</h2>
-            <div>
-                <hr>
+        <div class="card-operations">
+            <div class="room-form">
+                <h2>Add Nem Room</h2>
+                <div>
+                    <hr>
+                </div>
+                <form action="rooms-producer.php">
+                    <select id="room-create">
+                        <option value="Livingroom">Livingroom</option>
+                        <option value="Bedroom">Bedroom</option>
+                        <option value="Kitchen">Kitchen</option>
+                        <option value="Entryway">Entryway</option>
+                    </select>
+                    <button onclick="addRoom()">New Room</button>
+                </form>
             </div>
-            <form action="rooms-producer.php">
-                <select id="room-create">
-                    <option value="Livingroom">Livingroom</option>
-                    <option value="Bedroom">Bedroom</option>
-                    <option value="Kitchen">Kitchen</option>
-                    <option value="Entryway">Entryway</option>
-                </select>
-                <button onclick="addRoom()">New Room</button>
-            </form>
+            <div class="room-form">
+                <h2>Delete Room</h2>
+                <div>
+                    <hr>
+                </div>
+                <form action="rooms-producer.php">
+                    <select id="room-delete">
+                        <?php include 'roomids.php' ?>
+                    </select>
+                    <button onclick="removeRoom()">Delete Room</button>
+                </form>
+            </div>
         </div>
         </div>
         </div>

@@ -34,5 +34,6 @@ if (isset($_POST['device_type'])) {
         echo "Error: " . mysqli_error($conn);
     }
     mysqli_close($conn);
+    header('Location: user-room-example-producer.php');
 }
 ?>

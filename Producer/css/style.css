@@ -360,3 +360,8 @@ tbody tr:hover {
     background-color: #ccc;
     transition: 1s;
 }
+
+.card-operations {
+    display: flex;
+    justify-content: center;
+}
