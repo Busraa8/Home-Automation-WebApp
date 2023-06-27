@@ -365,3 +365,8 @@ tbody tr:hover {
     display: flex;
     justify-content: center;
 }
+
+.log-content {
+    display: flex;
+    justify-content: center;
+}

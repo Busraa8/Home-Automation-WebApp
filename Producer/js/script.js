@@ -278,6 +278,10 @@ function logOut() {
 function toRooms() {
   window.location.href = "rooms-producer.php";
 }
+function toLogs() {
+  window.location.href = "logs-producer.php";
+}
+
 function toRoom(roomId) {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'room-id-assign.php', true);

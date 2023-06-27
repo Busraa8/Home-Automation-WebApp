@@ -50,20 +50,44 @@ include 'username.php';
             <span class="logout" onclick="logOut()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</span>
         </div>
     </header>
-    <main>
-        <div class="rooms" onclick="toRooms()">
-            <h1>Rooms</h1>
-            <?php include 'less-room-creator.php' ?>
-        </div>
-
-        <hr class="line1">
-
-        <div class="devices" onclick="toDevices()">
-            <h1>Devices</h1>
-            <?php include 'less-device-creator.php' ?>
-        </div>
-        </div>
-
+    <main class="log-content" >
+        <table>
+            <thead>
+                <tr>
+                    <th>Log ID</th>
+                    <th>Role</th>
+                    <th>Room ID</th>
+                    <th>Device ID</th>
+                    <th>Device Name</th>
+                    <th>Previous State</th>
+                    <th>New State</th>
+                    <th>Change Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Consumer</td>
+                    <td>456</td>
+                    <td>789</td>
+                    <td>Air Conditioner</td>
+                    <td>Off</td>
+                    <td>On</td>
+                    <td>2023-06-27 12:34:56</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Producer</td>
+                    <td>789</td>
+                    <td>123</td>
+                    <td>Air Conditioner</td>
+                    <td>On</td>
+                    <td>Off</td>
+                    <td>2023-06-28 09:45:21</td>
+                </tr>
+                <!-- Diğer log kayıtlarını buraya ekleyebilirsiniz -->
+            </tbody>
+        </table>
 
     </main>
     <script src="js/script.js"></script>
