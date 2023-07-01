@@ -184,6 +184,7 @@ $conn->close();
 
 
       <div class="containert containertl">
+      <a class="boxes-text">Entryway</a>
 
       </div>
 

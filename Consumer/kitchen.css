@@ -640,6 +640,14 @@ ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
   color: #f5f5f7;
   text-align: center;
 }
+
+.boxes-text {
+  color: rgb(0, 0, 0, 1); 
+  font-family:'Open Sans'; 
+  font-size: 24px; 
+  margin-top: -13px; 
+  font-weight: 600;
+}
   
   .boxes1 {
       background-image: url('https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGl2aW5nJTIwcm9vbSUyMGRlY29yfGVufDB8fDB8fA%3D%3D&w=1000&q=80'); 

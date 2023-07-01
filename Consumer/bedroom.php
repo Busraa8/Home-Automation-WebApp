@@ -9,8 +9,8 @@ if ($conn->connect_error) {
   die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
 }
 $stmtLight;
-  $stmtLAC;
-  $stmtWifi;
+$stmtLAC;
+$stmtWifi;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Checkbox durumlarını al
   $lightOnOff = isset($_POST['light']) ? 'true' : 'false';
@@ -147,7 +147,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $stmtTemperature->close();
 
 
-// Veritabanı bağlantısını kapat
 $conn->close();
 ?>
 
@@ -229,6 +228,7 @@ $conn->close();
 
 
       <div class="containert containertl">
+      <a class="boxes-text">Bedroom</a>
 
       </div>
 

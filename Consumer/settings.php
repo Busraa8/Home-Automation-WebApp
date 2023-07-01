@@ -8,9 +8,8 @@ if ($conn->connect_error) {
 
 // Form verilerini al
 if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['telephone']) && isset($_POST['surname']) && isset($_POST['address']) && isset($_POST['post_code']) && isset($_POST['room_number']) && isset($_POST['password'])) {
-    $id = $_POST['id']; // İd numarasını al
+    $id = $_POST['id']; 
 
-    // Verileri filtreleyin
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $telephone = filter_var($_POST['telephone'], FILTER_SANITIZE_STRING);
@@ -22,7 +21,7 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && is
     $id = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
 
 
-    // Şifreyi karma işlemine tabi tut
+    // Şifreyi karma
     $hashedPassword = sha1($password);
 
     // Verileri veritabanında güncelle
@@ -53,7 +52,7 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && is
         $sql .= "password = '$hashedPassword', ";
     }
     
-    // Son karakteri (virgülü) kaldır
+    //virgülü kaldır
     $sql = rtrim($sql, ", ");
     
     $sql .= " WHERE id = $id";
@@ -113,13 +112,13 @@ $conn->close();
             </a>
           </div>
 
-      <div class="sidebar_icon">
-        <a href="rooms.html">
-
-            <i  class='fas fa-th' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Rooms</i>
-
-        </a>
-      </div>
+          <div class="sidebar_icon">
+                <form action="rooms.php" method="GET">
+                  <button type="submit" style="background: none; border: none; padding: 0; font-size: 17px; color: rgb(255, 255, 255);">
+                    <i class='fas fa-cog' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Rooms</i>
+                  </button>
+                </form>
+          </div>
 
 
       <div class="sidebar_icon">

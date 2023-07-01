@@ -207,6 +207,7 @@ $conn->close();
 
 
       <div class="containert containertl">
+      <a class="boxes-text" >Kitchen</a>
 
       </div>
 

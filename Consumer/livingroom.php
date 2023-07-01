@@ -171,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $stmtSpeaker->close();
-// Veritabanı bağlantısını kapat
+
 $conn->close();
 ?>
 
@@ -254,6 +254,7 @@ $conn->close();
 
 
       <div class="containert containertl">
+      <a class="boxes-text">Living Room</a>
 
       </div>
 
