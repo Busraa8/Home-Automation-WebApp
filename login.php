@@ -25,7 +25,8 @@ if (isset($_POST['login'])) {
         $role = $row["role"];        
         // Kullanıcının rolüne göre yönlendirme yapma
         if ($role == "consumer") {
-            header("location: Consumer/homepage.html");
+            $_SESSION['email'] = $userEmail; // Kullanıcının email değerini session'a kaydetme
+            header("location: Consumer/homepage.php");
         } else {
             echo "Undefined user role";
         }

@@ -33,6 +33,7 @@ include 'username.php';
                 <li onclick="toDevices()"><i class="fa-solid fa-mobile-screen-button"></i>Devices</li>
                 <li onclick="toLogs()"><i class="fa-solid fa-bars"></i>Logs</li>
                 <li onclick="toAddUser()"><i class="fa-solid fa-gear"></i>Settings</li>
+                <li onclick="toMessage()"><i class="fa-solid fa-message"></i>Message</li>
             </ul>
         </div>
         <div class="extra-content">

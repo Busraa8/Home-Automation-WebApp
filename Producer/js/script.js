@@ -301,3 +301,7 @@ function toDevice(deviceId) {
 function toAddUser() {
   window.location.href = "add-consumer-producer.php";
 }
+
+function toMessage() {
+  window.location.href = "message.php";
+}

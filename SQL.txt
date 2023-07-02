@@ -92,3 +92,12 @@ CREATE TABLE checkbox_entryway (
 );
 INSERT INTO checkbox_entryway (light, )
 VALUES (0);
+
+------------
+CREATE TABLE message (
+  id INT(11) PRIMARY KEY,
+  email VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+  message MEDIUMTEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+  date TIMESTAMP,
+  status INT(11)
+);

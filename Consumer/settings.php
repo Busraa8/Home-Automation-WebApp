@@ -107,7 +107,7 @@ $conn->close();
         <div class="sidebar">
 
           <div class="sidebar_icon">
-            <a href="homepage.html">
+            <a href="homepage.php">
                 <i class='fas fa-home' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Home</i>
             </a>
           </div>
@@ -119,6 +119,14 @@ $conn->close();
                   </button>
                 </form>
           </div>
+
+          <div class="sidebar_icon">
+                <form action="post-message.php" method="GET">
+                  <button type="submit" style="background: none; border: none; padding: 0; font-size: 17px; color: rgb(255, 255, 255);">
+                    <i class='fas fa-cog' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Message</i>
+                  </button>
+                </form>
+              </div>
 
 
       <div class="sidebar_icon">
