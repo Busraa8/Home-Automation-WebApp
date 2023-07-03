@@ -14,7 +14,7 @@ body {
 
   color: hsl(270, 10%, 80%);
   font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  
+
 }
 
 button {
@@ -37,7 +37,7 @@ a:focus {
 .dash {
   background: hsl(270, 50%, 10%);
   flex-direction: column;
-  
+
 }
 
 
@@ -109,7 +109,7 @@ a:focus {
 
 .sidebar {
   width: 24rem;
-  height:68rem;
+  height: 68rem;
   box-shadow: 2px 0 12px hsla(270, 30%, 10%, .2);
 }
 
@@ -180,179 +180,214 @@ a:focus {
 
 #timedate {
   font: small-caps lighter 28px/150% "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
-  text-align:left;
+  text-align: left;
   width: 70%;
   margin: 20px auto;
-  color:whitesmoke;
+  color: whitesmoke;
   padding-left: 4rem;
   padding-top: 28rem;
 }
 
 /*weather*/
 
-#box{
-   
+#box {
+
   width: 800px;
   height: 200px;
   background-color: rgba(248, 242, 242, 0.85);
   margin: auto;
-  border-radius:20px;
+  border-radius: 20px;
   box-shadow: 5px 5px 6px rgb(18, 18, 18);
   margin-top: 40px;
-  padding: 0px; 
-         
-} 
+  padding: 0px;
+
+}
+
 .full-width-image {
   height: 50px;
   background-size: cover;
 }
 
 .btn-group {
-    float: right;
-    margin-top: 30px;
+  float: right;
+  margin-top: 30px;
 }
 
 #cur-summary {
-    color: rgba(238, 236, 234, 0.8); /*summary*/
-    margin-top: 70px;
-    font-size: 200%;
+  color: rgba(238, 236, 234, 0.8);
+  /*summary*/
+  margin-top: 70px;
+  font-size: 200%;
 }
 
 
 /****** CONTENT ******/
 ul.nav.nav-tabs {
-    background-color: rgba(0, 0, 0, .3);
-    margin-top: -41px;
+  background-color: rgba(0, 0, 0, .3);
+  margin-top: -41px;
 }
 
 ul.nav.nav-tabs li a {
-    color: white;
+  color: white;
 }
 
-ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
-    color: rgba(46, 44, 43, 0.8);
+ul.nav.nav-tabs li a:focus,
+ul.nav.nav-tabs li a:active {
+  color: rgba(46, 44, 43, 0.8);
 }
 
-.col, .col-sm-4:nth-child(2), .col-sm-4:nth-child(3) {
-    border-left: 1px solid rgba(216, 216, 216, 0.3);
+.col,
+.col-sm-4:nth-child(2),
+.col-sm-4:nth-child(3) {
+  border-left: 1px solid rgba(216, 216, 216, 0.3);
 }
 
-#cur-status, #cur-status2, #tomorrow-status, #tomorrow-status2, #third-status, #third-status2, #fourth-status, #fourth-status2 {
-    text-align: center;
+#cur-status,
+#cur-status2,
+#tomorrow-status,
+#tomorrow-status2,
+#third-status,
+#third-status2,
+#fourth-status,
+#fourth-status2 {
+  text-align: center;
 }
 
-#cur-status, #tomorrow-status, #third-status, #fourth-status {
-    margin-top: 10%;
+#cur-status,
+#tomorrow-status,
+#third-status,
+#fourth-status {
+  margin-top: 10%;
 }
 
-#cur-status2, #tomorrow-status2, #third-status2, #fourth-status2 {
-    margin-bottom: 10%;
+#cur-status2,
+#tomorrow-status2,
+#third-status2,
+#fourth-status2 {
+  margin-bottom: 10%;
 }
 
-#tomorrow-status2, #third-status2, #fourth-status2 {
-    margin-top: -15px;
+#tomorrow-status2,
+#third-status2,
+#fourth-status2 {
+  margin-top: -15px;
 }
 
 
 #today-icon {
-    font-size: 520%;
-    padding-left: 30px;
-    color: rgba(46, 44, 43, 0.9);
-} 
+  font-size: 520%;
+  padding-left: 30px;
+  color: rgba(46, 44, 43, 0.9);
+}
 
-#tomorrow-icon, #third-icon, #fourth-icon {
-    font-size: 450%;
-    color: rgba(74, 175, 70, 0.9);
+#tomorrow-icon,
+#third-icon,
+#fourth-icon {
+  font-size: 450%;
+  color: rgba(74, 175, 70, 0.9);
 }
 
 #cur-deg {
-    font-size: 500%;
-    color: rgba(74, 175, 70, 0.9);
+  font-size: 500%;
+  color: rgba(74, 175, 70, 0.9);
 }
 
-#tomorrow-deg-max, #tomorrow-deg-min, #third-deg-max, #third-deg-min, #fourth-deg-max, #fourth-deg-min {
-    font-size: 200%;
+#tomorrow-deg-max,
+#tomorrow-deg-min,
+#third-deg-max,
+#third-deg-min,
+#fourth-deg-max,
+#fourth-deg-min {
+  font-size: 200%;
 }
 
-#tomorrow-deg-max, #third-deg-max, #fourth-deg-max {
-    color: crimson;
+#tomorrow-deg-max,
+#third-deg-max,
+#fourth-deg-max {
+  color: crimson;
 }
 
-#tomorrow-deg-min, #third-deg-min, #fourth-deg-min {
-    color: skyblue;
-    padding-left: 20px;
+#tomorrow-deg-min,
+#third-deg-min,
+#fourth-deg-min {
+  color: skyblue;
+  padding-left: 20px;
 }
 
 .col h3 {
-    font-size: 120%;
-    text-align: center;
-    margin-top: 15%;
-    color: rgba(46, 44, 43, 0.8);
+  font-size: 120%;
+  text-align: center;
+  margin-top: 15%;
+  color: rgba(46, 44, 43, 0.8);
 }
 
-#tomorrow-summary, #third-summary, #fourth-summary {
-    text-align: center;
-    margin-top: 10%;
-    font-size: 130%;
-    color: rgba(36, 36, 36, 0.9);
+#tomorrow-summary,
+#third-summary,
+#fourth-summary {
+  text-align: center;
+  margin-top: 10%;
+  font-size: 130%;
+  color: rgba(36, 36, 36, 0.9);
   font-style: italic;
 }
 
 .more-info:nth-child(1) {
-    margin-top: 15%;
+  margin-top: 15%;
 }
 
 .more-info {
-    text-align: center;
-    color: rgba(46, 44, 43, 0.8);
-    font-size: 120%;
+  text-align: center;
+  color: rgba(46, 44, 43, 0.8);
+  font-size: 120%;
 }
 
 .speed-toggle {
-    margin-right: 15px;
+  margin-right: 15px;
 }
 
 .icons {
-    font-size: 140%;
-    color: darkslategray;
-    padding-right: 5px;
+  font-size: 140%;
+  color: darkslategray;
+  padding-right: 5px;
 }
 
 .icons:nth-child(3) {
-    padding-left: 20px;
+  padding-left: 20px;
 }
 
 .hourly-icons {
-    font-size: 60px;
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: rgba(74, 175, 70, 0.9);
+  font-size: 60px;
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: rgba(74, 175, 70, 0.9);
 }
 
 .hourly-degs {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 120%;
-    font-weight: 500;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 120%;
+  font-weight: 500;
 }
 
 .hourly-times {
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: 60px;
-    color: rgba(46, 44, 43, 0.8);
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 60px;
+  color: rgba(46, 44, 43, 0.8);
 }
 
 @media only screen and (max-width: 768px) {
-  .more-info:nth-child(4), .hourly-times {
+
+  .more-info:nth-child(4),
+  .hourly-times {
     margin-bottom: 20px;
   }
-  
+
   #cur-status {
     margin-top: 15px;
   }
-  
+
   .more-info {
     font-size: 100%;
   }
@@ -370,11 +405,11 @@ ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
 
 /* Boxes styles */
 .boxes {
-  flex-basis: calc(33.33% - 20px); 
+  flex-basis: calc(33.33% - 20px);
   margin: 5px;
   padding: 100px;
-  background-size: contain; 
-  background-position: center center; 
+  background-size: contain;
+  background-position: center center;
   border: 1px solid #ccc;
   box-sizing: border-box;
   width: 240px;
@@ -400,25 +435,25 @@ ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
   font-weight: 600;
   text-align: center;
 }
-  
-  .boxes:hover {
-    opacity: 1;
-  }
-  
-  .boxes img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+
+.boxes:hover {
+  opacity: 1;
+}
+
+.boxes img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .boxes1 {
-    background-image: url('https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGl2aW5nJTIwcm9vbSUyMGRlY29yfGVufDB8fDB8fA%3D%3D&w=1000&q=80'); 
-    opacity: 0.6;
-}  
+  background-image: url('https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGl2aW5nJTIwcm9vbSUyMGRlY29yfGVufDB8fDB8fA%3D%3D&w=1000&q=80');
+  opacity: 0.6;
+}
 
 
 .boxes2 {
@@ -427,8 +462,8 @@ ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
 }
 
 .boxes3 {
-    background-image: url('https://www.thespruce.com/thmb/vf_MEDifLRzzmQNjMyUDR1FGA14=/3000x0/filters:no_upscale():max_bytes(150000):strip_icc()/tips-for-decorating-a-beautiful-bedroom-1976169-hero-e960fbb8311c4b9b875a1813962d34eb.jpg'); 
-    opacity: 0.6;
+  background-image: url('https://www.thespruce.com/thmb/vf_MEDifLRzzmQNjMyUDR1FGA14=/3000x0/filters:no_upscale():max_bytes(150000):strip_icc()/tips-for-decorating-a-beautiful-bedroom-1976169-hero-e960fbb8311c4b9b875a1813962d34eb.jpg');
+  opacity: 0.6;
 }
 
 .boxes4 {
@@ -453,13 +488,13 @@ ul.nav.nav-tabs li a:focus, ul.nav.nav-tabs li a:active {
 }
 
 .box_rooms {
-    width: 1100px;
-    height: 520px;
-    background-color: #ffffff;
-    border: 1px solid #000000;
-    margin-left: -120px;
-    margin-top: 70px;
-  }
+  width: 1100px;
+  height: 520px;
   
-
-
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  margin-left: -120px;
+  margin-top: 70px;
+}
