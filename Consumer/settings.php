@@ -6,13 +6,16 @@ if ($conn->connect_error) {
     die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
 }
 
+// Hata mesajını tutmak için boş bir değişken
+$errorMessage = "";
+
 // Form verilerini al
-if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['telephone']) && isset($_POST['surname']) && isset($_POST['address']) && isset($_POST['post_code']) && isset($_POST['room_number']) && isset($_POST['password'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id']; 
 
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $telephone = filter_var($_POST['telephone'], FILTER_SANITIZE_STRING);
+    $telephone = $_POST['telephone'];
     $surname = filter_var($_POST['surname'], FILTER_SANITIZE_STRING);
     $address = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
     $post_code = filter_var($_POST['post_code'], FILTER_SANITIZE_STRING);
@@ -20,49 +23,58 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && is
     $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
     $id = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
 
-
-    // Şifreyi karma
-    $hashedPassword = sha1($password);
-
-    // Verileri veritabanında güncelle
-    $sql = "UPDATE user_table SET ";
-    
-    if (!empty($name)) {
-        $sql .= "name = '$name', ";
-    }
-    if (!empty($email)) {
-        $sql .= "email = '$email', ";
-    }
+    // Telefon numarası formatını kontrol et
     if (!empty($telephone)) {
-        $sql .= "telephone = '$telephone', ";
+        $telephone = "+90" . $telephone;
+        if (!preg_match('/^\+90[0-9]{10}$/', $telephone) || !is_numeric(substr($telephone, 3))) {
+            $errorMessage = "Lütfen geçerli bir telefon numarası girin (+90 ile başlayan ve 10 haneli sayı).";
+        }
     }
-    if (!empty($surname)) {
-        $sql .= "surname = '$surname', ";
-    }
-    if (!empty($address)) {
-        $sql .= "address = '$address', ";
-    }
-    if (!empty($post_code)) {
-        $sql .= "post_code = '$post_code', ";
-    }
-    if (!empty($room_number)) {
-        $sql .= "room_number = '$room_number', ";
-    }
-    if (!empty($hashedPassword)) {
-        $sql .= "password = '$hashedPassword', ";
-    }
-    
-    //virgülü kaldır
-    $sql = rtrim($sql, ", ");
-    
-    $sql .= " WHERE id = $id";
 
-    if ($conn->query($sql) === TRUE) {
-       
-    } else {
-        echo "Hata: " . $sql . "<br>" . $conn->error;
+    // Verileri veritabanında güncelle veya hata mesajını göster
+    if (empty($errorMessage)) {
+        // Şifreyi karma
+        $hashedPassword = sha1($password);
+
+        // Verileri veritabanında güncelle
+        $sql = "UPDATE user_table SET ";
+        
+        if (!empty($name)) {
+            $sql .= "name = '$name', ";
+        }
+        if (!empty($email)) {
+            $sql .= "email = '$email', ";
+        }
+        if (!empty($telephone)) {
+            $sql .= "telephone = '$telephone', ";
+        }
+        if (!empty($surname)) {
+            $sql .= "surname = '$surname', ";
+        }
+        if (!empty($address)) {
+            $sql .= "address = '$address', ";
+        }
+        if (!empty($post_code)) {
+            $sql .= "post_code = '$post_code', ";
+        }
+        if (!empty($room_number)) {
+            $sql .= "room_number = '$room_number', ";
+        }
+        if (!empty($hashedPassword)) {
+            $sql .= "password = '$hashedPassword', ";
+        }
+        //virgülü kaldır
+        $sql = rtrim($sql, ", ");
+        
+        $sql .= " WHERE id = $id";
+
+        if ($conn->query($sql) === TRUE) {
+            // Veritabanı güncellendi, isteğe bağlı olarak başka bir işlem yapabilirsiniz
+        } else {
+            echo "Hata: " . $sql . "<br>" . $conn->error;
+        }
     }
-} 
+}
 
 // Veritabanı bağlantısını kapat
 $conn->close();
@@ -149,9 +161,6 @@ $conn->close();
                 </div>
         
             
-        
-
-
         </div>
 
         <!-- MAIN -->
@@ -173,8 +182,23 @@ $conn->close();
            <label for="email" style= "font-size: 15px">Email</label>
            <input type="email" name="email" id="email"><br><br>
 
-           <label for="telephone" style= "font-size: 15px">Telephone</label>
-           <input type="text" name="telephone" id="telephone"><br><br>
+           <label for="telephone" style="font-size: 15px">Telephone</label>
+           <input type="text" name="telephone" id="telephone" onblur="validateTelephone()"><br>
+           <span id="telephone-error" style="color: red;"></span>
+           <script>
+           function validateTelephone() {
+            var telephoneInput = document.getElementById("telephone");
+            var telephone = telephoneInput.value.trim();
+            
+            // Telefon numarası kontrol 
+            var telephoneRegex = /^\d{10}$/;
+            if (telephone !== "" && !telephone.match(telephoneRegex)) {
+              document.getElementById("telephone-error").textContent = "Lütfen geçerli bir telefon numarası girin (10 haneli sayı).";
+            } else {
+              document.getElementById("telephone-error").textContent = "";
+             }
+             }
+             </script><br>
 
            <label for="address" style= "font-size: 15px">Address</label>
            <input type="text" name="address" id="address"><br><br>
@@ -200,12 +224,6 @@ $conn->close();
         </div>
           
         </body>
-
-          
-        
-
-           
-
         </main>
 
       </div>
