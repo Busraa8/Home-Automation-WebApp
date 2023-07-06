@@ -114,7 +114,7 @@ $_SESSION["props"] = $properties;
                     <p style="font-family:'Open Sans'; font-size: 34px; height:20px; weight: 1000px; margin-top:10px;"><?php echo strtoupper($roomname) . "-" . strtoupper($devicename); ?></p>
                 </div>
 
-                <div class="box_rooms" style="height:240px;width:1190px;overflow:auto;border:8px solid rgb(56, 55, 55);padding:2%;border-radius: 8px;position: relative;margin-top: 160px; margin-left:-1190px;">
+                <div class="box_rooms" style="height:280px;width:1190px;overflow:auto;border:8px solid rgb(56, 55, 55);padding:2%;border-radius: 8px;position: relative;margin-top: 160px; margin-left:-1190px;">
                     <div class="container_box" style="display: flex; flex-direction: column; max-width: 500px;">
                         <?php include 'device-properties.php'; ?>
                         <button id="change-button" class="header__change">Change</button>
