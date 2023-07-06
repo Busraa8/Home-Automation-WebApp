@@ -51,41 +51,49 @@ include 'username.php';
             <span class="logout" onclick="logOut()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</span>
         </div>
     </header>
-    <main class="log-content" >
+    <main class="log-content">
         <table>
             <thead>
                 <tr>
-                    <th>Log ID</th>
                     <th>Role</th>
                     <th>Room ID</th>
-                    <th>Device ID</th>
                     <th>Device Name</th>
                     <th>Previous State</th>
                     <th>New State</th>
+                    <th>Request</th>
                     <th>Change Date</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Consumer</td>
-                    <td>456</td>
-                    <td>789</td>
-                    <td>Air Conditioner</td>
-                    <td>Off</td>
-                    <td>On</td>
-                    <td>2023-06-27 12:34:56</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Producer</td>
-                    <td>789</td>
-                    <td>123</td>
-                    <td>Air Conditioner</td>
-                    <td>On</td>
-                    <td>Off</td>
-                    <td>2023-06-28 09:45:21</td>
-                </tr>
+                <?php
+                $sql = "SELECT * FROM logs";
+                $result = mysqli_query($conn, $sql);
+                $data = array();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $data[] = array('role' => $row['role'], 'room_id' => $row['room_id'], 'device_name' => $row['device_name'], 'previous_state' => $row['previous_state'], 'new_state' => $row['new_state'], 'change_date' => $row['date'], 'request' => $row['request']);
+                }
+
+                $data = array_reverse($data);
+
+                foreach ($data as $item) {
+                    $role = $item['role'];
+                    $room_id = $item['room_id'];
+                    $device_name = $item['device_name'];
+                    $previous_state = $item['previous_state'];
+                    $new_state = $item['new_state'];
+                    $request = $item['request'];
+                    $change_date = $item['change_date'];
+                    echo '<tr>';
+                    echo '<td>'. $role .'</td>';
+                    echo '<td>'. $room_id .'</td>';
+                    echo '<td>'. $device_name .'</td>';
+                    echo '<td>'. $previous_state .'</td>';
+                    echo '<td>'. $new_state .'</td>';
+                    echo '<td>'. $request .'</td>';
+                    echo '<td>'. $change_date .'</td>';
+                    echo '<tr>';
+                }
+                ?>
                 <!-- Diğer log kayıtlarını buraya ekleyebilirsiniz -->
             </tbody>
         </table>
