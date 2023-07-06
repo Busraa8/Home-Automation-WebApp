@@ -51,9 +51,12 @@ if (isset($_GET['room_id'])) {
     echo "<form method='post' action=''>";
     echo "<input type='hidden' name='device_id' value='$deviceId'>";
     echo "<label>";
-    echo "<input type='checkbox' name='on_off_button' value='on' onchange='this.form.submit()' ";
-    if ($status == 'on') {
+    echo "<input type='checkbox' name='on_off_button' value='$status' onchange='this.form.submit()' ";
+    if ($status == 'true') {
       echo "checked";
+    }
+    else{
+      echo " ";
     }
     echo ">";
     echo "Aç/Kapat";
@@ -62,22 +65,20 @@ if (isset($_GET['room_id'])) {
   }
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['on_off_button'])) {
       $deviceId = $_POST['device_id'];
-      $status = isset($_POST['on_off_button']) ? 'on' : 'off';
+      $status = isset($_POST['on_off_button']) ? 'true' : 'false';
 
       // Cihazın durumunu güncelle
-      $stmtUpdate = $conn->prepare("UPDATE devices SET properties = JSON_SET(properties, '$.on_off', ?) WHERE id = ?");
+      $stmtUpdate = $conn->prepare("UPDATE devices SET properties_consumer = JSON_SET(properties_consumer, '$.on_off', ?) WHERE id = ?");
       $stmtUpdate->bind_param("si", $status, $deviceId);
 
       if ($stmtUpdate->execute()) {
-        echo "Durum güncellendi";
+        echo "Waiting for change";
       } else {
         echo "Hata oluştu: " . $stmtUpdate->error;
       }
 
       $stmtUpdate->close();
-    }
   }
 
   $stmtDevices->close();

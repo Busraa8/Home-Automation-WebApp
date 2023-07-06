@@ -181,15 +181,14 @@ $conn->close();
 
     <!-- SIDEBAR -->
     <div class="sidebar">
-
       <div class="sidebar_icon">
-        <a href="homepage.html">
+        <a href="homepage.php">
           <i class='fas fa-home' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Home</i>
         </a>
       </div>
 
       <div class="sidebar_icon">
-        <a href="rooms.html">
+        <a href="rooms.php">
 
           <i class='fas fa-th' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Rooms</i>
 

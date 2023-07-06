@@ -110,11 +110,11 @@
                 $roomName = $row["name"];
 
                 echo '<div class="boxes">';
-                echo '<a href="devices.php?room_id=' . $roomId . '">';
+                echo '<a href="dynamic-devices.php?room_id=' . $roomId . '">';
                 echo '<img src="' . getRoomImage($roomName) . '" alt="' . $roomName . '">';
                 echo '<div class="boxes-text">' . $roomName . '</div>';
                 echo '</a>';
-                echo '<h2><a href="devices.php?room_id=' . $roomId . '">' . $roomName . '</a></h2>';
+                echo '<h2><a href="dynamic-devices.php?room_id=' . $roomId . '">' . $roomName . '</a></h2>';
                 echo '</div>';
               }
             } else {
