@@ -39,7 +39,7 @@
           <form action="rooms.php" method="GET">
             <button type="submit"
               style="background: none; border: none; padding: 0; font-size: 17px; color: rgb(255, 255, 255);">
-              <i class='fas fa-cog' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Rooms</i>
+              <i class='fas fa-th' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Rooms</i>
             </button>
           </form>
         </div>
@@ -48,7 +48,7 @@
           <form action="post-message.php" method="GET">
             <button type="submit"
               style="background: none; border: none; padding: 0; font-size: 17px; color: rgb(255, 255, 255);">
-              <i class='fas fa-cog' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Message</i>
+              <i class='fas fa-comment-alt' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Message</i>
             </button>
           </form>
         </div>

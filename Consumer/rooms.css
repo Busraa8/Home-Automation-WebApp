@@ -87,6 +87,17 @@ a:focus {
   cursor: pointer;
 }
 
+.header__change {
+  color: #111111;
+  background: linear-gradient(to top right, #f5f5f7, #66676d);
+  border: 0;
+  font-size: 1.2rem;
+  padding: .7rem 1.8rem;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .header__link {
   font-size: 1.4rem;
   opacity: .8;
@@ -171,11 +182,12 @@ a:focus {
 
 .main {
   flex-grow: 2;
-  background-size: auto 500px;
+  background-size: auto 100px;
   background-color: whitesmoke;
   padding: 4rem 0 0 8rem;
   display: flex;
   border-bottom-right-radius: 8px;
+  
 }
 
 #timedate {
@@ -400,7 +412,8 @@ ul.nav.nav-tabs li a:active {
   flex-wrap: wrap;
   max-width: 1000px;
   margin: 0 auto;
-  margin-top: 45px;
+  margin-top: 55px;
+
 }
 
 /* Boxes styles */
@@ -487,16 +500,24 @@ ul.nav.nav-tabs li a:active {
   }
 }
 
+
 .box_rooms {
   width: 1100px;
   height: 520px;
-  
-  flex-wrap: nowrap;
-  overflow-x: auto;
   background-color: #ffffff;
   border: 1px solid #000000;
   margin-left: -120px;
   margin-top: 70px;
+  margin-bottom: 20px; 
+}
+.box_roomss {
+  width: 1100px;
+  height: 520px;
+  background-color: whitesmoke;
+  border: 1px solid #ffffff;
+  margin-left: -120px;
+  margin-top: 70px;
+  margin-bottom: 20px; 
 }
 
 button {
@@ -616,6 +637,7 @@ input:checked+.slider:before {
 .brightness-device {
     display: flex;
     justify-content: space-between;
+   
 }
 
 .device-attributes {
@@ -655,3 +677,4 @@ input:checked+.slider:before {
     background-color: rgb(163, 57, 57);
     color: #eaf2fe;
 }
+

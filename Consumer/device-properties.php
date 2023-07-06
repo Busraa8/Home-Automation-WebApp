@@ -14,14 +14,13 @@ foreach ($properties as $key => $value) {
     echo '<input type="checkbox" id="on-off" ' . $onOffChecked . '>';
     echo '<span class="slider"></span>';
     echo '</label>';
-    echo '<label for="on-off">On/Off</label> <label for="on-off">Current state: <label id="current-state" for="on-off">' . $currentState . '</label></label>';
+    echo '<label class="on-off-label for="on-off">On/Off</label> <label class="on-off-label" for="on-off">Current state: <label id="current-state" for="on-off">' . $currentState . '</label></label>';
     echo '</div>';
     $_SESSION["on_off"] = $value;
-
   } elseif ($key === 'brightness') {
     echo '<div class="brightness-device">';
     echo '<input type="range" id="brightness" min="0" max="100" value="' . $value . '">';
-    echo '<span>Brightness: </span><span class="brightness-value">' . $value . '</span>';
+    echo '<span class="on-off-label" style="text-indent: 280px;" >Brightness: </span><span  class="brightness-value">' . $value . '</span>';
     echo '</div>';
     $_SESSION["brightness"] = $value;
   } elseif ($key === 'temperature') {
@@ -47,3 +46,9 @@ foreach ($properties as $key => $value) {
   }
 }
 ?>
+<style>
+  .on-off-label, .brightness-device .on-off-label, .brightness-device .brightness-value, .connection-control {
+    font-size: 12px;
+    font-weight: bold;
+  }
+</style>

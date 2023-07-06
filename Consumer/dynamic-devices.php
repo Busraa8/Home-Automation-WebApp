@@ -48,7 +48,7 @@
                     <form action="post-message.php" method="GET">
                         <button type="submit"
                             style="background: none; border: none; padding: 0; font-size: 17px; color: rgb(255, 255, 255);">
-                            <i class='fas fa-cog' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Message</i>
+                            <i class='	fas fa-comment-alt' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Message</i>
                         </button>
                     </form>
                 </div>
@@ -58,7 +58,7 @@
                         <button type="submit"
                             style="background: none; border: none; padding: 0; font-size: 17px; color: rgb(255, 255, 255);">
                             <i class='fas fa-cog' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp
-                                Settings</i>
+                               Settings</i>
                         </button>
                     </form>
                 </div>
@@ -79,28 +79,46 @@
             <!-- MAIN -->
             <main class="main">
 
-                <p style="font-family:'Open Sans'; font-size: 34px;">DEVICES</p>
+                <p style="font-family:'Open Sans'; font-size: 34px; ">
+                    <?php
+                    include 'config.php';
+
+                    // Veritabanı bağlantısı oluştur
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                    // Bağlantıyı kontrol et
+                    if ($conn->connect_error) {
+                        die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
+                    }
+
+                    $roomId = $_GET['room_id'];
+
+                    // Odanın adını al
+                    $sql = "SELECT name FROM room WHERE id = '$roomId'";
+                    $result = mysqli_query($conn, $sql);
+                    $roomName = "";
+
+                    if ($row = mysqli_fetch_assoc($result)) {
+                        $roomName = $row['name'];
+                    }
+
+                    echo "" . $roomName;
+                    ?>
+
+                </p> <br/><br/><br/>
 
                 <div class="box_rooms">
                     <div class="container_box">
 
                         <?php
-                        include 'config.php';
-
-                        // Veritabanı bağlantısı oluştur
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-
-                        // Bağlantıyı kontrol et
-                        if ($conn->connect_error) {
-                            die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
-                        }
-                        $roomId = $_GET['room_id'];
 
                         $sql = "SELECT device_name, id
                             FROM devices
                             WHERE room_id = '$roomId' ";
+
                         $result = mysqli_query($conn, $sql);
                         $data = array();
+
                         while ($row = mysqli_fetch_assoc($result)) {
                             $data[] = array('id' => $row['id'], 'name' => $row['device_name']); // Her name değerini diziye ekle
                         }
@@ -108,19 +126,51 @@
                         foreach ($data as $item) {
                             $id = $item['id'];
                             $deviceName = $item['name'];
-                            $sql = "SELECT device_name, properties FROM devices Where id = $id";
+
+                            $sql = "SELECT device_name, properties FROM devices WHERE id = $id";
                             $result = mysqli_query($conn, $sql);
+
                             $devicename = "";
                             $deviceprops = "";
+
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $devicename = $row["device_name"];
                                 $deviceprops = $row["properties"];
                             }
+
                             $jsonData = $deviceprops;
                             $properties = json_decode($jsonData, true);
-                            echo '<div class="boxes">';
+
+                            echo '<div class="boxes"';
+
+                            // arka plan
+                            if ($deviceName == "Light") {
+                                echo " style='background-image: url(images/light.jpeg);'";
+                            }
+
+                            if ($deviceName == "Thermostat") {
+                                echo " style='background-image: url(images/thermostat.jpeg);'";
+                            }
+
+                            if ($deviceName == "Air Conditioner") {
+                                echo " style='background-image: url(images/air.jpeg);'";
+                            }
+
+                            if ($deviceName == "Wi-Fi") {
+                                echo " style='background-image: url(images/wifi.jpeg);'";
+                            }
+
+                            if ($deviceName == "Smart Plug") {
+                                echo " style='background-image: url(images/smartplug.jpeg);'";
+                            }
+
+                            if ($deviceName == "Speaker") {
+                                echo " style='background-image: url(images/smartplug.jpeg);'";
+                            }
+
+                            echo '>';
                             echo "<div class='user-device-card' onclick='toDevice($id)'>";
-                            echo '<div class="boxes-text">' . $deviceName . '</div>';
+                            echo "<div class='boxes-text'>" . $deviceName . "</div>";
                             echo '</a>';
                             echo '</div>';
                             echo '</div>';
@@ -135,7 +185,7 @@
         </div>
 
     </div>
-    <script src="devices.js" ></script>
+    <script src="devices.js"></script>
     <script src="clock.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
@@ -144,3 +194,4 @@
 </body>
 
 </html>
+

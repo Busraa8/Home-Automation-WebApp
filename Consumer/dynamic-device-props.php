@@ -1,5 +1,7 @@
-<?php session_start();
+<?php
+session_start();
 include 'config.php';
+
 // Veritabanı bağlantısı oluştur
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -7,19 +9,24 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
 }
+
 $deviceId = $_GET["deviceid"];
-$sql = "SELECT device_name, properties FROM devices Where id = $deviceId";
+$sql = "SELECT d.device_name, r.name AS room_name, d.properties FROM devices d INNER JOIN room r ON d.room_id = r.id WHERE d.id = $deviceId";
 $result = mysqli_query($conn, $sql);
+
 $devicename = "";
+$roomname = "";
 $deviceprops = "";
+
 while ($row = mysqli_fetch_assoc($result)) {
     $devicename = $row["device_name"];
+    $roomname = $row["room_name"];
     $deviceprops = $row["properties"];
 }
 
 $jsonData = $deviceprops;
 $properties = json_decode($jsonData, true);
-$_SESSION["props"] = $properties ;
+$_SESSION["props"] = $properties;
 ?>
 
 <!DOCTYPE html>
@@ -63,8 +70,8 @@ $_SESSION["props"] = $properties ;
                     <form action="rooms.php" method="GET">
                         <button type="submit"
                             style="background: none; border: none; padding: 0; font-size: 17px; color: rgb(255, 255, 255);">
-                            <i class='fas fa-cog' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Rooms</i>
-                        </button>
+                            <i class='fas fa-th' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Rooms</i>
+                       </button>
                     </form>
                 </div>
 
@@ -72,7 +79,7 @@ $_SESSION["props"] = $properties ;
                     <form action="post-message.php" method="GET">
                         <button type="submit"
                             style="background: none; border: none; padding: 0; font-size: 17px; color: rgb(255, 255, 255);">
-                            <i class='fas fa-cog' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Message</i>
+                            <i class='	fas fa-comment-alt' style='font-size:17px;color:rgb(255, 255, 255)'>&nbsp&nbsp Message</i>
                         </button>
                     </form>
                 </div>
@@ -101,18 +108,20 @@ $_SESSION["props"] = $properties ;
             </div>
 
             <!-- MAIN -->
+
             <main class="main">
+                <div class="box_roomss" style="height:150px;width:1190px;overflow:auto;border:8px solid whitesmoke;padding:2%;border-radius: 8px;position: relative;margin-left:-20px;margin-top:20px;">
+                    <p style="font-family:'Open Sans'; font-size: 34px; height:20px; weight: 1000px; margin-top:10px;"><?php echo strtoupper($roomname) . "-" . strtoupper($devicename); ?></p>
+                </div>
 
-                <p style="font-family:'Open Sans'; font-size: 34px;">DEVICES</p>
-
-                <div class="box_rooms">
-                    <div class="container_box" style="display: flex; flex-direction: column; max-width: 500px;" >
+                <div class="box_rooms" style="height:240px;width:1190px;overflow:auto;border:8px solid rgb(56, 55, 55);padding:2%;border-radius: 8px;position: relative;margin-top: 160px; margin-left:-1190px;">
+                    <div class="container_box" style="display: flex; flex-direction: column; max-width: 500px;">
                         <?php include 'device-properties.php'; ?>
-                        <button id="change-button">Change</button>
+                        <button id="change-button" class="header__change">Change</button>
                     </div>
-
                 </div>
             </main>
+
         </div>
 
     </div>
@@ -127,10 +136,8 @@ $_SESSION["props"] = $properties ;
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    // İstek tamamlandıktan sonra geri dönen yanıtı işleyebilirsiniz
-                }
-                else {
-                }
+                    
+                } else {}
             };
             var params =
                 "onof=" + encodeURIComponent(onOffValue) +
@@ -140,7 +147,7 @@ $_SESSION["props"] = $properties ;
                 "&deviceidnew=" + encodeURIComponent(deviceidnew) +
                 "&connectionv=" + encodeURIComponent(connectionv);
             xhr.send(params);
-            // Başarılı bir şekilde değişiklikler yapıldıktan sonra kullanıcıya geri bildirim verebilirsiniz.
+            
             alert("Değişiklikler başarıyla kaydedildi.");
         });
     </script>
@@ -152,3 +159,4 @@ $_SESSION["props"] = $properties ;
 </body>
 
 </html>
+
